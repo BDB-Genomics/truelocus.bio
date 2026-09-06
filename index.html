@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrueLocus Bio | Resolving Distal Non-Coding Screen Hits</title>
+  <meta name="description" content="TrueLocus Bio nominates and validates distal target genes for non-coding CRISPRi hits and GWAS loci using 3D contact priors and multi-promoter competition.">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #121215;
+      --border: #27272a;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --accent: #38bdf8;
+      --green: #22c55e;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.55;
+      padding: 0 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 0 80px 0;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-family: var(--mono);
+    }
+    .contact-link {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+    .contact-link:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+    .hero {
+      margin-bottom: 48px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.3rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn-primary {
+      background: #f4f4f5;
+      color: #09090b;
+    }
+    .btn-primary:hover {
+      background: #ffffff;
+    }
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+    }
+    section {
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    /* Benchmark Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 16px 0;
+      font-family: var(--mono);
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .highlight-row td {
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.03);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 1.85rem;
+      }
+    }
+    .offer-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .offer-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--border);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    footer {
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/" class="brand">
+        <div class="brand-mark">TL</div>
+        <span>TrueLocus Bio</span>
+      </a>
+      <a href="mailto:contact@truelocus.bio" class="contact-link">contact@truelocus.bio</a>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="badge">Held-Out CRISPRi Benchmark (n = 72)</div>
+        <h1>Resolving ambiguous non-coding screen hits.</h1>
+        <p class="lead">
+          Nearest-gene heuristics misassign target genes for up to 46% of non-coding hits. 
+          TrueLocus nominates causal distal targets using 3D contact priors and multi-promoter competition without requiring cell-type Hi-C.
+        </p>
+        <div class="cta-row">
+          <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request" class="btn btn-primary">Request a Free Blind Ranking</a>
+          <a href="./TrueLocus_Sample_Audit_Dossier.pdf" class="btn btn-secondary">Download Sample Audit Dossier (PDF)</a>
+        </div>
+      </div>
+
+      <section>
+        <h2>Held-Out Empirical Benchmark</h2>
+        <p>
+          Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, Nature Methods). 
+          Code was frozen and committed before evaluation.
+        </p>
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Top-1 Accuracy</th>
+                <th>Top-3 Target Recall</th>
+                <th>Input Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nearest-TSS Baseline</td>
+                <td>54.2% (39/72)</td>
+                <td>73.6% (53/72)</td>
+                <td>1D Distance</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>TrueLocus (v1.7)</td>
+                <td>69.4% (50/72)</td>
+                <td>84.7% (61/72)</td>
+                <td>Sequence + CAGE (No Hi-C)</td>
+              </tr>
+              <tr>
+                <td>Broad ABC (Nasser 2021)</td>
+                <td>75.0% (54/72)</td>
+                <td>94.4% (68/72)</td>
+                <td>Full K562 Hi-C + ChIP + ATAC</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.82rem; margin-top: 12px; margin-bottom: 0;">
+            Paired exact test: TrueLocus vs Nearest Top-1 p=0.007 (McNemar exact, b=13, c=2). 
+            On the 33 non-nearest loci where enhancers skip the closest promoter, nearest-gene Top-3 recall collapses to 42%, while TrueLocus recovers 70%.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Services & Engagements</h2>
+        <div class="grid-2">
+          <div class="card">
+            <div class="tag">Free Pilot</div>
+            <div class="offer-title">Blind Screen Ranking</div>
+            <div class="offer-desc">
+              Send 3 to 5 ambiguous non-coding hits plus cell type. We return blind target predictions within 5 business days for validation against your internal experimental truth. Zero cost, no calls required.
+            </div>
+          </div>
+          <div class="card">
+            <div class="tag">Commercial</div>
+            <div class="offer-title">14-Day Locus De-Risking Audit</div>
+            <div class="offer-desc">
+              20 to 50 candidate screening hits audited per engagement. Deliverables include full candidate rankings, multi-promoter competition matrices, and vector-mapped boundary profiles. 14-day turnaround.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Inquiries & Contact</h2>
+        <p>
+          TrueLocus Bio operates directly with functional genomics and target discovery screening teams. 
+          To test the engine on your hits or request full per-locus benchmark logs:
+        </p>
+        <p>
+          <a href="mailto:contact@truelocus.bio" style="color: var(--accent); text-decoration: none; font-weight: 500;">contact@truelocus.bio</a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div>&copy; 2026 TrueLocus Bio. All rights reserved.</div>
+      <div>
+        <a href="https://www.linkedin.com/in/himanshu2032/" target="_blank" rel="noopener">LinkedIn</a> &bull; 
+        <a href="mailto:contact@truelocus.bio">Email</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
