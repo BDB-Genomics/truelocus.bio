@@ -369,7 +369,7 @@
                 <strong style="color: var(--text);">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D proximity reliably assigns 54.2% of targets.
               </li>
               <li>
-                <strong style="color: var(--accent);">TrueLocus Engine:</strong> Engineered specifically for screening hits in primary cells and disease models where experimental cell-type Hi-C is absent or impractical to generate. By deriving 3D contact decay directly from sequence and resolving multi-promoter competition, TrueLocus lifts Top-3 recall on distal bypass loci to 70% (vs 42% for Nearest-TSS), while correctly nominating the causal gene across 9 complex non-nearest loci (including NUP98 and HBD) without requiring 3D experimental libraries.
+                <strong style="color: var(--accent);">TrueLocus Engine:</strong> Engineered specifically for screening hits in primary cells and disease models where experimental cell-type Hi-C is absent or impractical to generate. By deriving 3D contact decay directly from sequence and resolving multi-promoter competition, TrueLocus lifts Top-3 recall on non-nearest loci to 70% (vs 42% for Nearest-TSS), correctly ranking the true target #1 on 13 of these 33 loci where nearest-gene picked the wrong gene, without requiring cell-type Hi-C.
               </li>
             </ul>
           </div>
