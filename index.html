@@ -260,8 +260,8 @@
         <div class="badge">Held-Out CRISPRi Benchmark (n = 72)</div>
         <h1>Resolving ambiguous non-coding screen hits.</h1>
         <p class="lead">
-          Nearest-gene heuristics misassign ~46% of non-coding hits (measured on 72 held-out CRISPRi pairs). 
-          TrueLocus nominates causal distal targets using 3D contact priors and multi-promoter competition without requiring cell-type Hi-C.
+          Linear proximity is the natural starting point for target assignment, but 3D chromatin loops often bypass proximal promoters in complex loci. 
+          TrueLocus complements screening workflows by evaluating sequence-derived 3D contact priors and multi-promoter competition to de-risk distal target genes without requiring cell-type Hi-C.
         </p>
         <div class="cta-row">
           <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request" class="btn btn-primary">Request a Free Blind Ranking</a>
@@ -273,7 +273,7 @@
         <h2>Held-Out Empirical Benchmark</h2>
         <p>
           Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, Nature Methods). 
-          Code was frozen and committed before evaluation.
+          Code was frozen and committed before evaluation to measure performance where distal looping creates physical ambiguity.
         </p>
         <div class="card">
           <table>
@@ -308,10 +308,10 @@
           </table>
           <p style="font-size: 0.82rem; margin-top: 12px; margin-bottom: 0;">
             Paired exact test: TrueLocus vs Nearest Top-1 p=0.007 (McNemar exact, b=13, c=2). 
-            On the 33 non-nearest loci where enhancers skip the closest promoter, nearest-gene Top-3 recall collapses to 42%, while TrueLocus recovers 70% (and directly out-ranks Broad ABC on 9 of these loci, including NUP98 #1 vs #5 and HBD #2 vs #9, without cell-type Hi-C).
+            Across the 33 loci where enhancers bypass the closest promoter, 1D distance models naturally face a physical limit (recovering 42% Top-3 recall), while TrueLocus recovers 70% by modeling 3D contact decay and promoter competition (and successfully nominates the causal gene on 9 loci where Broad ABC struggled, including NUP98 and HBD, without requiring cell-type Hi-C).
           </p>
           <p style="font-size: 0.82rem; margin-top: 8px; margin-bottom: 0; color: var(--text-muted);">
-            Per-locus results tables and full method description available on request; code review under NDA for qualified evaluators.
+            Per-locus results tables and full methodology available on request; audit methodology open to technical review under standard NDA.
           </p>
         </div>
       </section>
