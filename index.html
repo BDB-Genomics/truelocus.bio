@@ -260,8 +260,8 @@
         <div class="badge">Held-Out CRISPRi Benchmark (n = 72)</div>
         <h1>Resolving ambiguous non-coding screen hits.</h1>
         <p class="lead">
-          Linear proximity is the natural starting point for target assignment, but 3D chromatin loops often bypass proximal promoters in complex loci. 
-          TrueLocus complements screening workflows by evaluating sequence-derived 3D contact priors and multi-promoter competition to de-risk distal target genes without requiring cell-type Hi-C.
+          Linear proximity is the natural starting point for target assignment, and the Broad Institute's ABC model established the gold standard when experimental Hi-C is available. 
+          TrueLocus complements screening workflows where cell-type 3D conformation data is absent, evaluating sequence-derived contact priors and multi-promoter competition to de-risk distal target genes.
         </p>
         <div class="cta-row">
           <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request" class="btn btn-primary">Request a Free Blind Ranking</a>
@@ -306,11 +306,24 @@
               </tr>
             </tbody>
           </table>
-          <p style="font-size: 0.82rem; margin-top: 12px; margin-bottom: 0;">
-            Paired exact test: TrueLocus vs Nearest Top-1 p=0.007 (McNemar exact, b=13, c=2). 
-            Across the 33 loci where enhancers bypass the closest promoter, 1D distance models naturally face a physical limit (recovering 42% Top-3 recall), while TrueLocus recovers 70% by modeling 3D contact decay and promoter competition (and successfully nominates the causal gene on 9 loci where Broad ABC struggled, including NUP98 and HBD, without requiring cell-type Hi-C).
+          <p style="font-size: 0.82rem; margin-top: 12px; margin-bottom: 12px;">
+            Paired exact test: TrueLocus vs Nearest Top-1 p=0.007 (McNemar exact, b=13, c=2).
           </p>
-          <p style="font-size: 0.82rem; margin-top: 8px; margin-bottom: 0; color: var(--text-muted);">
+          <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.84rem; line-height: 1.6; color: var(--text-muted);">
+            <div style="font-weight: 600; color: var(--text); margin-bottom: 10px;">Objective Evaluation & Domains of Applicability:</div>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px;">
+              <li>
+                <strong style="color: var(--text);">Broad ABC Model (Nasser et al. 2021):</strong> A foundational milestone in regulatory genomics. When deeply sequenced cell-type Hi-C, ChIP-seq, and ATAC-seq are experimentally available, Broad ABC demonstrates outstanding performance (75.0% Top-1, 94.4% Top-3 recall). It remains the benchmark standard for data-rich cell lines.
+              </li>
+              <li>
+                <strong style="color: var(--text);">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D proximity reliably assigns 54.2% of targets.
+              </li>
+              <li>
+                <strong style="color: var(--accent);">TrueLocus Engine:</strong> Engineered specifically for screening hits in primary cells and disease models where experimental cell-type Hi-C is absent or impractical to generate. By deriving 3D contact decay directly from sequence and resolving multi-promoter competition, TrueLocus lifts Top-3 recall on distal bypass loci to 70% (vs 42% for Nearest-TSS), while correctly nominating the causal gene across 9 complex non-nearest loci (including NUP98 and HBD) without requiring 3D experimental libraries.
+              </li>
+            </ul>
+          </div>
+          <p style="font-size: 0.82rem; margin-top: 14px; margin-bottom: 0; color: var(--text-muted);">
             Per-locus results tables and full methodology available on request; audit methodology open to technical review under standard NDA.
           </p>
         </div>
