@@ -234,6 +234,96 @@
     .white-card .card-footer a:hover {
       text-decoration: underline;
     }
+    /* Forensics & Methodological Notes */
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+    .forensics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 20px;
+    }
+    .forensic-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .forensic-tag {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+    .forensic-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .forensic-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+    .forensic-flow strong {
+      color: var(--text);
+    }
+    .forensic-guardrail {
+      margin-top: 4px;
+      padding: 10px 12px;
+      background: rgba(56, 189, 248, 0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+    .forensic-guardrail strong {
+      color: var(--accent);
+    }
+    .takeaway-banner {
+      margin-top: 22px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .takeaway-banner-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .takeaway-banner-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
     @media (max-width: 960px) {
       .benchmark-grid {
         grid-template-columns: 1fr;
@@ -354,6 +444,52 @@
       <div class="card-footer">
         <span style="color: #64748b;">Per-locus results tables open under standard NDA.</span>
         <a href="./contact.html">Request Full Audit Logs &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Methodological Notes: Failure Forensics -->
+    <div style="margin-top: 56px; margin-bottom: 20px;">
+      <h2 class="section-title">Methodological Notes & Failure Forensics</h2>
+      <p class="section-desc">
+        A model that documents where it fails is more useful than one that claims it doesn't. 
+        Post-mortem analysis of the two engine mispredictions in our held-out benchmark (n = 72).
+      </p>
+    </div>
+
+    <div class="forensics-grid">
+      <!-- Case 01 -->
+      <div class="forensic-card">
+        <span class="forensic-tag">Failure 01 &bull; Annotation Error</span>
+        <div class="forensic-title">HBE1: Read-Through Transcript vs. Physical Promoter</div>
+        <div class="forensic-flow">
+          <div><strong>Observation:</strong> Six loci flipped rank when HBE1 was shifted to an incorrect coordinate.</div>
+          <div><strong>Root Cause:</strong> An automated database transcript model placed HBE1's TSS 225 kb away from its physical promoter. CAGE peaks clearly showed the true promoter, but unvalidated transcript annotations overrode physical data.</div>
+          <div class="forensic-guardrail">
+            <strong>Engineering Guardrail:</strong> Anchor promoter coordinates directly to empirical CAGE and ATAC peaks, never to automated transcript models.
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 02 -->
+      <div class="forensic-card">
+        <span class="forensic-tag">Failure 02 &bull; Data Dropout</span>
+        <div class="forensic-title">NCR3LG1: False Silence from Single-Library Gap</div>
+        <div class="forensic-flow">
+          <div><strong>Observation:</strong> Three distant competitor genes outranked the true causal target because NCR3LG1 was gated as silent.</div>
+          <div><strong>Root Cause:</strong> A single CAGE library returned 0 TPM, triggering a hard silence gate. Orthogonal TAP-seq data from the identical cell line proved strong expression (<em>p</em> = 3.7 &times; 10<sup>-104</sup>).</div>
+          <div class="forensic-guardrail">
+            <strong>Engineering Guardrail:</strong> Continuous multi-source competence scoring; never allow a single library's sampling dropout to hard-gate promoter viability.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Systemic Takeaway Banner -->
+    <div class="takeaway-banner">
+      <div class="takeaway-banner-title">Core Architectural Principle: Measured Signals Beat Assumptions</div>
+      <div class="takeaway-banner-desc">
+        Both failures came from the same root design mistake: trusting cheap data-layer inputs as biological ground truth. 
+        This is why TrueLocus audits incorporate partner-provided ATAC and RNA sequencing data. When ranking non-coding hits for downstream animal validation, measured empirical signal must always override unvalidated assumptions.
       </div>
     </div>
   </div>
