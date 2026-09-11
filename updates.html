@@ -447,49 +447,55 @@
       </div>
     </div>
 
-    <!-- Methodological Notes: Failure Forensics -->
-    <div style="margin-top: 56px; margin-bottom: 20px;">
-      <h2 class="section-title">Methodological Notes & Failure Forensics</h2>
-      <p class="section-desc">
+    <!-- Methodological Notes: Clean White Card -->
+    <div class="white-card" style="margin-top: 32px;">
+      <span class="tag" style="background: #fef2f2; border-color: #fecaca; color: #b91c1c;">Methodological Notes &bull; Failure Forensics</span>
+      <h2 class="update-title">Two Engine Failures on Real Data (And What They Taught Us)</h2>
+      <p class="update-desc">
         A model that documents where it fails is more useful than one that claims it doesn't. 
-        Post-mortem analysis of the two engine mispredictions in our held-out benchmark (n = 72).
+        In our 72-pair held-out CRISPRi benchmark, our engine missed twice. Both failures were ours.
       </p>
-    </div>
 
-    <div class="forensics-grid">
-      <!-- Case 01 -->
-      <div class="forensic-card">
-        <span class="forensic-tag">Failure 01 &bull; Annotation Error</span>
-        <div class="forensic-title">HBE1: Read-Through Transcript vs. Physical Promoter</div>
-        <div class="forensic-flow">
-          <div><strong>Observation:</strong> Six loci flipped rank when HBE1 was shifted to an incorrect coordinate.</div>
-          <div><strong>Root Cause:</strong> An automated database transcript model placed HBE1's TSS 225 kb away from its physical promoter. CAGE peaks clearly showed the true promoter, but unvalidated transcript annotations overrode physical data.</div>
-          <div class="forensic-guardrail">
-            <strong>Engineering Guardrail:</strong> Anchor promoter coordinates directly to empirical CAGE and ATAC peaks, never to automated transcript models.
+      <div class="benchmark-grid" style="align-items: stretch; margin-top: 20px;">
+        <!-- Failure 1 -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 0.75rem; font-family: var(--mono); font-weight: 700; color: #b91c1c; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;">
+              Failure 1 &bull; HBE1 (Annotation Error)
+            </div>
+            <div style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">
+              An annotation error, not biology.
+            </div>
+            <p style="font-size: 0.88rem; color: #334155; line-height: 1.55; margin-bottom: 12px;">
+              The database placed HBE1's transcription start 225 kb from its real promoter. The CAGE peak showed the true promoter directly, but one read-through transcript model moved the gene 225 kb. Six loci flipped rank.
+            </p>
+          </div>
+          <div style="padding: 10px 12px; background: #ffffff; border-left: 3px solid #0284c7; border: 1px solid #e2e8f0; border-left-width: 3px; border-radius: 4px; font-size: 0.84rem; color: #0f172a;">
+            <strong>Takeaway:</strong> Anchor promoters to measured CAGE peaks, not transcript models.
+          </div>
+        </div>
+
+        <!-- Failure 2 -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 0.75rem; font-family: var(--mono); font-weight: 700; color: #b91c1c; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;">
+              Failure 2 &bull; NCR3LG1 (Data Dropout)
+            </div>
+            <div style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">
+              A data dropout that looked like silence.
+            </div>
+            <p style="font-size: 0.88rem; color: #334155; line-height: 1.55; margin-bottom: 12px;">
+              One CAGE library returned 0 TPM, so our engine treated the gene as silent. Three distant competitors outranked it. Yet TAP-seq in the same cell line showed it was strongly expressed (<em>p</em> = 3.7 &times; 10<sup>-104</sup>).
+            </p>
+          </div>
+          <div style="padding: 10px 12px; background: #ffffff; border-left: 3px solid #0284c7; border: 1px solid #e2e8f0; border-left-width: 3px; border-radius: 4px; font-size: 0.84rem; color: #0f172a;">
+            <strong>Takeaway:</strong> Never gate promoter competence on a single data source.
           </div>
         </div>
       </div>
 
-      <!-- Case 02 -->
-      <div class="forensic-card">
-        <span class="forensic-tag">Failure 02 &bull; Data Dropout</span>
-        <div class="forensic-title">NCR3LG1: False Silence from Single-Library Gap</div>
-        <div class="forensic-flow">
-          <div><strong>Observation:</strong> Three distant competitor genes outranked the true causal target because NCR3LG1 was gated as silent.</div>
-          <div><strong>Root Cause:</strong> A single CAGE library returned 0 TPM, triggering a hard silence gate. Orthogonal TAP-seq data from the identical cell line proved strong expression (<em>p</em> = 3.7 &times; 10<sup>-104</sup>).</div>
-          <div class="forensic-guardrail">
-            <strong>Engineering Guardrail:</strong> Continuous multi-source competence scoring; never allow a single library's sampling dropout to hard-gate promoter viability.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Systemic Takeaway Banner -->
-    <div class="takeaway-banner">
-      <div class="takeaway-banner-title">Core Architectural Principle: Measured Signals Beat Assumptions</div>
-      <div class="takeaway-banner-desc">
-        Both failures came from the same root design mistake: trusting cheap data-layer inputs as biological ground truth. 
-        This is why TrueLocus audits incorporate partner-provided ATAC and RNA sequencing data. When ranking non-coding hits for downstream animal validation, measured empirical signal must always override unvalidated assumptions.
+      <div style="margin-top: 20px; padding: 14px 18px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; font-size: 0.86rem; color: #0369a1; line-height: 1.55;">
+        <strong>Root Cause & Design Fix:</strong> Cheap inputs trusted too hard. Both failures treated a data-layer artifact as ground truth. This is why our audits request your own cell-type ATAC and RNA data—measured signals beat assumptions.
       </div>
     </div>
   </div>
