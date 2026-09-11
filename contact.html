@@ -228,7 +228,7 @@
     </p>
 
     <div class="card">
-      <form action="https://formspree.io/f/xppznjvn" method="POST">
+      <form action="https://formspree.io/f/xppznjvn" method="POST" enctype="multipart/form-data">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div class="form-group">
             <label for="name">Your Name</label>
@@ -258,6 +258,11 @@
         <div class="form-group">
           <label for="message">Screening Context / Candidate Loci</label>
           <textarea id="message" name="message" placeholder="Details about your screening hit coordinates, cell types, or timeline requirements..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="attachment">Attach File / Locus List <span style="font-size: 0.78rem; font-weight: normal; color: #64748b;">(Optional &bull; TSV, CSV, BED, PDF, or ZIP &bull; Max 10MB)</span></label>
+          <input type="file" id="attachment" name="attachment" style="padding: 10px 12px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; font-size: 0.88rem; width: 100%; cursor: pointer;">
         </div>
 
         <button type="submit" class="btn-submit">Submit Inquiry</button>
