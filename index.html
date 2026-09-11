@@ -316,8 +316,7 @@
         <div class="badge">Held-Out CRISPRi Benchmark (n = 72)</div>
         <h1>Resolving ambiguous non-coding screen hits.</h1>
         <p class="lead">
-          Linear proximity is the natural starting point for target assignment, and ABC-class models set the bar when experimental Hi-C is available. 
-          TrueLocus complements screening workflows where cell-type 3D conformation data is absent, evaluating sequence-derived contact priors and multi-promoter competition to de-risk distal target genes.
+          Linear proximity fails when enhancers loop past proximal genes, and cell-type Hi-C is rarely available. TrueLocus derives 3D contact decay and multi-promoter competition from sequence and CAGE to de-risk causal target genes.
         </p>
         <div class="cta-row">
           <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request" class="btn btn-primary">Request a Free Blind Ranking</a>
@@ -328,10 +327,7 @@
       <section>
         <h2>The Unresolved Regulatory Loop</h2>
         <p>
-          When you complete a high-throughput CRISPRi screen, non-coding hit coordinates are clear, but target gene assignment is not. 
-          Conventional pipelines default to assigning each hit to its nearest transcription start site (TSS). 
-          In held-out CRISPRi benchmarks (Schraivogel et al. 2020), the true target was not the nearest gene in 45.8% of pairs (33/72). 
-          A screening hit identifies a functional coordinate, but leaves the causal target gene an open, unresolved liability heading into animal validation.
+          CRISPRi screening yields precise non-coding coordinates, but conventional pipelines default to nearest-TSS assignment. In held-out benchmarks, the true target is not the nearest gene in <strong>45.8% of pairs (33/72)</strong>&mdash;leaving the causal gene an open liability heading into animal models.
         </p>
 
         <!-- Visual Schematic: 1D Proximity vs 3D Distal Loop -->
@@ -406,16 +402,16 @@
         <div class="grid-2" style="margin-top: 20px;">
           <div class="contrast-card" style="border-left: 4px solid #ef4444;">
             <div class="contrast-header" style="color: #dc2626;">Conventional Wet-Lab Path</div>
-            <div class="contrast-val">Months of Serial Validation per Locus</div>
+            <div class="contrast-val">Months of Serial Validation</div>
             <div class="contrast-desc">
-              Iterative CRISPR-QTL, cell line engineering, and in vivo knockouts chasing the adjacent promoter, risking months of effort on false proximal targets.
+              Iterative CRISPR-QTL, engineering, and mouse models chasing the adjacent promoter—often wasting months on a decoy proximal gene.
             </div>
           </div>
           <div class="contrast-card" style="border-left: 4px solid #0284c7;">
             <div class="contrast-header" style="color: #0284c7;">TrueLocus Computational Audit</div>
-            <div class="contrast-val">14-Day Turnaround &bull; Zero Cell-Type Hi-C</div>
+            <div class="contrast-val">14-Day Locus De-Risking</div>
             <div class="contrast-desc">
-              Sequence-derived 3D contact decay and multi-promoter competition matrices to de-risk candidate target genes before in vivo commitment.
+              Sequence-derived 3D contact decay and multi-promoter competition matrices to rank the true causal target before in vivo commitment.
             </div>
           </div>
         </div>
@@ -426,21 +422,18 @@
         <div class="card">
           <div class="tag" style="background: #fffbeb; border: 1px solid #fde68a; color: #b45309;">Selective Qualification</div>
           <div class="offer-title" style="margin-top: 6px;">When TrueLocus Is Not Needed</div>
-          <p style="font-size: 0.88rem; color: #475569; margin-top: 8px; margin-bottom: 12px; line-height: 1.6;">
-            Clear scope boundaries where 3D target de-risking is unnecessary:
-          </p>
-          <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: #334155; line-height: 1.5;">
+          <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: #334155; line-height: 1.5; margin-top: 10px;">
             <li style="display: flex; gap: 8px;">
-              <span style="color: #dc2626; font-family: var(--mono);">&#10005;</span>
-              <span><strong>Coding Exon Hits:</strong> If your screening hits reside strictly within protein-coding exons, target assignment is already resolved.</span>
+              <span style="color: #dc2626; font-family: var(--mono); font-weight: 700;">&#10005;</span>
+              <span><strong style="color: #0f172a;">Coding Exon Hits:</strong> Target assignment is already physically resolved.</span>
             </li>
             <li style="display: flex; gap: 8px;">
-              <span style="color: #dc2626; font-family: var(--mono);">&#10005;</span>
-              <span><strong>Gene Deserts:</strong> If a non-coding locus contains only one plausible promoter within 1 Mb, linear proximity is sufficient and computational 3D modeling is redundant.</span>
+              <span style="color: #dc2626; font-family: var(--mono); font-weight: 700;">&#10005;</span>
+              <span><strong style="color: #0f172a;">Gene Deserts:</strong> Single-promoter loci do not require 3D conformational modeling.</span>
             </li>
             <li style="display: flex; gap: 8px;">
-              <span style="color: #0284c7; font-family: var(--mono);">&#10003;</span>
-              <span><strong>Intended Scope:</strong> TrueLocus is built specifically for non-coding hits in complex, multi-promoter loci where distal enhancers risk looping past proximal genes.</span>
+              <span style="color: #0284c7; font-family: var(--mono); font-weight: 700;">&#10003;</span>
+              <span><strong style="color: #0f172a;">Intended Scope:</strong> Multi-promoter loci where distal enhancers risk looping past proximal genes.</span>
             </li>
           </ul>
         </div>
@@ -448,30 +441,30 @@
 
       <section>
         <h2>Engagement Protocol</h2>
-        <p>
-          Choice collapsed to two frictionless engagement paths. Zero enterprise pricing matrices, zero discovery calls:
+        <p style="margin-bottom: 16px;">
+          Two frictionless paths. Zero enterprise pricing matrices, zero discovery calls:
         </p>
         <div class="grid-2">
           <div class="card">
             <div class="tag" style="background: #e0f2fe; border: 1px solid #bae6fd; color: #0369a1;">Option 01 &bull; Free Pilot</div>
             <div class="offer-title">Blind Screen Ranking</div>
             <div class="offer-desc">
-              We evaluate 3 to 5 candidate loci blind because computational rankings should prove their accuracy against your internal experimental truth before you commit to a commercial pilot. Zero cost, 5-day turnaround, no discovery calls required.
+              We rank 3–5 candidate loci blind against your internal experimental truth. Zero cost, 5-day turnaround, no sales calls required.
             </div>
           </div>
           <div class="card">
             <div class="tag" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155;">Option 02 &bull; Commercial</div>
             <div class="offer-title">14-Day Locus De-Risking Audit</div>
             <div class="offer-desc">
-              Comprehensive de-risking for 10 to 25 screening hits because wet-lab target validation demands full multi-promoter competition matrices and boundary insulation profiles before advancing to animal models. 14-day turnaround.
+              Comprehensive de-risking for 10–25 screening hits with full promoter competition matrices and insulation profiles. 14-day turnaround.
             </div>
           </div>
         </div>
         <div class="card" style="margin-top: 16px;">
           <div class="tag" style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #047857;">Clean-Room Governance</div>
-          <div class="offer-title" style="margin-top: 6px;">Clean-Room Audits & Capped Capacity</div>
+          <div class="offer-title" style="margin-top: 6px;">Confidentiality & Capped Capacity</div>
           <div class="offer-desc">
-            All pilot data handled under mutual NDA on request; client loci never reused or retained post-engagement. To ensure rigorous scientific execution, TrueLocus maintains a strictly capped concurrent audit capacity, ensuring direct founder-level computational attention on every project.
+            All pilot data handled under mutual NDA; client loci are never retained. We maintain a strictly capped concurrent audit capacity to ensure founder-level computational execution on every project.
           </div>
         </div>
       </section>
