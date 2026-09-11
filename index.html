@@ -82,6 +82,20 @@
       color: var(--accent);
       font-family: var(--mono);
     }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-link {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .nav-link:hover {
+      color: var(--text);
+    }
     .contact-link {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -281,7 +295,10 @@
       <img src="./logo_transparent.png" alt="TrueLocus" style="height: 36px; width: auto; display: block;">
       <span style="font-size: 1.25rem; font-weight: 700;">TrueLocus</span>
     </a>
-    <a href="./contact.html" class="contact-link">Contact Us</a>
+    <div class="nav-links">
+      <a href="./updates.html" class="nav-link">Updates</a>
+      <a href="./contact.html" class="contact-link">Contact</a>
+    </div>
   </header>
 
   <div class="container">
@@ -455,6 +472,8 @@
     <footer>
       <div>&copy; 2026 TrueLocus. All rights reserved.</div>
       <div>
+        <a href="./updates.html">Updates</a> &bull;
+        <a href="./contact.html">Contact</a> &bull;
         <a href="https://www.linkedin.com/in/himanshu2032/" target="_blank" rel="noopener">LinkedIn</a> &bull; 
         <a href="mailto:contact@truelocus.bio">Email</a>
       </div>

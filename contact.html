@@ -60,6 +60,20 @@
       font-size: 1.25rem;
       letter-spacing: -0.02em;
     }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-link {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .nav-link:hover {
+      color: var(--text);
+    }
     .contact-link {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -188,7 +202,11 @@
       <img src="./logo_transparent.png" alt="TrueLocus" style="height: 36px; width: auto; display: block;">
       <span>TrueLocus</span>
     </a>
-    <a href="/" class="contact-link">← Back to Overview</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Overview</a>
+      <a href="./updates.html" class="nav-link">Updates</a>
+      <span class="contact-link" style="color: var(--text); border-color: var(--accent);">Contact</span>
+    </div>
   </header>
 
   <!-- Contact Form Container -->
@@ -229,6 +247,7 @@
     <div>&copy; 2026 TrueLocus. All rights reserved.</div>
     <div>
       <a href="/">Home</a> &bull;
+      <a href="./updates.html">Updates</a> &bull;
       <a href="mailto:contact@truelocus.bio">Email</a>
     </div>
   </footer>
