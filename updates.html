@@ -502,10 +502,10 @@
     <!-- 1p13 SORT1 Case Study & v2.0 Takeaway Card -->
     <div class="white-card" style="margin-top: 32px;">
       <span class="tag" style="background: #fef2f2; border-color: #fecaca; color: #b91c1c;">Case Study &bull; Methodological Forensic</span>
-      <h2 class="update-title">The 1p13 LDL Locus: Resolving Gain-of-Function Mutations Beyond Linear Proximity</h2>
+      <h2 class="update-title">The 1p13 LDL Locus: Where Linear Proximity Fails, and Why</h2>
       <p class="update-desc">
         On the landmark 1p13 cholesterol locus (Musunuru et al., <em>Nature</em> 2010; PMID 20686566), the causal variant <code>rs12740374</code> creates a <em>de novo</em> C/EBP binding site. 
-        Because the proximal promoter <em>PSRC1</em> is physically closer (9.1 kb vs 123 kb) and active in adult liver, linear proximity scoring defaults to <em>PSRC1</em> (#1, 42.2% share) and ranks causal <em>SORT1</em> at #6 (4.8% share).
+        Because the proximal promoter <em>PSRC1</em> is physically closer (9.1 kb vs 123 kb) and active in adult liver, linear proximity defaults to <em>PSRC1</em> (#1, 42.2% share) and ranks causal <em>SORT1</em> at #6 (4.8% share).
       </p>
 
       <div class="benchmark-grid">
@@ -528,7 +528,7 @@
                 <td>1.86 TPM</td>
                 <td>0.3662</td>
                 <td><strong>42.2%</strong></td>
-                <td><span style="color: #b91c1c; font-weight: 700;">#1 (eQTL Decoy)</span></td>
+                <td><span style="color: #b91c1c; font-weight: 700;">#1 (Proximal Competitor)</span></td>
               </tr>
               <tr>
                 <td><strong>CELSR2</strong></td>
@@ -544,7 +544,7 @@
                 <td>0.00 TPM</td>
                 <td>0.1281</td>
                 <td>14.8%</td>
-                <td>#3 (Silenced)</td>
+                <td>#3 (Unexpressed)</td>
               </tr>
               <tr>
                 <td><strong>SARS1</strong></td>
@@ -552,7 +552,7 @@
                 <td>34.85 TPM</td>
                 <td>0.1242</td>
                 <td>14.3%</td>
-                <td>#4 (Housekeeping)</td>
+                <td>#4 (Non-target)</td>
               </tr>
               <tr>
                 <td><strong>PSMA5</strong></td>
@@ -560,7 +560,7 @@
                 <td>17.66 TPM</td>
                 <td>0.0456</td>
                 <td>5.2%</td>
-                <td>#5 (Distal Non-target)</td>
+                <td>#5 (Non-target)</td>
               </tr>
               <tr style="background: #f0fdf4;">
                 <td><strong>SORT1</strong> (True Causal Target)</td>
@@ -568,13 +568,13 @@
                 <td>2.39 TPM</td>
                 <td>0.0413</td>
                 <td>4.8%</td>
-                <td><strong style="color: #166534;">#6 (Experimental Target)</strong></td>
+                <td><strong style="color: #166534;">#6 (True Causal Target)</strong></td>
               </tr>
             </tbody>
           </table>
 
           <div class="footnote">
-            Evaluated on TrueLocus v1.8. Expression receipts pulled from GTEx Portal API v2 (gtex_v10 adult liver, 100+ donors).
+            Evaluated on TrueLocus v1.8 (Continuous Scaling). Expression receipts pulled from GTEx Portal API v2 (gtex_v10 adult liver, 100+ donors). Domain bounds evaluated under standard &plusmn;250 kb TAD window.
           </div>
         </div>
 
@@ -582,7 +582,7 @@
           <div class="key-takeaways">
             <div class="takeaway-item">
               <span class="takeaway-bullet" style="color: #b91c1c;">&bull;</span>
-              <div><strong>The Multi-eQTL Reality:</strong> In human liver biopsies, <code>rs12740374</code> upregulates <em>both</em> <em>PSRC1</em> and <em>SORT1</em> (&gt;12-fold). The variant physically transactivates both promoters.</div>
+              <div><strong>The Multi-eQTL Reality:</strong> In human liver biopsies, <code>rs12740374</code> upregulates <em>both</em> <em>PSRC1</em> and <em>SORT1</em> by &gt;12-fold (Musunuru et al., Fig. 1d). The variant physically transactivates both promoters.</div>
             </div>
             <div class="takeaway-item">
               <span class="takeaway-bullet" style="color: #0284c7;">&bull;</span>
@@ -590,7 +590,7 @@
             </div>
             <div class="takeaway-item">
               <span class="takeaway-bullet">&bull;</span>
-              <div><strong>Phenotypic Decoupling:</strong> Musunuru et al. proved in mice that <em>Psrc1</em> overexpression has zero effect on plasma lipids, whereas <em>Sort1</em> drives a &gt;2-fold functional shift in LDL-C and VLDL.</div>
+              <div><strong>Phenotypic Decoupling:</strong> In mouse functional assays, <em>Psrc1</em> liver overexpression produced zero significant change in total cholesterol or LDL-C (Musunuru et al., Fig. 4a, b), whereas <em>Sort1</em> drove a &gt;2-fold functional shift in LDL-C.</div>
             </div>
           </div>
         </div>
