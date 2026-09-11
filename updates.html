@@ -111,60 +111,102 @@
       line-height: 1.6;
       margin-bottom: 36px;
     }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
+    /* Clean White Rectangle Card */
+    .white-card {
+      background: #ffffff;
+      color: #0f172a;
       border-radius: 12px;
-      padding: 32px;
-      text-align: left;
+      padding: 36px 32px;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+      border: 1px solid #e2e8f0;
     }
-    .tag {
+    .white-card .tag {
       display: inline-block;
       font-size: 0.72rem;
       font-family: var(--mono);
+      font-weight: 600;
       padding: 3px 8px;
       border-radius: 4px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--accent);
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      color: #0369a1;
       margin-bottom: 14px;
     }
-    .update-title {
-      font-size: 1.35rem;
+    .white-card .update-title {
+      font-size: 1.4rem;
       font-weight: 700;
-      color: var(--text);
+      color: #0f172a;
       margin-bottom: 8px;
       letter-spacing: -0.02em;
     }
-    .update-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+    .white-card .update-desc {
+      font-size: 0.94rem;
+      color: #475569;
+      line-height: 1.5;
       margin-bottom: 20px;
     }
-    table {
+    .white-card table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.88rem;
       margin: 16px 0;
       font-family: var(--mono);
     }
-    th, td {
+    .white-card th, 
+    .white-card td {
       padding: 10px 12px;
       text-align: left;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #e2e8f0;
+      color: #1e293b;
     }
-    th {
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.78rem;
+    .white-card th {
+      color: #64748b;
+      font-weight: 600;
+      font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .highlight-row td {
-      color: var(--accent);
+    .white-card .highlight-row td {
+      color: #0284c7;
+      font-weight: 700;
+      background: #f0f9ff;
+    }
+    .white-card .footnote {
+      font-size: 0.8rem;
+      color: #64748b;
+      font-family: var(--mono);
+      margin-top: 10px;
+      margin-bottom: 16px;
+    }
+    .white-card .key-takeaways {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+    .white-card .card-footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.84rem;
+    }
+    .white-card .card-footer a {
+      color: #0284c7;
+      text-decoration: none;
       font-weight: 600;
-      background: rgba(56, 189, 248, 0.04);
+    }
+    .white-card .card-footer a:hover {
+      text-decoration: underline;
     }
     footer {
       padding: 24px 32px;
@@ -206,13 +248,13 @@
       Platform releases, benchmark evaluations, and methodological notes.
     </p>
 
-    <!-- Benchmark Update Card -->
-    <div class="card">
-      <span class="tag">September 2026 &bull; Benchmark Validation</span>
-      <h2 class="update-title">Held-Out Empirical CRISPRi Benchmark (n = 72)</h2>
+    <!-- Clean White Rectangle Benchmark Card -->
+    <div class="white-card">
+      <span class="tag">September 2026 &bull; Empirical Benchmark</span>
+      <h2 class="update-title">Held-Out CRISPRi Benchmark (n = 72)</h2>
       <p class="update-desc">
         Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, <em>Nature Methods</em>). 
-        Code was frozen and committed before evaluation to measure performance where distal looping creates physical ambiguity.
+        Measures distal target gene assignment where linear 1D proximity fails.
       </p>
 
       <table>
@@ -246,28 +288,19 @@
         </tbody>
       </table>
 
-      <p style="font-size: 0.82rem; margin-top: 12px; margin-bottom: 12px; color: var(--text-muted); font-family: var(--mono);">
+      <div class="footnote">
         Paired exact test: TrueLocus vs Nearest Top-1 p=0.0074 (McNemar exact, b=13, c=2).
-      </p>
-
-      <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.86rem; line-height: 1.6; color: var(--text-muted);">
-        <div style="font-weight: 600; color: var(--text); margin-bottom: 10px;">Objective Evaluation & Domains of Applicability:</div>
-        <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px;">
-          <li>
-            <strong style="color: var(--text);">Broad ABC Model (Nasser et al. 2021):</strong> A foundational milestone in regulatory genomics. When deeply sequenced cell-type Hi-C, ChIP-seq, and ATAC-seq are experimentally available, Broad ABC demonstrates outstanding performance (75.0% Top-1, 94.4% Top-3 recall). It remains the benchmark standard for data-rich cell lines.
-          </li>
-          <li>
-            <strong style="color: var(--text);">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D proximity correctly assigns 54.2% of targets.
-          </li>
-          <li>
-            <strong style="color: var(--accent);">TrueLocus Engine:</strong> Engineered specifically for screening hits in primary cells and disease models where experimental cell-type Hi-C is absent or impractical to generate. Via sequence-derived contact priors and multi-promoter competition resolution, TrueLocus lifts Top-3 recall on non-nearest loci to 70% (vs 42% for Nearest-TSS), correctly ranking the true target #1 on 13 of these 33 loci where nearest-gene picked the wrong gene, without requiring cell-type Hi-C.
-          </li>
-        </ul>
       </div>
 
-      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-        <span style="font-size: 0.82rem; color: var(--text-muted);">Per-locus results tables open under standard NDA.</span>
-        <a href="./contact.html" style="font-size: 0.86rem; color: var(--accent); text-decoration: none; font-weight: 600;">Request Audit Logs &rarr;</a>
+      <div class="key-takeaways">
+        <div>&bull; <strong>Nearest-TSS:</strong> Baseline heuristic; misses the true target in 45.8% of non-adjacent pairs.</div>
+        <div>&bull; <strong>TrueLocus Engine:</strong> 69.4% accuracy using sequence + CAGE without requiring cell-type Hi-C.</div>
+        <div>&bull; <strong>Broad ABC:</strong> Gold standard (75.0%) when experimental Hi-C, ChIP, and ATAC are available.</div>
+      </div>
+
+      <div class="card-footer">
+        <span style="color: #64748b;">Per-locus results tables open under standard NDA.</span>
+        <a href="./contact.html">Request Full Audit Logs &rarr;</a>
       </div>
     </div>
   </div>
