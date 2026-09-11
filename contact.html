@@ -112,10 +112,12 @@
       margin-bottom: 36px;
     }
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 32px;
+      padding: 36px 32px;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
     }
     .form-group {
       margin-bottom: 20px;
@@ -124,30 +126,33 @@
       display: block;
       font-size: 0.85rem;
       font-weight: 600;
-      color: var(--text);
+      color: #0f172a;
       margin-bottom: 8px;
     }
     input[type="text"],
     input[type="email"],
+    select,
     textarea {
       width: 100%;
       padding: 12px 14px;
-      background: #09090b;
-      border: 1px solid var(--border);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-      color: var(--text);
+      color: #0f172a;
       font-size: 0.95rem;
       font-family: inherit;
       outline: none;
-      transition: border-color 0.15s ease;
+      transition: border-color 0.15s ease, background 0.15s ease;
     }
     input:focus,
+    select:focus,
     textarea:focus {
-      border-color: var(--accent);
+      border-color: #0284c7;
+      background: #ffffff;
     }
     input::placeholder,
     textarea::placeholder {
-      color: #52525b;
+      color: #94a3b8;
     }
     textarea {
       resize: vertical;
@@ -155,9 +160,9 @@
     }
     .btn-submit {
       width: 100%;
-      padding: 12px;
-      background: #f4f4f5;
-      color: #09090b;
+      padding: 13px;
+      background: #0f172a;
+      color: #ffffff;
       border: none;
       border-radius: 8px;
       font-size: 0.95rem;
@@ -167,17 +172,19 @@
       margin-top: 8px;
     }
     .btn-submit:hover {
-      background: #ffffff;
+      background: #1e293b;
     }
     .direct-contact {
       margin-top: 24px;
       text-align: center;
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: #64748b;
     }
     .direct-contact a {
-      color: var(--accent);
+      color: #0284c7;
       text-decoration: none;
+      font-weight: 600;
+    }
       font-weight: 500;
     }
     footer {
@@ -240,7 +247,7 @@
 
         <div class="form-group">
           <label for="inquiry_type">Inquiry Type</label>
-          <select id="inquiry_type" name="inquiry_type" style="width: 100%; padding: 12px 14px; background: #09090b; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.95rem; outline: none;">
+          <select id="inquiry_type" name="inquiry_type">
             <option value="Free Blind Pilot">Free Blind Ranking Pilot (3–5 Candidate Loci)</option>
             <option value="14-Day Commercial Audit">14-Day Locus De-Risking Audit (10–25 Hits)</option>
             <option value="Benchmark Due Diligence">Benchmark Due Diligence & Full Per-Locus Logs</option>
