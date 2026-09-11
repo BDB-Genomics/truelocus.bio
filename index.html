@@ -347,64 +347,6 @@
       </section>
 
       <section>
-        <h2>Held-Out Empirical Benchmark</h2>
-        <p>
-          Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, Nature Methods). 
-          Code was frozen and committed before evaluation to measure performance where distal looping creates physical ambiguity.
-        </p>
-        <div class="card">
-          <table>
-            <thead>
-              <tr>
-                <th>Method</th>
-                <th>Top-1 Accuracy</th>
-                <th>Top-3 Target Recall</th>
-                <th>Input Required</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Nearest-TSS Baseline</td>
-                <td>54.2% (39/72)</td>
-                <td>73.6% (53/72)</td>
-                <td>1D Distance</td>
-              </tr>
-              <tr class="highlight-row">
-                <td>TrueLocus Engine</td>
-                <td>69.4% (50/72)</td>
-                <td>84.7% (61/72)</td>
-                <td>Sequence + CAGE (No Hi-C)</td>
-              </tr>
-              <tr>
-                <td>Broad ABC (Nasser 2021)</td>
-                <td>75.0% (54/72)</td>
-                <td>94.4% (68/72)</td>
-                <td>Full K562 Hi-C + ChIP + ATAC</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="font-size: 0.82rem; margin-top: 12px; margin-bottom: 12px;">
-            Paired exact test: TrueLocus vs Nearest Top-1 p=0.0074 (McNemar exact, b=13, c=2).
-          </p>
-          <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.84rem; line-height: 1.6; color: var(--text-muted);">
-            <div style="font-weight: 600; color: var(--text); margin-bottom: 10px;">Objective Evaluation & Domains of Applicability:</div>
-            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px;">
-              <li>
-                <strong style="color: var(--text);">Broad ABC Model (Nasser et al. 2021):</strong> A foundational milestone in regulatory genomics. When deeply sequenced cell-type Hi-C, ChIP-seq, and ATAC-seq are experimentally available, Broad ABC demonstrates outstanding performance (75.0% Top-1, 94.4% Top-3 recall). It remains the benchmark standard for data-rich cell lines.
-              </li>
-              <li>
-                <strong style="color: var(--text);">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D proximity correctly assigns 54.2% of targets.
-              </li>
-              <li>
-                <strong style="color: var(--accent);">TrueLocus Engine:</strong> Engineered specifically for screening hits in primary cells and disease models where experimental cell-type Hi-C is absent or impractical to generate. Via sequence-derived contact priors and multi-promoter competition resolution, TrueLocus lifts Top-3 recall on non-nearest loci to 70% (vs 42% for Nearest-TSS), correctly ranking the true target #1 on 13 of these 33 loci where nearest-gene picked the wrong gene, without requiring cell-type Hi-C.
-              </li>
-            </ul>
-          </div>
-          <p style="font-size: 0.82rem; margin-top: 14px; margin-bottom: 0; color: var(--text-muted);">
-            Per-locus results tables and full methodology available on request; audit methodology open to technical review under standard NDA.
-          </p>
-        </div>
-      </section>
 
       <section>
         <h2>Scope & Boundary Conditions</h2>
