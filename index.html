@@ -1,458 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TrueLocus | Resolving Distal Non-Coding Screen Hits</title>
-  <meta name="description" content="TrueLocus nominates and validates distal target genes for non-coding CRISPRi hits and GWAS loci using 3D contact priors and multi-promoter competition.">
+  <meta name="description"
+    content="TrueLocus nominates and validates distal target genes for non-coding CRISPRi hits and GWAS loci using 3D contact priors and multi-promoter competition without requiring cell-type Hi-C.">
   <meta property="og:title" content="TrueLocus | Resolving Distal Non-Coding Screen Hits">
-  <meta property="og:description" content="Nominating causal distal target genes for non-coding CRISPRi hits via 3D contact priors without cell-type Hi-C.">
+  <meta property="og:description"
+    content="Nominating causal distal target genes for non-coding CRISPRi hits via 3D contact priors without cell-type Hi-C.">
   <meta property="og:image" content="https://truelocus.bio/logo1.png">
   <meta property="og:url" content="https://truelocus.bio/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
+
   <script>
     if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
       location.replace('https:' + window.location.href.substring(window.location.protocol.length));
     }
   </script>
-  <style>
-    :root {
-      --bg: #09090b;
-      --card-bg: #121215;
-      --border: #27272a;
-      --text: #f4f4f5;
-      --text-muted: #a1a1aa;
-      --accent: #38bdf8;
-      --green: #22c55e;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.55;
-      padding: 0 20px;
-      -webkit-font-smoothing: antialiased;
-    }
-    .container {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 48px 0 80px 0;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-    }
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      background: #000;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-family: var(--mono);
-    }
-    .contact-link {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 6px 12px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      transition: all 0.15s ease;
-    }
-    .contact-link:hover {
-      color: var(--text);
-      border-color: var(--text-muted);
-    }
-    .hero {
-      margin-bottom: 48px;
-    }
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-family: var(--mono);
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      padding: 4px 10px;
-      border-radius: 9999px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 2.3rem;
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-    .lead {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-    .cta-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 10px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-    .btn-primary {
-      background: #f4f4f5;
-      color: #09090b;
-    }
-    .btn-primary:hover {
-      background: #ffffff;
-    }
-    .btn-secondary {
-      background: var(--card-bg);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover {
-      border-color: var(--text-muted);
-    }
-    section {
-      margin-bottom: 48px;
-    }
-    h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 20px;
-    }
-    /* Benchmark Table */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      margin: 16px 0;
-      font-family: var(--mono);
-    }
-    th, td {
-      padding: 10px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    th {
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .highlight-row td {
-      color: var(--accent);
-      font-weight: 600;
-      background: rgba(56, 189, 248, 0.03);
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .contrast-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-    }
-    .contrast-header {
-      font-size: 0.78rem;
-      font-family: var(--mono);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-    .contrast-val {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .contrast-desc {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    @media (max-width: 640px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 1.85rem;
-      }
-    }
-    .offer-title {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .offer-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-family: var(--mono);
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: var(--border);
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-    footer {
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-    footer a:hover {
-      color: var(--text);
+
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-brand-bg: #0b0f19;
+      --color-brand-card: #121215;
+      --color-brand-border: #27272a;
+      --color-brand-accent: #38bdf8;
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="/" class="brand">
-        <img src="./logo_header.png" alt="TrueLocus" style="height: 28px; width: auto; display: block;">
+
+<body class="bg-[#0b0f19] text-zinc-100 font-sans antialiased min-h-screen selection:bg-sky-500/30 selection:text-sky-200">
+  <div class="max-w-4xl mx-auto px-5 py-12 sm:py-16">
+
+    <!-- Navigation Header -->
+    <header class="flex items-center justify-between pb-8 border-b border-zinc-800/80 mb-12">
+      <a href="/" class="flex items-center gap-3 group text-zinc-100 no-underline font-bold text-lg tracking-tight">
+        <div
+          class="w-8 h-8 bg-zinc-900 border border-zinc-700/80 rounded-lg flex items-center justify-center font-mono text-xs text-sky-400 shadow-inner group-hover:border-sky-500/50 transition-colors">
+          TL
+        </div>
+        <span class="tracking-tight text-zinc-100 group-hover:text-white transition-colors">TrueLocus</span>
       </a>
-      <a href="mailto:contact@truelocus.bio" class="contact-link">contact@truelocus.bio</a>
+      <a href="mailto:contact@truelocus.bio"
+        class="text-xs sm:text-sm font-mono text-zinc-400 hover:text-zinc-100 px-3 py-1.5 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900/40 hover:bg-zinc-900 transition-all duration-150">
+        contact@truelocus.bio
+      </a>
     </header>
 
-    <main>
-      <div class="hero">
-        <div class="badge">Held-Out CRISPRi Benchmark (n = 72)</div>
-        <h1>Resolving ambiguous non-coding screen hits.</h1>
-        <p class="lead">
-          Linear proximity is the natural starting point for target assignment, and ABC-class models set the bar when experimental Hi-C is available. 
-          TrueLocus complements screening workflows where cell-type 3D conformation data is absent, evaluating sequence-derived contact priors and multi-promoter competition to de-risk distal target genes.
-        </p>
-        <div class="cta-row">
-          <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request" class="btn btn-primary">Request a Free Blind Ranking</a>
-          <a href="./TrueLocus_Sample_Audit_Dossier.pdf" class="btn btn-secondary">Download Sample Audit Dossier (PDF)</a>
-        </div>
-      </div>
+    <main class="space-y-16">
 
-      <section>
-        <h2>The Unresolved Regulatory Loop</h2>
-        <p>
-          When you complete a high-throughput CRISPRi screen, non-coding hit coordinates are clear, but target gene assignment is not. 
-          Conventional pipelines default to assigning each hit to its nearest transcription start site (TSS). 
-          In held-out CRISPRi benchmarks (Schraivogel et al. 2020), the true target was not the nearest gene in 45.8% of pairs (33/72). 
-          A screening hit identifies a functional coordinate, but leaves the causal target gene an open, unresolved liability heading into animal validation.
+      <!-- Hero Section -->
+      <section class="space-y-6">
+        <div
+          class="inline-flex items-center gap-2 font-mono text-xs font-medium text-sky-400 bg-sky-950/40 border border-sky-800/50 px-3 py-1 rounded-full">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+          Held-Out CRISPRi Benchmark (n = 72)
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-50 leading-[1.15]">
+          Resolving ambiguous non-coding screen hits.
+        </h1>
+
+        <p class="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-3xl">
+          Linear proximity is the natural starting point for target assignment, and the Broad Institute's ABC model
+          established the gold standard when experimental Hi-C is available.
+          TrueLocus complements screening workflows where cell-type 3D conformation data is absent, evaluating
+          sequence-derived contact priors and multi-promoter competition to de-risk distal target genes.
         </p>
-        <div class="grid-2" style="margin-top: 20px;">
-          <div class="contrast-card" style="border-left: 3px solid #ef4444;">
-            <div class="contrast-header" style="color: #f87171;">Conventional Wet-Lab Path</div>
-            <div class="contrast-val">Months of Serial Validation per Locus</div>
-            <div class="contrast-desc">
-              Iterative CRISPR-QTL, cell line engineering, and in vivo knockouts chasing the adjacent promoter, risking months of effort on false proximal targets.
+
+        <div class="flex flex-wrap items-center gap-3.5 pt-2">
+          <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request"
+            class="inline-flex items-center justify-center text-sm font-semibold px-5 py-2.5 rounded-lg bg-zinc-100 text-zinc-950 hover:bg-white transition-all shadow-sm hover:shadow-sky-500/10 hover:shadow-md">
+            Request a Free Blind Ranking
+          </a>
+          <a href="./TrueLocus_Sample_Audit_Dossier.pdf"
+            class="inline-flex items-center justify-center text-sm font-medium px-5 py-2.5 rounded-lg bg-[#121215] text-zinc-300 border border-zinc-800 hover:border-zinc-700 hover:text-zinc-100 transition-all">
+            Download Sample Audit Dossier (PDF)
+          </a>
+        </div>
+      </section>
+
+      <!-- The Unresolved Regulatory Loop Section -->
+      <section class="space-y-5">
+        <h2 class="text-xl font-semibold tracking-tight text-zinc-100">
+          The Unresolved Regulatory Loop
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          When you complete a high-throughput CRISPRi screen, non-coding hit coordinates are clear, but target gene
+          assignment is not.
+          Conventional pipelines default to assigning each hit to its nearest transcription start site (TSS).
+          In held-out CRISPRi benchmarks (Schraivogel et al. 2020), the true target was not the nearest gene in 45.8% of
+          pairs (33/72).
+          A screening hit identifies a functional coordinate, but leaves the causal target gene an open, unresolved
+          liability heading into animal validation.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <!-- Conventional Card -->
+          <div class="bg-[#121215] border border-zinc-800/90 border-l-4 border-l-red-500 rounded-xl p-5 space-y-2">
+            <div class="font-mono text-xs uppercase tracking-wider text-red-400 font-semibold">
+              Conventional Wet-Lab Path
             </div>
+            <div class="text-base font-semibold text-zinc-100">
+              Months of Serial Validation per Locus
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-400 leading-normal">
+              Iterative CRISPR-QTL, cell line engineering, and in vivo knockouts chasing the adjacent promoter, risking
+              months of effort on false proximal targets.
+            </p>
           </div>
-          <div class="contrast-card" style="border-left: 3px solid var(--accent);">
-            <div class="contrast-header" style="color: var(--accent);">TrueLocus Computational Audit</div>
-            <div class="contrast-val">14-Day Turnaround &bull; Zero Cell-Type Hi-C</div>
-            <div class="contrast-desc">
-              Sequence-derived 3D contact decay and multi-promoter competition matrices to de-risk candidate target genes before in vivo commitment.
+
+          <!-- TrueLocus Card -->
+          <div class="bg-[#121215] border border-zinc-800/90 border-l-4 border-l-sky-400 rounded-xl p-5 space-y-2">
+            <div class="font-mono text-xs uppercase tracking-wider text-sky-400 font-semibold">
+              TrueLocus Computational Audit
             </div>
+            <div class="text-base font-semibold text-zinc-100">
+              14-Day Turnaround &bull; Zero Cell-Type Hi-C
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-400 leading-normal">
+              Sequence-derived 3D contact decay and multi-promoter competition matrices to de-risk candidate target
+              genes before in vivo commitment.
+            </p>
           </div>
         </div>
       </section>
 
-      <section>
-        <h2>Held-Out Empirical Benchmark</h2>
-        <p>
-          Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, Nature Methods). 
-          Code was frozen and committed before evaluation to measure performance where distal looping creates physical ambiguity.
+      <!-- Held-Out Empirical Benchmark Section -->
+      <section class="space-y-5">
+        <h2 class="text-xl font-semibold tracking-tight text-zinc-100">
+          Held-Out Empirical Benchmark
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, Nature
+          Methods).
+          Code was frozen and committed before evaluation to measure performance where distal looping creates physical
+          ambiguity.
         </p>
-        <div class="card">
-          <table>
-            <thead>
-              <tr>
-                <th>Method</th>
-                <th>Top-1 Accuracy</th>
-                <th>Top-3 Target Recall</th>
-                <th>Input Required</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Nearest-TSS Baseline</td>
-                <td>54.2% (39/72)</td>
-                <td>73.6% (53/72)</td>
-                <td>1D Distance</td>
-              </tr>
-              <tr class="highlight-row">
-                <td>TrueLocus Engine</td>
-                <td>69.4% (50/72)</td>
-                <td>84.7% (61/72)</td>
-                <td>Sequence + CAGE (No Hi-C)</td>
-              </tr>
-              <tr>
-                <td>Broad ABC (Nasser 2021)</td>
-                <td>75.0% (54/72)</td>
-                <td>94.4% (68/72)</td>
-                <td>Full K562 Hi-C + ChIP + ATAC</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="font-size: 0.82rem; margin-top: 12px; margin-bottom: 12px;">
-            Paired exact test: TrueLocus vs Nearest Top-1 p=0.0074 (McNemar exact, b=13, c=2).
+
+        <div class="bg-[#121215] border border-zinc-800 rounded-xl p-5 sm:p-6 space-y-5 shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left font-mono text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-zinc-800 text-zinc-400 uppercase text-[11px] tracking-wider">
+                  <th class="pb-3 pr-4 font-semibold">Method</th>
+                  <th class="pb-3 px-4 font-semibold">Top-1 Accuracy</th>
+                  <th class="pb-3 px-4 font-semibold">Top-3 Target Recall</th>
+                  <th class="pb-3 pl-4 font-semibold">Input Required</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-zinc-800/70">
+                <tr class="text-zinc-300">
+                  <td class="py-3 pr-4">Nearest-TSS Baseline</td>
+                  <td class="py-3 px-4">54.2% <span class="text-zinc-500">(39/72)</span></td>
+                  <td class="py-3 px-4">73.6% <span class="text-zinc-500">(53/72)</span></td>
+                  <td class="py-3 pl-4 text-zinc-400">1D Distance</td>
+                </tr>
+                <tr class="bg-sky-500/5 text-sky-300 font-semibold border-y border-sky-500/20">
+                  <td class="py-3 pr-4 text-sky-400">TrueLocus Engine</td>
+                  <td class="py-3 px-4 text-sky-300">69.4% <span class="text-sky-400/70">(50/72)</span></td>
+                  <td class="py-3 px-4 text-sky-300">84.7% <span class="text-sky-400/70">(61/72)</span></td>
+                  <td class="py-3 pl-4 text-sky-200">Sequence + CAGE (No Hi-C)</td>
+                </tr>
+                <tr class="text-zinc-300">
+                  <td class="py-3 pr-4">Broad ABC (Nasser 2021)</td>
+                  <td class="py-3 px-4">75.0% <span class="text-zinc-500">(54/72)</span></td>
+                  <td class="py-3 px-4">94.4% <span class="text-zinc-500">(68/72)</span></td>
+                  <td class="py-3 pl-4 text-zinc-400">Full K562 Hi-C + ChIP + ATAC</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-xs sm:text-sm text-zinc-300 font-medium pt-1 border-t border-zinc-800/70">
+            Paired exact test: TrueLocus vs Nearest Top-1 p=0.007 (McNemar exact, b=13, c=2).
           </p>
-          <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.84rem; line-height: 1.6; color: var(--text-muted);">
-            <div style="font-weight: 600; color: var(--text); margin-bottom: 10px;">Objective Evaluation & Domains of Applicability:</div>
-            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px;">
-              <li>
-                <strong style="color: var(--text);">Broad ABC Model (Nasser et al. 2021):</strong> A foundational milestone in regulatory genomics. When deeply sequenced cell-type Hi-C, ChIP-seq, and ATAC-seq are experimentally available, Broad ABC demonstrates outstanding performance (75.0% Top-1, 94.4% Top-3 recall). It remains the benchmark standard for data-rich cell lines.
+
+          <div class="pt-4 border-t border-zinc-800/80 text-xs sm:text-sm text-zinc-400 space-y-3 leading-relaxed">
+            <div class="font-semibold text-zinc-200">Objective Evaluation & Domains of Applicability:</div>
+            <ul class="space-y-2.5 list-none pl-0">
+              <li class="flex gap-2">
+                <span class="text-zinc-500 shrink-0">&bull;</span>
+                <span><strong class="text-zinc-200">Broad ABC Model (Nasser et al. 2021):</strong> A foundational
+                  milestone in regulatory genomics. When deeply sequenced cell-type Hi-C, ChIP-seq, and ATAC-seq are
+                  experimentally available, Broad ABC demonstrates outstanding performance (75.0% Top-1, 94.4% Top-3
+                  recall). It remains the benchmark standard for data-rich cell lines.</span>
               </li>
-              <li>
-                <strong style="color: var(--text);">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D proximity correctly assigns 54.2% of targets.
+              <li class="flex gap-2">
+                <span class="text-zinc-500 shrink-0">&bull;</span>
+                <span><strong class="text-zinc-200">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead
+                  baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D
+                  proximity reliably assigns 54.2% of targets.</span>
               </li>
-              <li>
-                <strong style="color: var(--accent);">TrueLocus Engine:</strong> Engineered specifically for screening hits in primary cells and disease models where experimental cell-type Hi-C is absent or impractical to generate. Via sequence-derived contact priors and multi-promoter competition resolution, TrueLocus lifts Top-3 recall on non-nearest loci to 70% (vs 42% for Nearest-TSS), correctly ranking the true target #1 on 13 of these 33 loci where nearest-gene picked the wrong gene, without requiring cell-type Hi-C.
+              <li class="flex gap-2">
+                <span class="text-sky-400 shrink-0">&bull;</span>
+                <span><strong class="text-sky-400">TrueLocus Engine:</strong> Engineered specifically for screening hits
+                  in primary cells and disease models where experimental cell-type Hi-C is absent or impractical to
+                  generate. By deriving 3D contact decay directly from sequence and resolving multi-promoter
+                  competition, TrueLocus lifts Top-3 recall on non-nearest loci to 70% (vs 42% for Nearest-TSS),
+                  correctly ranking the true target #1 on 13 of these 33 loci where nearest-gene picked the wrong gene,
+                  without requiring cell-type Hi-C.</span>
               </li>
             </ul>
           </div>
-          <p style="font-size: 0.82rem; margin-top: 14px; margin-bottom: 0; color: var(--text-muted);">
-            Per-locus results tables and full methodology available on request; audit methodology open to technical review under standard NDA.
+
+          <p class="text-xs text-zinc-500 pt-2">
+            Per-locus results tables and full methodology available on request; audit methodology open to technical
+            review under standard NDA.
           </p>
         </div>
       </section>
 
-      <section>
-        <h2>Scope & Boundary Conditions</h2>
-        <div class="card">
-          <div class="tag" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">Selective Qualification</div>
-          <div class="offer-title" style="margin-top: 6px;">When TrueLocus Is Not Needed</div>
-          <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 8px; margin-bottom: 12px; line-height: 1.6;">
+      <!-- Scope & Boundary Conditions Section -->
+      <section class="space-y-5">
+        <h2 class="text-xl font-semibold tracking-tight text-zinc-100">
+          Scope & Boundary Conditions
+        </h2>
+        <div class="bg-[#121215] border border-zinc-800 rounded-xl p-5 sm:p-6 space-y-4">
+          <div
+            class="inline-block font-mono text-[11px] uppercase tracking-wider text-amber-400 bg-amber-950/40 border border-amber-800/40 px-2.5 py-0.5 rounded">
+            Selective Qualification
+          </div>
+          <div class="text-base font-semibold text-zinc-100">
+            When TrueLocus Is Not Needed
+          </div>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
             Clear scope boundaries where 3D target de-risking is unnecessary:
           </p>
-          <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-muted); line-height: 1.5;">
-            <li style="display: flex; gap: 8px;">
-              <span style="color: #f87171; font-family: var(--mono);">&#10005;</span>
-              <span><strong>Coding Exon Hits:</strong> If your screening hits reside strictly within protein-coding exons, target assignment is already resolved.</span>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-zinc-400 leading-normal">
+            <li class="flex items-start gap-2.5">
+              <span class="text-red-400 font-mono font-bold shrink-0 mt-0.5">&#10005;</span>
+              <span><strong class="text-zinc-200">Coding Exon Hits:</strong> If your screening hits reside strictly
+                within protein-coding exons, target assignment is already resolved.</span>
             </li>
-            <li style="display: flex; gap: 8px;">
-              <span style="color: #f87171; font-family: var(--mono);">&#10005;</span>
-              <span><strong>Gene Deserts:</strong> If a non-coding locus contains only one plausible promoter within 1 Mb, linear proximity is sufficient and computational 3D modeling is redundant.</span>
+            <li class="flex items-start gap-2.5">
+              <span class="text-red-400 font-mono font-bold shrink-0 mt-0.5">&#10005;</span>
+              <span><strong class="text-zinc-200">Gene Deserts:</strong> If a non-coding locus contains only one
+                plausible promoter within 1 Mb, linear proximity is sufficient and computational 3D modeling is
+                redundant.</span>
             </li>
-            <li style="display: flex; gap: 8px;">
-              <span style="color: #38bdf8; font-family: var(--mono);">&#10003;</span>
-              <span><strong>Intended Scope:</strong> TrueLocus is built specifically for non-coding hits in complex, multi-promoter loci where distal enhancers risk looping past proximal genes.</span>
+            <li class="flex items-start gap-2.5">
+              <span class="text-sky-400 font-mono font-bold shrink-0 mt-0.5">&#10003;</span>
+              <span><strong class="text-sky-300">Intended Scope:</strong> TrueLocus is built specifically for non-coding
+                hits in complex, multi-promoter loci where distal enhancers risk looping past proximal genes.</span>
             </li>
           </ul>
         </div>
       </section>
 
-      <section>
-        <h2>Engagement Protocol</h2>
-        <p>
+      <!-- Engagement Protocol Section -->
+      <section class="space-y-5">
+        <h2 class="text-xl font-semibold tracking-tight text-zinc-100">
+          Engagement Protocol
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
           Choice collapsed to two frictionless engagement paths. Zero enterprise pricing matrices, zero discovery calls:
         </p>
-        <div class="grid-2">
-          <div class="card">
-            <div class="tag">Option 01 &bull; Free Pilot</div>
-            <div class="offer-title">Blind Screen Ranking</div>
-            <div class="offer-desc">
-              We evaluate 3 to 5 candidate loci blind because computational rankings should prove their accuracy against your internal experimental truth before you commit to a commercial pilot. Zero cost, 5-day turnaround, no discovery calls required.
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+          <!-- Option 01 -->
+          <div class="bg-[#121215] border border-zinc-800 rounded-xl p-5 sm:p-6 space-y-2.5">
+            <div
+              class="inline-block font-mono text-[11px] uppercase tracking-wider text-zinc-400 bg-zinc-800/60 border border-zinc-700/60 px-2.5 py-0.5 rounded">
+              Option 01 &bull; Free Pilot
             </div>
+            <div class="text-base font-semibold text-zinc-100">
+              Blind Screen Ranking
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+              We evaluate 3 to 5 candidate loci blind because computational rankings should prove their accuracy against
+              your internal experimental truth before you commit to a commercial pilot. Zero cost, 5-day turnaround, no
+              discovery calls required.
+            </p>
           </div>
-          <div class="card">
-            <div class="tag">Option 02 &bull; Commercial</div>
-            <div class="offer-title">14-Day Locus De-Risking Audit</div>
-            <div class="offer-desc">
-              Comprehensive de-risking for 10 to 25 screening hits because wet-lab target validation demands full multi-promoter competition matrices and boundary insulation profiles before advancing to animal models. 14-day turnaround.
+
+          <!-- Option 02 -->
+          <div class="bg-[#121215] border border-zinc-800 rounded-xl p-5 sm:p-6 space-y-2.5">
+            <div
+              class="inline-block font-mono text-[11px] uppercase tracking-wider text-zinc-400 bg-zinc-800/60 border border-zinc-700/60 px-2.5 py-0.5 rounded">
+              Option 02 &bull; Commercial
             </div>
+            <div class="text-base font-semibold text-zinc-100">
+              14-Day Locus De-Risking Audit
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+              Comprehensive de-risking for 10 to 25 screening hits because wet-lab target validation demands full
+              multi-promoter competition matrices and boundary insulation profiles before advancing to animal models.
+              14-day turnaround.
+            </p>
           </div>
         </div>
-        <div class="card" style="margin-top: 16px;">
-          <div class="tag" style="color: #6ee7b7; border-color: rgba(110, 231, 183, 0.3);">Clean-Room Governance</div>
-          <div class="offer-title" style="margin-top: 6px;">Clean-Room Audits & Capped Capacity</div>
-          <div class="offer-desc">
-            All pilot data handled under mutual NDA on request; client loci never reused or retained post-engagement. To ensure rigorous scientific execution, TrueLocus maintains a strictly capped concurrent audit capacity, ensuring direct founder-level computational attention on every project.
+
+        <!-- Clean Room Governance Card -->
+        <div class="bg-[#121215] border border-zinc-800 rounded-xl p-5 sm:p-6 space-y-2.5">
+          <div
+            class="inline-block font-mono text-[11px] uppercase tracking-wider text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-0.5 rounded">
+            Clean-Room Governance
           </div>
+          <div class="text-base font-semibold text-zinc-100">
+            Clean-Room Audits & Capped Capacity
+          </div>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            All pilot data handled under mutual NDA on request; client loci never reused or retained post-engagement. To
+            ensure rigorous scientific execution, TrueLocus maintains a strictly capped concurrent audit capacity,
+            ensuring direct founder-level computational attention on every project.
+          </p>
         </div>
       </section>
 
-      <section>
-        <h2>Inquiries & Contact</h2>
-        <p>
-          TrueLocus operates directly with functional genomics and target discovery screening teams. 
+      <!-- Inquiries & Contact Section -->
+      <section class="space-y-4 pt-4 border-t border-zinc-800/80">
+        <h2 class="text-xl font-semibold tracking-tight text-zinc-100">
+          Inquiries & Contact
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          TrueLocus operates directly with functional genomics and target discovery screening teams.
           To test the engine on your hits or request full per-locus benchmark logs:
         </p>
-        <p>
-          <a href="mailto:contact@truelocus.bio" style="color: var(--accent); text-decoration: none; font-weight: 500;">contact@truelocus.bio</a>
-        </p>
+        <div>
+          <a href="mailto:contact@truelocus.bio"
+            class="text-sm sm:text-base font-medium text-sky-400 hover:text-sky-300 transition-colors underline decoration-sky-500/40 hover:decoration-sky-400 underline-offset-4">
+            contact@truelocus.bio
+          </a>
+        </div>
       </section>
+
     </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer
+      class="mt-20 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
       <div>&copy; 2026 TrueLocus. All rights reserved.</div>
-      <div>
-        <a href="https://www.linkedin.com/in/himanshu2032/" target="_blank" rel="noopener">LinkedIn</a> &bull; 
-        <a href="mailto:contact@truelocus.bio">Email</a>
+      <div class="flex items-center gap-3">
+        <a href="https://www.linkedin.com/in/himanshu2032/" target="_blank" rel="noopener"
+          class="hover:text-zinc-300 transition-colors">LinkedIn</a>
+        <span>&bull;</span>
+        <a href="mailto:contact@truelocus.bio" class="hover:text-zinc-300 transition-colors">Email</a>
       </div>
     </footer>
+
   </div>
 </body>
+
 </html>
