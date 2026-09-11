@@ -598,11 +598,17 @@
 
       <!-- Takeaway for v2.0 Banner -->
       <div style="margin-top: 24px; padding: 18px 22px; background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; border-radius: 6px; font-size: 0.88rem; color: #1e293b; line-height: 1.6;">
-        <div style="font-weight: 700; color: #0369a1; font-size: 0.95rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.03em;">
-          Takeaway for v2.0: Integrating Variant-Level Biophysics
+        <div style="font-weight: 700; color: #0369a1; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.03em;">
+          Takeaway for v2.0: When Distance Decay Fails
         </div>
+        <p style="margin-bottom: 10px; color: #334155;">
+          Distance decay fails when one variant activates multiple promoters.
+        </p>
+        <p style="margin-bottom: 10px; color: #334155;">
+          On 1p13, <code>rs12740374</code> transactivates both <em>PSRC1</em> (9 kb) and <em>SORT1</em> (123 kb). Linear models default to the closer gene: <em>PSRC1</em>. The true driver, <em>SORT1</em>, ranks #6.
+        </p>
         <p style="margin-bottom: 0; color: #334155;">
-          Baseline linear models and expression filters face inherent limits when a proximal bystander gene is also transcriptionally active. The upcoming TrueLocus v2.0 architecture integrates allele-specific variant energetics and promoter stereochemistry to resolve complex gain-of-function loci without relying on costly cell-type conformation capture.
+          TrueLocus v2.0 fixes this with two additions: promoter-enhancer compatibility scoring, and cell-type 3D loop evidence. Together they resolve co-activated bystander loci.
         </p>
       </div>
 
