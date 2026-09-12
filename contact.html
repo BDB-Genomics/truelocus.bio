@@ -38,61 +38,66 @@
       line-height: 1.55;
       padding: 0 20px;
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 40px 0 80px 0;
-      width: 100%;
-      flex: 1;
+    .wrapper {
+      max-width: 1060px;
+      margin: 28px auto 80px auto;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 8px;
+      overflow: hidden;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 24px;
+      padding: 16px 28px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 40px;
+      background: var(--surface);
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: var(--text);
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       letter-spacing: -0.03em;
     }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
     }
     .nav-link {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
+      transition: color 0.15s ease;
     }
-    .nav-link:hover {
+    .nav-link:hover, .nav-link.active {
       color: var(--text);
     }
-    .contact-link {
+    .btn-header {
       font-size: 0.85rem;
       font-family: var(--mono);
+      font-weight: 600;
       color: var(--text);
       text-decoration: none;
-      padding: 6px 14px;
+      padding: 7px 16px;
       border: 1px solid var(--border);
-      background: var(--accent-lavender);
       border-radius: 9999px;
+      background: var(--accent-lavender);
+    }
+    .container-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 44px 20px 60px 20px;
     }
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.3rem;
       font-weight: 600;
       letter-spacing: -0.04em;
       margin-bottom: 12px;
@@ -100,24 +105,22 @@
     }
     .lead {
       color: var(--text-muted);
-      font-size: 1.02rem;
+      font-size: 1rem;
       line-height: 1.6;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
-    .card {
+    .form-card {
       background: var(--surface);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 32px;
       border: 1px solid var(--border);
-      margin-bottom: 24px;
+      border-radius: 8px;
+      padding: 28px;
     }
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-family: var(--mono);
       font-weight: 600;
       color: var(--text);
@@ -130,10 +133,10 @@
     select,
     textarea {
       width: 100%;
-      padding: 10px 14px;
+      padding: 10px 12px;
       background: #fafafa;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 6px;
       color: var(--text);
       font-size: 0.92rem;
       font-family: inherit;
@@ -143,7 +146,7 @@
     input:focus,
     select:focus,
     textarea:focus {
-      background: var(--surface);
+      background: #ffffff;
     }
     textarea {
       resize: vertical;
@@ -167,7 +170,7 @@
     }
     .direct-contact {
       margin-top: 20px;
-      padding-top: 16px;
+      padding-top: 14px;
       border-top: 1px solid var(--border-light);
       text-align: center;
       font-size: 0.85rem;
@@ -178,18 +181,14 @@
       text-decoration: none;
       font-weight: 600;
     }
-    .direct-contact a:hover {
-      text-decoration: underline;
-    }
     footer {
-      padding: 24px 0;
+      padding: 20px 36px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       color: var(--text-muted);
       font-size: 0.82rem;
-      flex-wrap: wrap;
-      gap: 12px;
+      background: #fafafa;
     }
     footer a {
       color: var(--text);
@@ -202,27 +201,28 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrapper">
     <header>
       <a href="/" class="brand">
-        <img src="./logo_header.png" alt="TrueLocus" style="height: 26px; width: auto; display: block;">
+        <img src="./logo_header.png" alt="TrueLocus" style="height: 24px; width: auto; display: block;">
       </a>
       <div class="nav-links">
         <a href="/" class="nav-link">Overview</a>
+        <a href="/#benchmark" class="nav-link">Benchmark</a>
         <a href="./updates.html" class="nav-link">Updates</a>
-        <a href="./contact.html" class="contact-link">Contact</a>
+        <a href="./contact.html" class="btn-header">Contact</a>
       </div>
     </header>
 
-    <main>
+    <div class="container-inner">
       <h1>Contact & Inquiries</h1>
       <p class="lead">
-        TrueLocus evaluates non-coding CRISPRi hits and candidate regulatory loci. Contact us to test candidate loci blind, request audit logs, or schedule a project.
+        TrueLocus evaluates non-coding CRISPRi hits and candidate regulatory loci. Reach out to test candidate loci blind, request audit logs, or schedule a pilot.
       </p>
 
-      <div class="card">
+      <div class="form-card">
         <form action="https://formspree.io/f/xppznjvn" method="POST" enctype="multipart/form-data">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Dr. Jane Doe" required>
@@ -255,7 +255,7 @@
 
           <div class="form-group">
             <label for="attachment">Attach File / Locus List <span style="font-size: 0.72rem; font-weight: normal; color: var(--text-muted);">(Optional &bull; TSV, CSV, BED, PDF &bull; Max 10MB)</span></label>
-            <input type="file" id="attachment" name="attachment" style="padding: 8px 12px; background: #fafafa; border: 1px dashed var(--border); border-radius: 8px; font-size: 0.85rem; width: 100%; cursor: pointer;">
+            <input type="file" id="attachment" name="attachment" style="padding: 8px 10px; background: #fafafa; border: 1px dashed var(--border); border-radius: 6px; font-size: 0.85rem; width: 100%; cursor: pointer;">
           </div>
 
           <button type="submit" class="btn-submit">Submit Inquiry</button>
@@ -269,13 +269,14 @@
           Direct email: <a href="mailto:contact@truelocus.bio">contact@truelocus.bio</a>
         </div>
       </div>
-    </main>
+    </div>
 
     <footer>
       <div>&copy; 2026 TrueLocus. All rights reserved.</div>
       <div>
         <a href="/">Home</a> &bull;
         <a href="./updates.html">Updates</a> &bull;
+        <a href="./contact.html">Contact</a> &bull;
         <a href="mailto:contact@truelocus.bio">Email</a>
       </div>
     </footer>
