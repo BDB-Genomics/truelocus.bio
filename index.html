@@ -271,42 +271,6 @@
       color: var(--text-muted);
       line-height: 1.55;
     }
-    /* Benchmark Table */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      margin: 14px 0;
-      font-family: var(--mono);
-    }
-    th, td {
-      padding: 9px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-light);
-    }
-    th {
-      color: var(--text-muted);
-      font-weight: 600;
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-bottom: 1px solid var(--border);
-    }
-    .highlight-row td {
-      background: var(--accent-sky);
-      font-weight: 600;
-      color: var(--text);
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 9999px;
-      border: 1px solid var(--border);
-      margin-bottom: 10px;
-    }
     footer {
       padding: 20px 36px;
       border-top: 1px solid var(--border);
@@ -349,8 +313,7 @@
         <img src="./logo_header.png" alt="TrueLocus" style="height: 24px; width: auto; display: block;">
       </a>
       <div class="nav-links">
-        <a href="#overview" class="nav-link">Overview</a>
-        <a href="#benchmark" class="nav-link">Benchmark</a>
+        <a href="/" class="nav-link active" style="color: var(--text); font-weight: 600;">Overview</a>
         <a href="./updates.html" class="nav-link">Updates</a>
         <a href="./contact.html" class="btn-header">Contact</a>
       </div>
@@ -375,8 +338,8 @@
           TrueLocus models sequence-derived 3D contact decay and multi-promoter competition to assign causal target genes for CRISPRi hits without requiring cell-type Hi-C data.
         </p>
         <div class="hero-btn-row">
-          <a href="#benchmark" class="pill-btn pill-lavender">Platform Overview</a>
-          <a href="./updates.html" class="pill-btn pill-coral">Case Studies</a>
+          <a href="./updates.html" class="pill-btn pill-lavender">View Case Studies</a>
+          <a href="./contact.html" class="pill-btn pill-coral">Contact Team</a>
         </div>
       </div>
 
@@ -418,68 +381,11 @@
         </div>
       </section>
 
-      <section id="benchmark">
-        <h2>Held-Out Empirical Benchmark</h2>
-        <p>
-          Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, <em>Nature Methods</em>). 
-          Code was frozen and committed before evaluation.
-        </p>
-        <div class="card">
-          <table>
-            <thead>
-              <tr>
-                <th>Method</th>
-                <th>Top-1 Accuracy</th>
-                <th>Top-3 Target Recall</th>
-                <th>Required Input Data</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Nearest-TSS Baseline</td>
-                <td>54.2% (39/72)</td>
-                <td>73.6% (53/72)</td>
-                <td>1D Distance</td>
-              </tr>
-              <tr class="highlight-row">
-                <td>TrueLocus Engine</td>
-                <td>69.4% (50/72)</td>
-                <td>84.7% (61/72)</td>
-                <td>Sequence + CAGE (No Hi-C)</td>
-              </tr>
-              <tr>
-                <td>Broad ABC (Nasser 2021)</td>
-                <td>75.0% (54/72)</td>
-                <td>94.4% (68/72)</td>
-                <td>Full K562 Hi-C + ChIP + ATAC</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="font-size: 0.82rem; font-family: var(--mono); margin-top: 12px; margin-bottom: 12px; color: var(--text);">
-            Statistical validation: TrueLocus vs Nearest Top-1 p=0.007 (McNemar exact test, b=13, c=2).
-          </p>
-          <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-light); font-size: 0.86rem; line-height: 1.6; color: var(--text-muted);">
-            <div style="font-weight: 700; color: var(--text); margin-bottom: 10px;">Objective Domains of Applicability:</div>
-            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px;">
-              <li>
-                <strong style="color: var(--text);">Broad ABC Model (Nasser et al. 2021):</strong> When deeply sequenced cell-type Hi-C, ChIP-seq, and ATAC-seq are available, Broad ABC sets the standard (75.0% Top-1).
-              </li>
-              <li>
-                <strong style="color: var(--text);">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D proximity reliably assigns 54.2% of targets.
-              </li>
-              <li>
-                <strong style="color: var(--accent-blue);">TrueLocus Engine:</strong> Built for screening hits in primary cells and disease models where experimental Hi-C is absent. TrueLocus lifts Top-3 recall on non-nearest loci to 70% (vs 42% for Nearest-TSS), correctly nominating the true distal target on 13 of 33 non-nearest loci.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <section>
-        <h2>Inquiries & Contact</h2>
+        <h2>Inquiries & Pilot Evaluations</h2>
         <p>
           TrueLocus operates directly with functional genomics and screening teams. 
-          To evaluate candidate hits or request per-locus benchmark logs:
+          To evaluate candidate hits blind or request per-locus benchmark logs:
         </p>
         <p>
           <a href="./contact.html" class="pill-btn pill-lavender" style="font-size: 0.88rem;">Open Contact Form &rarr;</a>
