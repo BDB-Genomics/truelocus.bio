@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact & Inquiries | TrueLocus</title>
-  <meta name="description" content="Inquire about candidate locus ranking, benchmarks, or pilot evaluations with TrueLocus.">
+  <title>Preprint | TrueLocus</title>
+  <meta name="description" content="Preprint draft in progress.">
   <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
   <script>
     if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
@@ -221,66 +221,16 @@
     <div class="nav-links">
       <a href="/" class="nav-link">Overview</a>
       <a href="./updates.html" class="nav-link">Updates</a>
-      <a href="./preprint.html" class="nav-link">Preprint</a>
+      <a href="./preprint.html" class="nav-link active" style="color: var(--text); font-weight: 600;">Preprint</a>
       <a href="./contact.html" class="btn-header">Contact</a>
     </div>
   </header>
 
   <div class="content-container">
-    <h1>Contact & Inquiries</h1>
-    <p class="lead">
-      We evaluate non-coding CRISPR hits. Contact us to test your candidates, request data logs, or schedule a pilot.
+    <h1>Preprint</h1>
+    <p class="lead" style="font-size: 1.1rem; color: var(--text-muted);">
+      Draft in progress
     </p>
-
-    <div class="form-card">
-      <form action="https://formspree.io/f/xppznjvn" method="POST" enctype="multipart/form-data">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Dr. Jane Doe" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Work Email</label>
-            <input type="email" id="email" name="email" placeholder="jane@biotech.com" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="org">Organization / Institution</label>
-          <input type="text" id="org" name="organization" placeholder="Biotech, Pharma, or Research Institute" required>
-        </div>
-
-        <div class="form-group">
-          <label for="inquiry_type">Inquiry Type</label>
-          <select id="inquiry_type" name="inquiry_type">
-            <option value="Free Blind Pilot">Blind Evaluation (3-5 Targets)</option>
-            <option value="14-Day Commercial Audit">Target Audit (10-25 Targets)</option>
-            <option value="Benchmark Due Diligence">Benchmark Data Request</option>
-            <option value="Other Technical Inquiry">General Inquiry</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Project Context</label>
-          <textarea id="message" name="message" placeholder="Project details, cell types, or specific requirements..." required></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="attachment">Attach File / Locus List <span style="font-size: 0.72rem; font-weight: normal; color: var(--text-muted);">(Optional &bull; TSV, CSV, BED, PDF &bull; Max 10MB)</span></label>
-          <input type="file" id="attachment" name="attachment" style="padding: 8px 10px; background: #fafafa; border: 1px dashed var(--border); border-radius: 6px; font-size: 0.85rem; width: 100%; cursor: pointer;">
-        </div>
-
-        <button type="submit" class="btn-submit">Submit Inquiry</button>
-
-        <div style="margin-top: 12px; text-align: center; font-size: 0.75rem; color: var(--text-muted); font-family: var(--mono);">
-          Confidential &bull; Mutual NDA available on request
-        </div>
-      </form>
-
-      <div class="direct-contact">
-        Direct email: <a href="mailto:contact@truelocus.bio">contact@truelocus.bio</a>
-      </div>
-    </div>
   </div>
 
   <footer>
