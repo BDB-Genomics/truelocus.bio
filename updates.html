@@ -36,22 +36,20 @@
       color: var(--text);
       font-family: var(--font);
       line-height: 1.55;
-      padding: 0 20px;
+      padding: 0;
+      margin: 0;
+      width: 100%;
       -webkit-font-smoothing: antialiased;
-    }
-    .wrapper {
-      max-width: 1060px;
-      margin: 28px auto 80px auto;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 8px;
-      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 28px;
+      padding: 16px 40px;
       border-bottom: 1px solid var(--border);
       background: var(--surface);
     }
@@ -62,13 +60,13 @@
       text-decoration: none;
       color: var(--text);
       font-weight: 700;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       letter-spacing: -0.03em;
     }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
     .nav-link {
       font-size: 0.9rem;
@@ -86,7 +84,7 @@
       font-weight: 600;
       color: var(--text);
       text-decoration: none;
-      padding: 7px 16px;
+      padding: 7px 18px;
       border: 1px solid var(--border);
       border-radius: 9999px;
       background: var(--surface);
@@ -96,10 +94,14 @@
       background: var(--accent-lavender);
     }
     .content-container {
-      padding: 44px 36px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 40px 80px 40px;
+      flex: 1;
+      width: 100%;
     }
     h1 {
-      font-size: 2.3rem;
+      font-size: 2.5rem;
       font-weight: 600;
       letter-spacing: -0.04em;
       margin-bottom: 10px;
@@ -107,7 +109,7 @@
     }
     .lead {
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 1.02rem;
       line-height: 1.6;
       margin-bottom: 36px;
     }
@@ -117,7 +119,7 @@
       border-radius: 8px;
       padding: 26px 28px;
       border: 1px solid var(--border);
-      margin-bottom: 30px;
+      margin-bottom: 32px;
     }
     .tag {
       display: inline-block;
@@ -130,7 +132,7 @@
       margin-bottom: 12px;
     }
     .update-title {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 8px;
@@ -233,8 +235,14 @@
     .card-footer a:hover {
       text-decoration: underline;
     }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
     footer {
-      padding: 20px 36px;
+      width: 100%;
+      padding: 24px 40px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -250,7 +258,13 @@
     footer a:hover {
       text-decoration: underline;
     }
-    @media (max-width: 820px) {
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 20px;
+      }
+      .content-container {
+        padding: 40px 20px 60px 20px;
+      }
       .benchmark-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -261,252 +275,255 @@
         border-top: 1px solid var(--border-light);
         padding-top: 20px;
       }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      footer {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <a href="/" class="brand">
-        <img src="./logo_header.png" alt="TrueLocus" style="height: 24px; width: auto; display: block;">
-      </a>
-      <div class="nav-links">
-        <a href="/" class="nav-link">Overview</a>
-        
-        <a href="./updates.html" class="nav-link active" style="color: var(--text); font-weight: 600;">Updates</a>
-        <a href="./contact.html" class="btn-header">Contact</a>
-      </div>
-    </header>
+  <header>
+    <a href="/" class="brand">
+      <img src="./logo_header.png" alt="TrueLocus" style="height: 26px; width: auto; display: block;">
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Overview</a>
+      <a href="./updates.html" class="nav-link active" style="color: var(--text); font-weight: 600;">Updates</a>
+      <a href="./contact.html" class="btn-header">Contact</a>
+    </div>
+  </header>
 
-    <div class="content-container">
-      <h1>Updates & Changelog</h1>
-      <p class="lead">
-        Platform releases, empirical benchmarks, and failure forensics.
+  <div class="content-container">
+    <h1>Updates & Changelog</h1>
+    <p class="lead">
+      Platform releases, empirical benchmarks, and failure forensics.
+    </p>
+
+    <!-- Empirical Benchmark Card -->
+    <div class="card">
+      <span class="tag" style="background: var(--accent-lavender);">September 2026 &bull; Empirical Benchmark</span>
+      <h2 class="update-title">Held-Out CRISPRi Benchmark (n = 72)</h2>
+      <p class="update-desc">
+        Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, <em>Nature Methods</em>). 
+        Measures distal target gene assignment where linear 1D proximity fails.
       </p>
 
-      <!-- Empirical Benchmark Card -->
-      <div class="card">
-        <span class="tag" style="background: var(--accent-lavender);">September 2026 &bull; Empirical Benchmark</span>
-        <h2 class="update-title">Held-Out CRISPRi Benchmark (n = 72)</h2>
-        <p class="update-desc">
-          Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, <em>Nature Methods</em>). 
-          Measures distal target gene assignment where linear 1D proximity fails.
-        </p>
+      <div class="benchmark-grid">
+        <div class="benchmark-table-col">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Top-1 Accuracy</th>
+                <th>Top-3 Target Recall</th>
+                <th>Input Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nearest-TSS Baseline</td>
+                <td>54.2% (39/72)</td>
+                <td>73.6% (53/72)</td>
+                <td>1D Distance</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>TrueLocus Engine</td>
+                <td>69.4% (50/72)</td>
+                <td>84.7% (61/72)</td>
+                <td>Sequence + CAGE (No Hi-C)</td>
+              </tr>
+              <tr>
+                <td>Broad ABC (Nasser 2021)</td>
+                <td>75.0% (54/72)</td>
+                <td>94.4% (68/72)</td>
+                <td>Full K562 Hi-C + ChIP + ATAC</td>
+              </tr>
+            </tbody>
+          </table>
 
-        <div class="benchmark-grid">
-          <div class="benchmark-table-col">
-            <table>
-              <thead>
-                <tr>
-                  <th>Method</th>
-                  <th>Top-1 Accuracy</th>
-                  <th>Top-3 Target Recall</th>
-                  <th>Input Required</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Nearest-TSS Baseline</td>
-                  <td>54.2% (39/72)</td>
-                  <td>73.6% (53/72)</td>
-                  <td>1D Distance</td>
-                </tr>
-                <tr class="highlight-row">
-                  <td>TrueLocus Engine</td>
-                  <td>69.4% (50/72)</td>
-                  <td>84.7% (61/72)</td>
-                  <td>Sequence + CAGE (No Hi-C)</td>
-                </tr>
-                <tr>
-                  <td>Broad ABC (Nasser 2021)</td>
-                  <td>75.0% (54/72)</td>
-                  <td>94.4% (68/72)</td>
-                  <td>Full K562 Hi-C + ChIP + ATAC</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="footnote">
-              Paired exact test: TrueLocus vs Nearest Top-1 p=0.0074 (McNemar exact, b=13, c=2).
-            </div>
-          </div>
-
-          <div class="benchmark-side-col">
-            <div class="key-takeaways">
-              <div class="takeaway-item">
-                <span class="takeaway-bullet" style="color: #ef4444;">&bull;</span>
-                <div><strong>Nearest-TSS:</strong> Baseline heuristic; misses the true target in 45.8% of non-adjacent pairs.</div>
-              </div>
-              <div class="takeaway-item">
-                <span class="takeaway-bullet" style="color: var(--accent-blue);">&bull;</span>
-                <div><strong style="color: var(--accent-blue);">TrueLocus Engine:</strong> 69.4% accuracy using sequence + CAGE without requiring cell-type Hi-C.</div>
-              </div>
-              <div class="takeaway-item">
-                <span class="takeaway-bullet">&bull;</span>
-                <div><strong>Broad ABC:</strong> Gold standard (75.0%) when experimental Hi-C, ChIP, and ATAC are available.</div>
-              </div>
-            </div>
+          <div class="footnote">
+            Paired exact test: TrueLocus vs Nearest Top-1 p=0.0074 (McNemar exact, b=13, c=2).
           </div>
         </div>
 
-        <div class="card-footer">
-          <span style="color: var(--text-muted);">Per-locus results tables open under standard NDA.</span>
-          <a href="./contact.html">Request Full Audit Logs &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Methodological Notes Card -->
-      <div class="card">
-        <span class="tag" style="background: var(--accent-coral);">Methodological Forensics</span>
-        <h2 class="update-title">Engine Failure Analysis on Ground-Truth Data</h2>
-        <p class="update-desc">
-          In our 72-pair held-out CRISPRi benchmark, our initial model configurations exhibited two specific failure modes that guided architecture updates:
-        </p>
-
-        <div class="grid-2" style="align-items: stretch; margin-top: 14px;">
-          <div style="background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <div style="font-size: 0.74rem; font-family: var(--mono); font-weight: 700; color: #b91c1c; text-transform: uppercase; margin-bottom: 6px;">
-                Failure 1 &bull; HBE1 (Annotation Error)
-              </div>
-              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 12px;">
-                The database placed HBE1's transcription start 225 kb from its real promoter. CAGE peak data identified the true promoter directly, but a read-through transcript model shifted coordinates.
-              </p>
+        <div class="benchmark-side-col">
+          <div class="key-takeaways">
+            <div class="takeaway-item">
+              <span class="takeaway-bullet" style="color: #ef4444;">&bull;</span>
+              <div><strong>Nearest-TSS:</strong> Baseline heuristic; misses the true target in 45.8% of non-adjacent pairs.</div>
             </div>
-            <div style="padding: 8px 10px; background: var(--accent-sky); border: 1px solid var(--border); border-radius: 4px; font-size: 0.82rem; font-family: var(--mono);">
-              <strong>Resolution:</strong> Anchor promoters strictly to measured CAGE peaks.
+            <div class="takeaway-item">
+              <span class="takeaway-bullet" style="color: var(--accent-blue);">&bull;</span>
+              <div><strong style="color: var(--accent-blue);">TrueLocus Engine:</strong> 69.4% accuracy using sequence + CAGE without requiring cell-type Hi-C.</div>
             </div>
-          </div>
-
-          <div style="background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <div style="font-size: 0.74rem; font-family: var(--mono); font-weight: 700; color: #b91c1c; text-transform: uppercase; margin-bottom: 6px;">
-                Failure 2 &bull; NCR3LG1 (Data Dropout)
-              </div>
-              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 12px;">
-                A single CAGE library returned 0 TPM, leading to false promoter gating. TAP-seq validation demonstrated strong expression (<em>p</em> = 3.7 &times; 10<sup>-104</sup>).
-              </p>
-            </div>
-            <div style="padding: 8px 10px; background: var(--accent-sky); border: 1px solid var(--border); border-radius: 4px; font-size: 0.82rem; font-family: var(--mono);">
-              <strong>Resolution:</strong> Multi-source expression consensus scoring.
+            <div class="takeaway-item">
+              <span class="takeaway-bullet">&bull;</span>
+              <div><strong>Broad ABC:</strong> Gold standard (75.0%) when experimental Hi-C, ChIP, and ATAC are available.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 1p13 SORT1 Case Study Card -->
-      <div class="card">
-        <span class="tag" style="background: var(--accent-lavender);">Case Study &bull; Methodological Forensic</span>
-        <h2 class="update-title">The 1p13 LDL Locus: Where Linear Proximity Fails</h2>
-        <p class="update-desc">
-          On the 1p13 cholesterol locus (Musunuru et al., <em>Nature</em> 2010; PMID 20686566), the causal variant <code>rs12740374</code> creates a <em>de novo</em> C/EBP binding site. 
-          Because the proximal promoter <em>PSRC1</em> is physically closer (9.1 kb vs 123 kb) and active in adult liver, linear proximity defaults to <em>PSRC1</em> (#1, 42.2% share) and ranks causal <em>SORT1</em> at #6 (4.8% share).
-        </p>
+      <div class="card-footer">
+        <span style="color: var(--text-muted);">Per-locus results tables open under standard NDA.</span>
+        <a href="./contact.html">Request Full Audit Logs &rarr;</a>
+      </div>
+    </div>
 
-        <div class="benchmark-grid">
-          <div class="benchmark-table-col">
-            <table>
-              <thead>
-                <tr>
-                  <th>Candidate Gene</th>
-                  <th>Distance</th>
-                  <th>Liver TPM</th>
-                  <th>Target Score</th>
-                  <th>Share</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="highlight-row" style="background: var(--accent-coral);">
-                  <td><strong>PSRC1</strong> (Nearest TSS)</td>
-                  <td>9.1 kb</td>
-                  <td>1.86</td>
-                  <td>0.3662</td>
-                  <td><strong>42.2%</strong></td>
-                  <td><span style="color: #b91c1c; font-weight: 700;">#1 (Proximal Competitor)</span></td>
-                </tr>
-                <tr>
-                  <td><strong>CELSR2</strong></td>
-                  <td>25.4 kb</td>
-                  <td>0.85</td>
-                  <td>0.1632</td>
-                  <td>18.8%</td>
-                  <td>#2 (Bystander)</td>
-                </tr>
-                <tr>
-                  <td><strong>MYBPHL</strong></td>
-                  <td>32.2 kb</td>
-                  <td>0.00</td>
-                  <td>0.1281</td>
-                  <td>14.8%</td>
-                  <td>#3 (Unexpressed)</td>
-                </tr>
-                <tr>
-                  <td><strong>SARS1</strong></td>
-                  <td>61.1 kb</td>
-                  <td>34.85</td>
-                  <td>0.1242</td>
-                  <td>14.3%</td>
-                  <td>#4 (Active, distance discounted)</td>
-                </tr>
-                <tr>
-                  <td><strong>PSMA5</strong></td>
-                  <td>151.5 kb</td>
-                  <td>17.66</td>
-                  <td>0.0456</td>
-                  <td>5.2%</td>
-                  <td>#5 (Active, distance discounted)</td>
-                </tr>
-                <tr style="background: var(--accent-sky);">
-                  <td><strong>SORT1</strong> (True Causal Target)</td>
-                  <td>123.0 kb</td>
-                  <td>2.39</td>
-                  <td>0.0413</td>
-                  <td>4.8%</td>
-                  <td><strong style="color: #0369a1;">#6 (True Causal Target)</strong></td>
-                </tr>
-              </tbody>
-            </table>
+    <!-- Methodological Notes Card -->
+    <div class="card">
+      <span class="tag" style="background: var(--accent-coral);">Methodological Forensics</span>
+      <h2 class="update-title">Engine Failure Analysis on Ground-Truth Data</h2>
+      <p class="update-desc">
+        In our 72-pair held-out CRISPRi benchmark, our initial model configurations exhibited two specific failure modes that guided architecture updates:
+      </p>
 
-            <div class="footnote">
-              Evaluated on TrueLocus v1.8. Expression from GTEx Portal API v2 (gtex_v10 adult liver, 100+ donors).
+      <div class="grid-2" style="align-items: stretch; margin-top: 14px;">
+        <div style="background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 0.74rem; font-family: var(--mono); font-weight: 700; color: #b91c1c; text-transform: uppercase; margin-bottom: 6px;">
+              Failure 1 &bull; HBE1 (Annotation Error)
             </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 12px;">
+              The database placed HBE1's transcription start 225 kb from its real promoter. CAGE peak data identified the true promoter directly, but a read-through transcript model shifted coordinates.
+            </p>
           </div>
-
-          <div class="benchmark-side-col">
-            <div class="key-takeaways">
-              <div class="takeaway-item">
-                <span class="takeaway-bullet" style="color: #b91c1c;">&bull;</span>
-                <div><strong>Multi-eQTL Co-activation:</strong> <code>rs12740374</code> upregulates both <em>PSRC1</em> and <em>SORT1</em> by &gt;12-fold in liver.</div>
-              </div>
-              <div class="takeaway-item">
-                <span class="takeaway-bullet" style="color: var(--accent-blue);">&bull;</span>
-                <div><strong style="color: var(--accent-blue);">Proximity Bias:</strong> Linear distance gives proximal <em>PSRC1</em> a strong default score advantage over <em>SORT1</em> at 123 kb.</div>
-              </div>
-              <div class="takeaway-item">
-                <span class="takeaway-bullet">&bull;</span>
-                <div><strong>Functional Separation:</strong> Mouse functional assays proved <em>Sort1</em> drives LDL-C changes (&gt;2-fold), while <em>Psrc1</em> had zero phenotypic effect.</div>
-              </div>
-            </div>
+          <div style="padding: 8px 10px; background: var(--accent-sky); border: 1px solid var(--border); border-radius: 4px; font-size: 0.82rem; font-family: var(--mono);">
+            <strong>Resolution:</strong> Anchor promoters strictly to measured CAGE peaks.
           </div>
         </div>
 
-        <div class="card-footer">
-          <span style="color: var(--text-muted);">Audit scripts committed in <code>teardowns/teardown_01_1p13_sort1/</code>.</span>
-          <a href="./contact.html">Request Locus Audit &rarr;</a>
+        <div style="background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 0.74rem; font-family: var(--mono); font-weight: 700; color: #b91c1c; text-transform: uppercase; margin-bottom: 6px;">
+              Failure 2 &bull; NCR3LG1 (Data Dropout)
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 12px;">
+              A single CAGE library returned 0 TPM, leading to false promoter gating. TAP-seq validation demonstrated strong expression (<em>p</em> = 3.7 &times; 10<sup>-104</sup>).
+            </p>
+          </div>
+          <div style="padding: 8px 10px; background: var(--accent-sky); border: 1px solid var(--border); border-radius: 4px; font-size: 0.82rem; font-family: var(--mono);">
+            <strong>Resolution:</strong> Multi-source expression consensus scoring.
+          </div>
         </div>
       </div>
     </div>
 
-    <footer>
-      <div>&copy; 2026 TrueLocus. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> &bull;
-        <a href="./updates.html">Updates</a> &bull;
-        <a href="./contact.html">Contact</a> &bull;
-        <a href="mailto:contact@truelocus.bio">Email</a>
+    <!-- 1p13 SORT1 Case Study Card -->
+    <div class="card">
+      <span class="tag" style="background: var(--accent-lavender);">Case Study &bull; Methodological Forensic</span>
+      <h2 class="update-title">The 1p13 LDL Locus: Where Linear Proximity Fails</h2>
+      <p class="update-desc">
+        On the 1p13 cholesterol locus (Musunuru et al., <em>Nature</em> 2010; PMID 20686566), the causal variant <code>rs12740374</code> creates a <em>de novo</em> C/EBP binding site. 
+        Because the proximal promoter <em>PSRC1</em> is physically closer (9.1 kb vs 123 kb) and active in adult liver, linear proximity defaults to <em>PSRC1</em> (#1, 42.2% share) and ranks causal <em>SORT1</em> at #6 (4.8% share).
+      </p>
+
+      <div class="benchmark-grid">
+        <div class="benchmark-table-col">
+          <table>
+            <thead>
+              <tr>
+                <th>Candidate Gene</th>
+                <th>Distance</th>
+                <th>Liver TPM</th>
+                <th>Target Score</th>
+                <th>Share</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row" style="background: var(--accent-coral);">
+                <td><strong>PSRC1</strong> (Nearest TSS)</td>
+                <td>9.1 kb</td>
+                <td>1.86</td>
+                <td>0.3662</td>
+                <td><strong>42.2%</strong></td>
+                <td><span style="color: #b91c1c; font-weight: 700;">#1 (Proximal Competitor)</span></td>
+              </tr>
+              <tr>
+                <td><strong>CELSR2</strong></td>
+                <td>25.4 kb</td>
+                <td>0.85</td>
+                <td>0.1632</td>
+                <td>18.8%</td>
+                <td>#2 (Bystander)</td>
+              </tr>
+              <tr>
+                <td><strong>MYBPHL</strong></td>
+                <td>32.2 kb</td>
+                <td>0.00</td>
+                <td>0.1281</td>
+                <td>14.8%</td>
+                <td>#3 (Unexpressed)</td>
+              </tr>
+              <tr>
+                <td><strong>SARS1</strong></td>
+                <td>61.1 kb</td>
+                <td>34.85</td>
+                <td>0.1242</td>
+                <td>14.3%</td>
+                <td>#4 (Active, distance discounted)</td>
+              </tr>
+              <tr>
+                <td><strong>PSMA5</strong></td>
+                <td>151.5 kb</td>
+                <td>17.66</td>
+                <td>0.0456</td>
+                <td>5.2%</td>
+                <td>#5 (Active, distance discounted)</td>
+              </tr>
+              <tr style="background: var(--accent-sky);">
+                <td><strong>SORT1</strong> (True Causal Target)</td>
+                <td>123.0 kb</td>
+                <td>2.39</td>
+                <td>0.0413</td>
+                <td>4.8%</td>
+                <td><strong style="color: #0369a1;">#6 (True Causal Target)</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="footnote">
+            Evaluated on TrueLocus v1.8. Expression from GTEx Portal API v2 (gtex_v10 adult liver, 100+ donors).
+          </div>
+        </div>
+
+        <div class="benchmark-side-col">
+          <div class="key-takeaways">
+            <div class="takeaway-item">
+              <span class="takeaway-bullet" style="color: #b91c1c;">&bull;</span>
+              <div><strong>Multi-eQTL Co-activation:</strong> <code>rs12740374</code> upregulates both <em>PSRC1</em> and <em>SORT1</em> by &gt;12-fold in liver.</div>
+            </div>
+            <div class="takeaway-item">
+              <span class="takeaway-bullet" style="color: var(--accent-blue);">&bull;</span>
+              <div><strong style="color: var(--accent-blue);">Proximity Bias:</strong> Linear distance gives proximal <em>PSRC1</em> a strong default score advantage over <em>SORT1</em> at 123 kb.</div>
+            </div>
+            <div class="takeaway-item">
+              <span class="takeaway-bullet">&bull;</span>
+              <div><strong>Functional Separation:</strong> Mouse functional assays proved <em>Sort1</em> drives LDL-C changes (&gt;2-fold), while <em>Psrc1</em> had zero phenotypic effect.</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
+
+      <div class="card-footer">
+        <span style="color: var(--text-muted);">Audit scripts committed in <code>teardowns/teardown_01_1p13_sort1/</code>.</span>
+        <a href="./contact.html">Request Locus Audit &rarr;</a>
+      </div>
+    </div>
   </div>
+
+  <footer>
+    <div>&copy; 2026 TrueLocus. All rights reserved.</div>
+    <div>
+      <a href="/">Home</a> &bull;
+      <a href="./updates.html">Updates</a> &bull;
+      <a href="./contact.html">Contact</a> &bull;
+      <a href="mailto:contact@truelocus.bio">Email</a>
+    </div>
+  </footer>
 </body>
 </html>

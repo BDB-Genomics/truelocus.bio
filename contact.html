@@ -36,22 +36,20 @@
       color: var(--text);
       font-family: var(--font);
       line-height: 1.55;
-      padding: 0 20px;
+      padding: 0;
+      margin: 0;
+      width: 100%;
       -webkit-font-smoothing: antialiased;
-    }
-    .wrapper {
-      max-width: 1060px;
-      margin: 28px auto 80px auto;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 8px;
-      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 28px;
+      padding: 16px 40px;
       border-bottom: 1px solid var(--border);
       background: var(--surface);
     }
@@ -62,13 +60,13 @@
       text-decoration: none;
       color: var(--text);
       font-weight: 700;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       letter-spacing: -0.03em;
     }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
     .nav-link {
       font-size: 0.9rem;
@@ -86,18 +84,20 @@
       font-weight: 600;
       color: var(--text);
       text-decoration: none;
-      padding: 7px 16px;
+      padding: 7px 18px;
       border: 1px solid var(--border);
       border-radius: 9999px;
       background: var(--accent-lavender);
     }
-    .container-inner {
-      max-width: 640px;
+    .content-container {
+      max-width: 680px;
       margin: 0 auto;
-      padding: 44px 20px 60px 20px;
+      padding: 50px 24px 80px 24px;
+      flex: 1;
+      width: 100%;
     }
     h1 {
-      font-size: 2.3rem;
+      font-size: 2.5rem;
       font-weight: 600;
       letter-spacing: -0.04em;
       margin-bottom: 12px;
@@ -105,18 +105,18 @@
     }
     .lead {
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 1.02rem;
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .form-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 28px;
+      padding: 32px;
     }
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     label {
       display: block;
@@ -133,7 +133,7 @@
     select,
     textarea {
       width: 100%;
-      padding: 10px 12px;
+      padding: 10px 14px;
       background: #fafafa;
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -182,7 +182,8 @@
       font-weight: 600;
     }
     footer {
-      padding: 20px 36px;
+      width: 100%;
+      padding: 24px 40px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -198,88 +199,96 @@
     footer a:hover {
       text-decoration: underline;
     }
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 20px;
+      }
+      .content-container {
+        padding: 40px 20px 60px 20px;
+      }
+      footer {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <a href="/" class="brand">
-        <img src="./logo_header.png" alt="TrueLocus" style="height: 24px; width: auto; display: block;">
-      </a>
-      <div class="nav-links">
-        <a href="/" class="nav-link">Overview</a>
-        
-        <a href="./updates.html" class="nav-link">Updates</a>
-        <a href="./contact.html" class="btn-header">Contact</a>
-      </div>
-    </header>
+  <header>
+    <a href="/" class="brand">
+      <img src="./logo_header.png" alt="TrueLocus" style="height: 26px; width: auto; display: block;">
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Overview</a>
+      <a href="./updates.html" class="nav-link">Updates</a>
+      <a href="./contact.html" class="btn-header">Contact</a>
+    </div>
+  </header>
 
-    <div class="container-inner">
-      <h1>Contact & Inquiries</h1>
-      <p class="lead">
-        TrueLocus evaluates non-coding CRISPRi hits and candidate regulatory loci. Reach out to test candidate loci blind, request audit logs, or schedule a pilot.
-      </p>
+  <div class="content-container">
+    <h1>Contact & Inquiries</h1>
+    <p class="lead">
+      TrueLocus evaluates non-coding CRISPRi hits and candidate regulatory loci. Reach out to test candidate loci blind, request audit logs, or schedule a pilot.
+    </p>
 
-      <div class="form-card">
-        <form action="https://formspree.io/f/xppznjvn" method="POST" enctype="multipart/form-data">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Dr. Jane Doe" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Work Email</label>
-              <input type="email" id="email" name="email" placeholder="jane@biotech.com" required>
-            </div>
-          </div>
-
+    <div class="form-card">
+      <form action="https://formspree.io/f/xppznjvn" method="POST" enctype="multipart/form-data">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label for="org">Organization / Institution</label>
-            <input type="text" id="org" name="organization" placeholder="Biotech, Pharma, or Research Institute" required>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Dr. Jane Doe" required>
           </div>
-
           <div class="form-group">
-            <label for="inquiry_type">Inquiry Type</label>
-            <select id="inquiry_type" name="inquiry_type">
-              <option value="Free Blind Pilot">Blind Ranking Evaluation (3–5 Candidate Loci)</option>
-              <option value="14-Day Commercial Audit">Locus De-Risking Audit (10–25 Hits)</option>
-              <option value="Benchmark Due Diligence">Benchmark Due Diligence & Full Per-Locus Logs</option>
-              <option value="Other Technical Inquiry">General Technical Inquiry</option>
-            </select>
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@biotech.com" required>
           </div>
-
-          <div class="form-group">
-            <label for="message">Screening Context / Candidate Loci</label>
-            <textarea id="message" name="message" placeholder="Screening coordinates, cell types, or project requirements..." required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="attachment">Attach File / Locus List <span style="font-size: 0.72rem; font-weight: normal; color: var(--text-muted);">(Optional &bull; TSV, CSV, BED, PDF &bull; Max 10MB)</span></label>
-            <input type="file" id="attachment" name="attachment" style="padding: 8px 10px; background: #fafafa; border: 1px dashed var(--border); border-radius: 6px; font-size: 0.85rem; width: 100%; cursor: pointer;">
-          </div>
-
-          <button type="submit" class="btn-submit">Submit Inquiry</button>
-
-          <div style="margin-top: 12px; text-align: center; font-size: 0.75rem; color: var(--text-muted); font-family: var(--mono);">
-            Confidential &bull; Mutual NDA available on request
-          </div>
-        </form>
-
-        <div class="direct-contact">
-          Direct email: <a href="mailto:contact@truelocus.bio">contact@truelocus.bio</a>
         </div>
+
+        <div class="form-group">
+          <label for="org">Organization / Institution</label>
+          <input type="text" id="org" name="organization" placeholder="Biotech, Pharma, or Research Institute" required>
+        </div>
+
+        <div class="form-group">
+          <label for="inquiry_type">Inquiry Type</label>
+          <select id="inquiry_type" name="inquiry_type">
+            <option value="Free Blind Pilot">Blind Ranking Evaluation (3–5 Candidate Loci)</option>
+            <option value="14-Day Commercial Audit">Locus De-Risking Audit (10–25 Hits)</option>
+            <option value="Benchmark Due Diligence">Benchmark Due Diligence & Full Per-Locus Logs</option>
+            <option value="Other Technical Inquiry">General Technical Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Screening Context / Candidate Loci</label>
+          <textarea id="message" name="message" placeholder="Screening coordinates, cell types, or project requirements..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="attachment">Attach File / Locus List <span style="font-size: 0.72rem; font-weight: normal; color: var(--text-muted);">(Optional &bull; TSV, CSV, BED, PDF &bull; Max 10MB)</span></label>
+          <input type="file" id="attachment" name="attachment" style="padding: 8px 10px; background: #fafafa; border: 1px dashed var(--border); border-radius: 6px; font-size: 0.85rem; width: 100%; cursor: pointer;">
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Inquiry</button>
+
+        <div style="margin-top: 12px; text-align: center; font-size: 0.75rem; color: var(--text-muted); font-family: var(--mono);">
+          Confidential &bull; Mutual NDA available on request
+        </div>
+      </form>
+
+      <div class="direct-contact">
+        Direct email: <a href="mailto:contact@truelocus.bio">contact@truelocus.bio</a>
       </div>
     </div>
-
-    <footer>
-      <div>&copy; 2026 TrueLocus. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> &bull;
-        <a href="./updates.html">Updates</a> &bull;
-        <a href="./contact.html">Contact</a> &bull;
-        <a href="mailto:contact@truelocus.bio">Email</a>
-      </div>
-    </footer>
   </div>
+
+  <footer>
+    <div>&copy; 2026 TrueLocus. All rights reserved.</div>
+    <div>
+      <a href="/">Home</a> &bull;
+      <a href="./updates.html">Updates</a> &bull;
+      <a href="./contact.html">Contact</a> &bull;
+      <a href="mailto:contact@truelocus.bio">Email</a>
+    </div>
+  </footer>
 </body>
 </html>
