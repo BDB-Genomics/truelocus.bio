@@ -300,7 +300,7 @@
   <div class="content-container">
     <h1>Updates & Changelog</h1>
     <p class="lead">
-      Platform releases, empirical benchmarks, and failure forensics.
+      Platform updates, benchmarks, and analysis.
     </p>
 
     <!-- Empirical Benchmark Card -->
@@ -308,8 +308,7 @@
       <span class="tag" style="background: var(--accent-lavender);">September 2026 &bull; Empirical Benchmark</span>
       <h2 class="update-title">Held-Out CRISPRi Benchmark (n = 72)</h2>
       <p class="update-desc">
-        Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, <em>Nature Methods</em>). 
-        Measures distal target gene assignment where linear 1D proximity fails.
+        Evaluated on 72 known enhancer-gene pairs. We measure how accurately we identify the true target gene when simple distance is misleading.
       </p>
 
       <div class="benchmark-grid">
@@ -376,10 +375,10 @@
 
     <!-- Methodological Notes Card -->
     <div class="card">
-      <span class="tag" style="background: var(--accent-coral);">Methodological Forensics</span>
-      <h2 class="update-title">Engine Failure Analysis on Ground-Truth Data</h2>
+      <span class="tag" style="background: var(--accent-coral);">Error Analysis</span>
+      <h2 class="update-title">Model Adjustments from Ground-Truth Data</h2>
       <p class="update-desc">
-        In our 72-pair held-out CRISPRi benchmark, our initial model configurations exhibited two specific failure modes that guided architecture updates:
+        During our benchmark testing, we found two main reasons our initial model failed. We used these to improve our system:
       </p>
 
       <div class="grid-2" style="align-items: stretch; margin-top: 14px;">
@@ -389,7 +388,7 @@
               Failure 1 &bull; HBE1 (Annotation Error)
             </div>
             <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 12px;">
-              The database placed HBE1's transcription start 225 kb from its real promoter. CAGE peak data identified the true promoter directly, but a read-through transcript model shifted coordinates.
+              The database listed the wrong starting position for the HBE1 gene.
             </p>
           </div>
           <div style="padding: 8px 10px; background: var(--accent-sky); border: 1px solid var(--border); border-radius: 4px; font-size: 0.82rem; font-family: var(--mono);">
@@ -403,7 +402,7 @@
               Failure 2 &bull; NCR3LG1 (Data Dropout)
             </div>
             <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 12px;">
-              A single CAGE library returned 0 TPM, leading to false promoter gating. TAP-seq validation demonstrated strong expression (<em>p</em> = 3.7 &times; 10<sup>-104</sup>).
+              A single data source showed zero expression, causing our model to ignore the gene despite it being active.
             </p>
           </div>
           <div style="padding: 8px 10px; background: var(--accent-sky); border: 1px solid var(--border); border-radius: 4px; font-size: 0.82rem; font-family: var(--mono);">
@@ -415,11 +414,10 @@
 
     <!-- 1p13 SORT1 Case Study Card -->
     <div class="card">
-      <span class="tag" style="background: var(--accent-lavender);">Case Study &bull; Methodological Forensic</span>
-      <h2 class="update-title">The 1p13 LDL Locus: Where Linear Proximity Fails</h2>
+      <span class="tag" style="background: var(--accent-lavender);">Case Study</span>
+      <h2 class="update-title">The 1p13 Locus: Why Distance is Misleading</h2>
       <p class="update-desc">
-        On the 1p13 cholesterol locus (Musunuru et al., <em>Nature</em> 2010; PMID 20686566), the causal variant <code>rs12740374</code> creates a <em>de novo</em> C/EBP binding site. 
-        Because the proximal promoter <em>PSRC1</em> is physically closer (9.1 kb vs 123 kb) and active in adult liver, linear proximity defaults to <em>PSRC1</em> (#1, 42.2% share) and ranks causal <em>SORT1</em> at #6 (4.8% share).
+        At the 1p13 cholesterol locus, the actual target gene is SORT1. However, because PSRC1 is much closer, distance-based models incorrectly pick PSRC1 as the top target and rank the true target 6th.
       </p>
 
       <div class="benchmark-grid">
@@ -496,15 +494,15 @@
           <div class="key-takeaways">
             <div class="takeaway-item">
               <span class="takeaway-bullet" style="color: #b91c1c;">&bull;</span>
-              <div><strong>Multi-eQTL Co-activation:</strong> <code>rs12740374</code> upregulates both <em>PSRC1</em> and <em>SORT1</em> by &gt;12-fold in liver.</div>
+              <div><strong>Co-activation:</strong> The variant upregulates both <em>PSRC1</em> and <em>SORT1</em> in the liver.</div>
             </div>
             <div class="takeaway-item">
               <span class="takeaway-bullet" style="color: var(--accent-blue);">&bull;</span>
-              <div><strong style="color: var(--accent-blue);">Proximity Bias:</strong> Linear distance gives proximal <em>PSRC1</em> a strong default score advantage over <em>SORT1</em> at 123 kb.</div>
+              <div><strong style="color: var(--accent-blue);">Distance Bias:</strong> Basic models blindly prefer the closer <em>PSRC1</em> gene over <em>SORT1</em>.</div>
             </div>
             <div class="takeaway-item">
               <span class="takeaway-bullet">&bull;</span>
-              <div><strong>Functional Separation:</strong> Mouse functional assays proved <em>Sort1</em> drives LDL-C changes (&gt;2-fold), while <em>Psrc1</em> had zero phenotypic effect.</div>
+              <div><strong>Actual Results:</strong> Biological assays proved <em>Sort1</em> drives the real changes, while <em>Psrc1</em> had no effect.</div>
             </div>
           </div>
         </div>

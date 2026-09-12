@@ -350,7 +350,7 @@
         Find regulatory elements and identify their true target genes.
       </p>
       <p class="p-sub">
-        TrueLocus models sequence-derived architecture to assign causal target genes for CRISPRi hits without requiring cell-type Hi-C data.
+        TrueLocus uses sequence-based models to assign target genes for CRISPR hits without needing cell-type Hi-C data.
       </p>
 
     </div>
@@ -361,18 +361,16 @@
   <!-- Content Sections -->
   <div class="content-container">
     <section>
-      <h2>The Unresolved Regulatory Loop</h2>
+      <h2>The Challenge of Non-Coding Targets</h2>
       <p>
-        High-throughput CRISPRi screens identify functional non-coding coordinates, but target gene assignment remains ambiguous. 
-        Defaulting to the nearest transcription start site (TSS) fails when distal enhancers loop past proximal genes. 
-        In held-out CRISPRi validation sets (Schraivogel et al. 2020), the true target was not the nearest gene in 45.8% of pairs (33/72).
+        CRISPR screens find important non-coding regions, but identifying the exact gene they control is difficult. Simply picking the nearest gene often fails because DNA loops in 3D space. In tested datasets, the correct target was NOT the nearest gene nearly half the time.
       </p>
       <div class="grid-2" style="margin-top: 20px;">
         <div class="card" style="border-left: 4px solid #ef4444;">
           <div class="card-header-tag" style="color: #b91c1c;">Conventional Path</div>
-          <div class="card-title">Months of Serial Validation</div>
+          <div class="card-title">Months of Wasted Effort</div>
           <div class="card-desc">
-            Iterative CRISPR-QTL and animal knockouts chasing the adjacent promoter, risking months of follow-up on false proximal bystanders.
+            Testing the wrong genes based on distance alone wastes months of research and resources.
           </div>
         </div>
         <div class="card" style="border-left: 4px solid #0284c7;">
@@ -388,8 +386,8 @@
     <section>
       <h2>Inquiries & Pilot Evaluations</h2>
       <p>
-        TrueLocus operates directly with target discovery teams. 
-        To evaluate candidate hits blind or request per-locus benchmark logs:
+        We work directly with target discovery teams. 
+        To evaluate your hits or request benchmark data:
       </p>
       <p>
         <a href="./contact.html" class="pill-btn pill-lavender" style="font-size: 0.88rem;">Open Contact Form &rarr;</a>
