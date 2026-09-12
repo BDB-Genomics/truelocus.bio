@@ -11,10 +11,6 @@
   <meta property="og:url" content="https://truelocus.bio/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=3">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3">
-  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=3">
   <script>
     if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
       location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -22,13 +18,16 @@
   </script>
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: #111827;
-      --border: #1e293b;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --green: #22c55e;
+      --bg: #faf9f6;
+      --surface: #ffffff;
+      --border: #18181b;
+      --border-light: #e4e4e7;
+      --text: #09090b;
+      --text-muted: #52525b;
+      --accent-lavender: #ede9fe;
+      --accent-coral: #ffe4e6;
+      --accent-sky: #e0f2fe;
+      --accent-blue: #0284c7;
       --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     }
@@ -42,26 +41,21 @@
       color: var(--text);
       font-family: var(--font);
       line-height: 1.55;
-      padding: 0;
+      padding: 0 20px;
       -webkit-font-smoothing: antialiased;
     }
     .container {
-      max-width: 820px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 48px 20px 80px 20px;
+      padding: 40px 0 80px 0;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 32px;
+      padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
-      width: 100%;
-      background: rgba(11, 15, 25, 0.85);
-      backdrop-filter: blur(8px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      margin-bottom: 40px;
     }
     .brand {
       display: flex;
@@ -70,113 +64,118 @@
       text-decoration: none;
       color: var(--text);
       font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-    }
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      background: #000;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-family: var(--mono);
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .nav-link {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-    .nav-link:hover {
-      color: var(--text);
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
     }
     .contact-link {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-family: var(--mono);
+      color: var(--text);
       text-decoration: none;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      background: var(--surface);
+      border-radius: 9999px;
       transition: all 0.15s ease;
     }
     .contact-link:hover {
-      color: var(--text);
-      border-color: var(--text-muted);
+      background: var(--accent-lavender);
     }
-    .hero {
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
       margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
     }
     .badge {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-family: var(--mono);
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-weight: 600;
+      color: var(--text);
+      background: var(--accent-lavender);
+      border: 1px solid var(--border);
       padding: 4px 10px;
       border-radius: 9999px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 2.3rem;
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: -0.03em;
       margin-bottom: 16px;
     }
+    h1 {
+      font-size: 2.6rem;
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
     .lead {
-      font-size: 1.1rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .cta-row {
       display: flex;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
     }
     .btn {
       display: inline-flex;
       align-items: center;
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-size: 0.88rem;
+      font-weight: 600;
       padding: 10px 18px;
-      border-radius: 6px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
       text-decoration: none;
       transition: all 0.15s ease;
     }
     .btn-primary {
-      background: #f4f4f5;
-      color: #09090b;
+      background: var(--text);
+      color: var(--bg);
     }
     .btn-primary:hover {
-      background: #ffffff;
+      background: #27272a;
     }
     .btn-secondary {
-      background: var(--card-bg);
+      background: var(--surface);
       color: var(--text);
-      border: 1px solid var(--border);
     }
     .btn-secondary:hover {
-      border-color: var(--text-muted);
+      background: var(--accent-coral);
+    }
+    .hero-visual-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-visual-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .hero-visual-caption {
+      padding: 12px 16px;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: #fafafa;
+      display: flex;
+      justify-content: space-between;
     }
     section {
       margin-bottom: 48px;
     }
     h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
       margin-bottom: 12px;
     }
     p {
@@ -185,54 +184,27 @@
       margin-bottom: 16px;
     }
     .card {
-      background: var(--card-bg);
-      color: var(--text);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 26px 28px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
-    }
-    /* Benchmark Table */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      margin: 16px 0;
-      font-family: var(--mono);
-    }
-    th, td {
-      padding: 10px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    th {
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .highlight-row td {
-      color: var(--accent);
-      font-weight: 600;
-      background: rgba(56, 189, 248, 0.03);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 20px;
     }
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 18px;
     }
     .contrast-card {
-      background: var(--card-bg);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 22px 24px;
-      box-shadow: 0 6px 18px -3px rgba(0, 0, 0, 0.4);
+      padding: 20px;
     }
     .contrast-header {
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       font-family: var(--mono);
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 8px;
@@ -246,15 +218,45 @@
     .contrast-desc {
       font-size: 0.88rem;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.5;
     }
-    @media (max-width: 640px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 1.85rem;
-      }
+    /* Benchmark Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 16px 0;
+      font-family: var(--mono);
+    }
+    th, td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-light);
+    }
+    th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+    .highlight-row td {
+      background: var(--accent-sky);
+      font-weight: 600;
+      color: var(--text);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      background: var(--accent-lavender);
+      color: var(--text);
+      margin-bottom: 10px;
     }
     .offer-title {
       font-weight: 700;
@@ -267,18 +269,6 @@
       color: var(--text-muted);
       line-height: 1.55;
     }
-    .tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
     footer {
       padding-top: 32px;
       border-top: 1px solid var(--border);
@@ -290,129 +280,136 @@
       gap: 12px;
     }
     footer a {
-      color: var(--text-muted);
+      color: var(--text);
       text-decoration: none;
+      font-weight: 500;
     }
     footer a:hover {
-      color: var(--text);
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <a href="/" class="brand" style="gap: 8px;">
-      <img src="./logo_transparent.png" alt="TrueLocus" style="height: 36px; width: auto; display: block;">
-      <span style="font-size: 1.25rem; font-weight: 700;">TrueLocus</span>
-    </a>
-    <div class="nav-links">
-      <a href="./updates.html" class="nav-link">Updates</a>
-      <a href="./contact.html" class="contact-link">Contact</a>
-    </div>
-  </header>
-
   <div class="container">
+    <header>
+      <a href="/" class="brand">
+        <img src="./logo_header.png" alt="TrueLocus" style="height: 26px; width: auto; display: block;">
+      </a>
+      <a href="mailto:contact@truelocus.bio" class="contact-link">contact@truelocus.bio</a>
+    </header>
+
     <main>
-      <div class="hero">
-        <div class="badge">Held-Out CRISPRi Benchmark (n = 72)</div>
-        <h1>Resolving ambiguous non-coding screen hits.</h1>
-        <p class="lead">
-          Linear proximity fails when enhancers loop past proximal genes, and cell-type Hi-C is rarely available. TrueLocus derives 3D contact decay and multi-promoter competition from sequence and CAGE to de-risk causal target genes.
-        </p>
-        <div class="cta-row">
-          <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request" class="btn btn-primary">Request a Free Blind Ranking</a>
-          <a href="./TrueLocus_Sample_Audit_Dossier.pdf" class="btn btn-secondary">Download Sample Audit Dossier (PDF)</a>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="badge">Held-Out CRISPRi Benchmark &bull; n = 72</div>
+          <h1>Resolving the non-coding genome.</h1>
+          <p class="lead">
+            Linear proximity is the default heuristic for non-coding target assignment, and the Broad ABC model sets the benchmark when Hi-C is available. 
+            TrueLocus operates where cell-type 3D data is absent, using sequence-derived contact decay and multi-promoter competition to nominate causal distal targets.
+          </p>
+          <div class="cta-row">
+            <a href="mailto:contact@truelocus.bio?subject=Blind%20Ranking%20Request" class="btn btn-primary">Request Blind Ranking</a>
+            <a href="./TrueLocus_Sample_Audit_Dossier.pdf" class="btn btn-secondary">Download Sample Audit Dossier (PDF)</a>
+          </div>
+        </div>
+        <div class="hero-visual-card">
+          <img src="./hero_chromatin.jpg" alt="3D Chromatin Architecture and Enhancer-Promoter Looping">
+          <div class="hero-visual-caption">
+            <span>3D Chromatin Loop & Enhancer Contact</span>
+            <span>Zero Cell-Type Hi-C</span>
+          </div>
         </div>
       </div>
 
       <section>
         <h2>The Unresolved Regulatory Loop</h2>
         <p>
-          CRISPRi screening yields precise non-coding coordinates, but conventional pipelines default to nearest-TSS assignment. In held-out benchmarks, the true target is not the nearest gene in <strong>45.8% of pairs (33/72)</strong>&mdash;leaving the causal gene an open liability heading into animal models.
+          High-throughput CRISPRi screens identify functional non-coding hits, but target gene assignment remains unresolved. 
+          Defaulting to the nearest transcription start site (TSS) fails when enhancers loop past proximal genes. 
+          In held-out CRISPRi validation sets (Schraivogel et al. 2020), the causal target was not the nearest gene in 45.8% of pairs (33/72).
         </p>
-
-        <!-- Visual Schematic: 1D Proximity vs 3D Distal Loop -->
-        <div class="card" style="padding: 26px 24px; margin: 24px 0;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
-            <div style="font-size: 0.78rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; font-weight: 600;">
-              Schematic &bull; Distal Looping Over Decoy Promoters
-            </div>
-            <div style="font-size: 0.74rem; font-family: var(--mono); color: #0369a1; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-weight: 600;">
-              Physical Reality vs 1D Heuristic
-            </div>
-          </div>
-          <svg viewBox="0 0 740 250" width="100%" height="auto" style="display: block; overflow: visible; font-family: var(--font);">
-            <defs>
-              <linearGradient id="loopGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#0284c7" />
-                <stop offset="60%" stop-color="#0284c7" />
-                <stop offset="100%" stop-color="#059669" />
-              </linearGradient>
-              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
-              </marker>
-            </defs>
-
-            <!-- 3D Chromatin Loop (Glow & Main Path) -->
-            <path d="M 110 155 Q 365 25 615 150" fill="none" stroke="rgba(2, 132, 199, 0.12)" stroke-width="8" />
-            <path d="M 110 155 Q 365 25 615 150" fill="none" stroke="url(#loopGrad)" stroke-width="2.5" marker-end="url(#arrow)" />
-
-            <!-- Loop Callout Pill -->
-            <g transform="translate(365, 52)">
-              <rect x="-145" y="-14" width="290" height="28" rx="6" fill="#0b0f19" stroke="#38bdf8" stroke-width="1.5" />
-              <text x="0" y="4" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700" letter-spacing="-0.01em">
-                TrueLocus 3D Prior: Resolves Distal Loop
-              </text>
-            </g>
-
-            <!-- Linear DNA Axis -->
-            <line x1="40" y1="160" x2="700" y2="160" stroke="#334155" stroke-width="2.5" stroke-linecap="round" />
-            <text x="40" y="180" fill="#64748b" font-size="10" font-family="monospace">0 kb</text>
-            <text x="310" y="180" fill="#64748b" font-size="10" font-family="monospace">+24 kb</text>
-            <text x="615" y="180" fill="#64748b" font-size="10" font-family="monospace">+182 kb</text>
-
-            <!-- 1D Linear False Assignment (Red Dashed) -->
-            <path d="M 110 160 L 310 160" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3" />
-            <rect x="145" y="196" width="130" height="22" rx="4" fill="rgba(244, 63, 94, 0.12)" stroke="rgba(244, 63, 94, 0.3)" stroke-width="1" />
-            <text x="210" y="211" text-anchor="middle" fill="#f87171" font-size="9.5" font-family="monospace" font-weight="700">&#10005; Nearest 1D TSS (Fails)</text>
-
-            <!-- 3D True Distal Target Tag (Green) -->
-            <rect x="525" y="196" width="180" height="22" rx="4" fill="rgba(16, 185, 129, 0.12)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="1" />
-            <text x="615" y="211" text-anchor="middle" fill="#34d399" font-size="9.5" font-family="monospace" font-weight="700">&#10003; Causal Target (TrueLocus #1)</text>
-
-            <!-- Node 1: CRISPRi Enhancer Hit -->
-            <circle cx="110" cy="160" r="14" fill="rgba(56, 189, 248, 0.15)" />
-            <circle cx="110" cy="160" r="7" fill="#0284c7" />
-            <text x="110" y="130" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">CRISPRi Hit</text>
-            <text x="110" y="144" text-anchor="middle" fill="#64748b" font-size="10">Candidate Enhancer</text>
-
-            <!-- Node 2: Decoy Gene (Nearest) -->
-            <circle cx="310" cy="160" r="12" fill="rgba(244, 63, 94, 0.15)" />
-            <rect x="304" y="154" width="12" height="12" rx="2" fill="#dc2626" />
-            <text x="310" y="130" text-anchor="middle" fill="#dc2626" font-size="12" font-weight="700">Decoy TSS</text>
-            <text x="310" y="144" text-anchor="middle" fill="#64748b" font-size="10">Adjacent Promoters</text>
-
-            <!-- Node 3: True Distal Target -->
-            <circle cx="615" cy="160" r="14" fill="rgba(16, 185, 129, 0.15)" />
-            <polygon points="615,150 624,166 606,166" fill="#059669" />
-            <text x="615" y="130" text-anchor="middle" fill="#059669" font-size="12" font-weight="700">Causal Gene</text>
-            <text x="615" y="144" text-anchor="middle" fill="#64748b" font-size="10">Physical Distal Promoter</text>
-          </svg>
-        </div>
-
         <div class="grid-2" style="margin-top: 20px;">
           <div class="contrast-card" style="border-left: 4px solid #ef4444;">
-            <div class="contrast-header" style="color: #f87171;">Conventional Wet-Lab Path</div>
+            <div class="contrast-header" style="color: #b91c1c;">Conventional Wet-Lab Path</div>
             <div class="contrast-val">Months of Serial Validation</div>
             <div class="contrast-desc">
-              Iterative CRISPR-QTL, engineering, and mouse models chasing the adjacent promoter—often wasting months on a decoy proximal gene.
+              Iterative CRISPR-QTL, cell line engineering, and animal knockouts chasing the adjacent promoter, risking months of effort on false proximal bystanders.
             </div>
           </div>
           <div class="contrast-card" style="border-left: 4px solid #0284c7;">
-            <div class="contrast-header" style="color: var(--accent);">TrueLocus Computational Audit</div>
-            <div class="contrast-val">14-Day Locus De-Risking</div>
+            <div class="contrast-header" style="color: #0369a1;">TrueLocus Computational Audit</div>
+            <div class="contrast-val">14-Day Turnaround &bull; Zero Cell-Type Hi-C</div>
             <div class="contrast-desc">
-              Sequence-derived 3D contact decay and multi-promoter competition matrices to rank the true causal target before in vivo commitment.
+              Sequence-derived 3D contact decay and multi-promoter competition matrices to nominate candidate target genes before in vivo commitment.
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Held-Out Empirical Benchmark</h2>
+        <p>
+          Evaluated on 72 experimental CRISPRi enhancer-gene pairs in K562 cells (Schraivogel et al. 2020, <em>Nature Methods</em>). 
+          Code was frozen and committed before evaluation.
+        </p>
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Top-1 Accuracy</th>
+                <th>Top-3 Target Recall</th>
+                <th>Required Input Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nearest-TSS Baseline</td>
+                <td>54.2% (39/72)</td>
+                <td>73.6% (53/72)</td>
+                <td>1D Distance</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>TrueLocus Engine</td>
+                <td>69.4% (50/72)</td>
+                <td>84.7% (61/72)</td>
+                <td>Sequence + CAGE (No Hi-C)</td>
+              </tr>
+              <tr>
+                <td>Broad ABC (Nasser 2021)</td>
+                <td>75.0% (54/72)</td>
+                <td>94.4% (68/72)</td>
+                <td>Full K562 Hi-C + ChIP + ATAC</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.82rem; font-family: var(--mono); margin-top: 12px; margin-bottom: 12px; color: var(--text);">
+            Statistical validation: TrueLocus vs Nearest Top-1 p=0.007 (McNemar exact test, b=13, c=2).
+          </p>
+          <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-light); font-size: 0.86rem; line-height: 1.6; color: var(--text-muted);">
+            <div style="font-weight: 700; color: var(--text); margin-bottom: 10px;">Objective Domains of Applicability:</div>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px;">
+              <li>
+                <strong style="color: var(--text);">Broad ABC Model (Nasser et al. 2021):</strong> When deeply sequenced cell-type Hi-C, ChIP-seq, and ATAC-seq are experimentally available, Broad ABC demonstrates outstanding performance (75.0% Top-1). It remains the benchmark standard for data-rich cell lines.
+              </li>
+              <li>
+                <strong style="color: var(--text);">Nearest-TSS Heuristic:</strong> An indispensable, zero-overhead baseline. In gene-dense regions where enhancers regulate their immediate adjacent promoter, 1D proximity reliably assigns 54.2% of targets.
+              </li>
+              <li>
+                <strong style="color: var(--accent-blue);">TrueLocus Engine:</strong> Engineered for screening hits in primary cells and disease models where experimental cell-type Hi-C is absent. By deriving 3D contact decay directly from sequence and resolving multi-promoter competition, TrueLocus lifts Top-3 recall on non-nearest loci to 70% (vs 42% for Nearest-TSS), correctly identifying the true distal target on 13 of 33 non-nearest loci.
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -420,20 +417,23 @@
       <section>
         <h2>Scope & Boundary Conditions</h2>
         <div class="card">
-          <div class="tag" style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: #f59e0b;">Selective Qualification</div>
-          <div class="offer-title" style="margin-top: 6px;">When TrueLocus Is Not Needed</div>
-          <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px;">
+          <div class="tag" style="background: var(--accent-coral);">Scope Definition</div>
+          <div class="offer-title" style="margin-top: 6px;">When TrueLocus Is and Is Not Needed</div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 8px; margin-bottom: 12px; line-height: 1.6;">
+            Clear operational boundaries for 3D computational target nomination:
+          </p>
+          <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-muted); line-height: 1.5;">
             <li style="display: flex; gap: 8px;">
-              <span style="color: #f87171; font-family: var(--mono); font-weight: 700;">&#10005;</span>
-              <span><strong style="color: var(--text);">Coding Exon Hits:</strong> Target assignment is already physically resolved.</span>
+              <span style="color: #ef4444; font-family: var(--mono);">&#10005;</span>
+              <span><strong>Coding Exon Hits:</strong> If your screening hits reside strictly within protein-coding exons, target assignment is already resolved.</span>
             </li>
             <li style="display: flex; gap: 8px;">
-              <span style="color: #f87171; font-family: var(--mono); font-weight: 700;">&#10005;</span>
-              <span><strong style="color: var(--text);">Gene Deserts:</strong> Single-promoter loci do not require 3D conformational modeling.</span>
+              <span style="color: #ef4444; font-family: var(--mono);">&#10005;</span>
+              <span><strong>Gene Deserts:</strong> If a non-coding locus contains only one plausible promoter within 1 Mb, linear proximity is sufficient.</span>
             </li>
             <li style="display: flex; gap: 8px;">
-              <span style="color: var(--accent); font-family: var(--mono); font-weight: 700;">&#10003;</span>
-              <span><strong style="color: var(--text);">Intended Scope:</strong> Multi-promoter loci where distal enhancers risk looping past proximal genes.</span>
+              <span style="color: #0284c7; font-family: var(--mono);">&#10003;</span>
+              <span><strong>Intended Scope:</strong> Complex, multi-promoter loci where distal enhancers risk looping past proximal genes.</span>
             </li>
           </ul>
         </div>
@@ -441,40 +441,40 @@
 
       <section>
         <h2>Engagement Protocol</h2>
-        <p style="margin-bottom: 16px;">
-          Two frictionless paths. Zero enterprise pricing matrices, zero discovery calls:
-        </p>
         <div class="grid-2">
           <div class="card">
-            <div class="tag" style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); color: var(--accent);">Option 01 &bull; Free Pilot</div>
+            <div class="tag" style="background: var(--accent-lavender);">Option 01 &bull; Pilot</div>
             <div class="offer-title">Blind Screen Ranking</div>
             <div class="offer-desc">
-              We rank 3–5 candidate loci blind against your internal experimental truth. Zero cost, 5-day turnaround, no sales calls required.
+              Evaluation of 3 to 5 candidate loci blind against your internal experimental truth before advancing to a broader project. 5-day turnaround.
             </div>
           </div>
           <div class="card">
-            <div class="tag" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--text-muted);">Option 02 &bull; Commercial</div>
-            <div class="offer-title">14-Day Locus De-Risking Audit</div>
+            <div class="tag" style="background: var(--accent-sky);">Option 02 &bull; Project</div>
+            <div class="offer-title">Locus De-Risking Audit</div>
             <div class="offer-desc">
-              Comprehensive de-risking for 10–25 screening hits with full promoter competition matrices and insulation profiles. 14-day turnaround.
+              De-risking for 10 to 25 screening hits with full multi-promoter competition matrices and boundary insulation profiles. 14-day turnaround.
             </div>
           </div>
         </div>
-        <div class="card" style="margin-top: 16px;">
-          <div class="tag" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); color: #34d399;">Clean-Room Governance</div>
-          <div class="offer-title" style="margin-top: 6px;">Confidentiality & Capped Capacity</div>
-          <div class="offer-desc">
-            All pilot data handled under mutual NDA; client loci are never retained. We maintain a strictly capped concurrent audit capacity to ensure founder-level computational execution on every project.
-          </div>
-        </div>
+      </section>
+
+      <section>
+        <h2>Inquiries & Contact</h2>
+        <p>
+          TrueLocus operates directly with functional genomics and screening teams. 
+          To evaluate candidate hits or request per-locus benchmark logs:
+        </p>
+        <p>
+          <a href="mailto:contact@truelocus.bio" style="color: var(--accent-blue); font-family: var(--mono); text-decoration: none; font-weight: 600;">contact@truelocus.bio</a>
+        </p>
       </section>
     </main>
 
     <footer>
       <div>&copy; 2026 TrueLocus. All rights reserved.</div>
       <div>
-        <a href="./updates.html">Updates</a> &bull;
-        <a href="./contact.html">Contact</a> &bull;
+        <a href="https://www.linkedin.com/in/himanshu2032/" target="_blank" rel="noopener">LinkedIn</a> &bull; 
         <a href="mailto:contact@truelocus.bio">Email</a>
       </div>
     </footer>
