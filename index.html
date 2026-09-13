@@ -87,14 +87,21 @@
       </div>
     </div>
 
-    <!-- Hero Right Visual Column -->
-    <div class="flex flex-col bg-white overflow-hidden">
-      <div class="px-6 py-3 border-b border-brandBorderLight flex justify-between text-xs font-mono text-brandMuted bg-[#fafafa]">
+    <!-- Hero Right Visual Column with Three.js Falling Rainbow Binaries -->
+    <div class="relative flex flex-col bg-white overflow-hidden min-h-[480px] md:min-h-[520px]">
+      <div class="relative z-20 px-6 py-3 border-b border-brandBorderLight flex justify-between text-xs font-mono text-brandMuted bg-[#fafafa]/90 backdrop-blur-sm">
         <span>3D Chromatin Architecture</span>
         <span>Enhancer-Promoter Contacts</span>
       </div>
-      <div class="flex-1 flex items-center justify-center p-0 overflow-hidden bg-white">
-        <img src="./dna_binary_blend.jpg" alt="3D Chromatin Architecture and Digital Sequence Resolution" class="w-full h-full max-h-[520px] object-cover block">
+      <div class="relative flex-1 flex items-center justify-center p-0 overflow-hidden bg-white">
+        <!-- Three.js Canvas Container with wide smooth edge feathering -->
+        <div id="binary-matrix-container" class="absolute inset-0 w-full h-full" style="-webkit-mask-image: radial-gradient(ellipse 88% 90% at 50% 50%, black 55%, rgba(0,0,0,0.85) 75%, transparent 96%); mask-image: radial-gradient(ellipse 88% 90% at 50% 50%, black 55%, rgba(0,0,0,0.85) 75%, transparent 96%);"></div>
+
+        <!-- Subtle White Edge Blend Overlay -->
+        <div class="absolute inset-0 pointer-events-none z-10" style="background: radial-gradient(ellipse 88% 90% at 50% 50%, transparent 62%, rgba(255,255,255,0.4) 82%, #ffffff 96%);"></div>
+
+        <!-- Foreground 3D DNA Helix & Figure -->
+        <img src="./figure_transparent.png" alt="3D Chromatin Architecture and Digital Sequence Resolution" class="relative z-10 w-full h-full max-h-[520px] object-contain block pointer-events-none select-none">
       </div>
     </div>
   </div>
@@ -148,5 +155,177 @@
       <a href="mailto:contact@truelocus.bio" class="text-brandText no-underline font-medium hover:underline">Email</a>
     </div>
   </footer>
+
+  <!-- Three.js Matrix Binary Rain Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    (function() {
+      const container = document.getElementById('binary-matrix-container');
+      if (!container || typeof THREE === 'undefined') return;
+
+      let width = container.clientWidth || 600;
+      let height = container.clientHeight || 520;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(
+        width / -2, width / 2,
+        height / 2, height / -2,
+        1, 1000
+      );
+      camera.position.z = 10;
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(width, height);
+      renderer.setClearColor(0x020e17, 1);
+      container.appendChild(renderer.domElement);
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = width;
+      canvas.height = height;
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+
+      const planeGeo = new THREE.PlaneGeometry(width, height);
+      const planeMat = new THREE.MeshBasicMaterial({
+        map: texture,
+        transparent: true
+      });
+      const plane = new THREE.Mesh(planeGeo, planeMat);
+      scene.add(plane);
+
+      const fontSize = 13;
+      const chars = '010101100101ACTG01';
+      let columns = Math.floor(width / fontSize);
+      let drops = [];
+      let speeds = [];
+      let hueOffsets = [];
+
+      function initColumns() {
+        columns = Math.max(1, Math.floor(width / fontSize));
+        drops = [];
+        speeds = [];
+        hueOffsets = [];
+        const rowsCount = Math.floor(height / fontSize);
+        for (let i = 0; i < columns; i++) {
+          drops[i] = Math.random() * rowsCount;
+          speeds[i] = 0.45 + Math.random() * 0.65;
+          hueOffsets[i] = (i / columns) * 360;
+        }
+        ctx.fillStyle = '#020e17';
+        ctx.fillRect(0, 0, width, height);
+
+        // Pre-warm trail so it is populated immediately
+        ctx.font = `${fontSize}px "SF Mono", Menlo, ui-monospace, monospace`;
+        for (let step = 0; step < 25; step++) {
+          ctx.fillStyle = 'rgba(2, 14, 23, 0.15)';
+          ctx.fillRect(0, 0, width, height);
+          for (let i = 0; i < columns; i++) {
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            const x = i * fontSize;
+            const y = drops[i] * fontSize;
+            const hue = (hueOffsets[i] + y * 0.1) % 360;
+            ctx.fillStyle = `hsl(${hue}, 95%, 55%)`;
+            ctx.fillText(char, x, y);
+            drops[i] = (drops[i] + speeds[i]) % (rowsCount + 5);
+          }
+        }
+      }
+      initColumns();
+
+      let lastTime = 0;
+      let isVisible = true;
+      let globalHue = 0;
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          isVisible = entries[0].isIntersecting;
+        }, { threshold: 0.05 });
+        observer.observe(container);
+      }
+
+      function animate(now) {
+        requestAnimationFrame(animate);
+        if (!isVisible) return;
+
+        if (now - lastTime < 28) return;
+        lastTime = now;
+
+        globalHue = (globalHue + 0.75) % 360;
+
+        // Rich dark teal trail fade
+        ctx.fillStyle = 'rgba(2, 14, 23, 0.11)';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.font = `${fontSize}px "SF Mono", Menlo, ui-monospace, monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
+
+          const hue = (hueOffsets[i] + globalHue + y * 0.1) % 360;
+
+          // Glowing bright leading head
+          ctx.fillStyle = `hsl(${hue}, 100%, 88%)`;
+          ctx.shadowColor = `hsl(${hue}, 100%, 65%)`;
+          ctx.shadowBlur = 6;
+          ctx.fillText(char, x, y);
+
+          // Saturated trailing body
+          if (drops[i] > 1) {
+            const trailChar = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillStyle = `hsl(${hue}, 95%, 55%)`;
+            ctx.shadowBlur = 2;
+            ctx.fillText(trailChar, x, y - fontSize);
+          }
+
+          ctx.shadowBlur = 0;
+
+          if (y > height && Math.random() > 0.975) {
+            drops[i] = 0;
+            speeds[i] = 0.5 + Math.random() * 0.65;
+          }
+          drops[i] += speeds[i];
+        }
+
+        texture.needsUpdate = true;
+        renderer.render(scene, camera);
+      }
+
+      requestAnimationFrame(animate);
+
+      // Smooth resize observation
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          const newW = container.clientWidth;
+          const newH = container.clientHeight;
+          if (!newW || !newH || (newW === width && newH === height)) return;
+
+          width = newW;
+          height = newH;
+
+          camera.left = width / -2;
+          camera.right = width / 2;
+          camera.top = height / 2;
+          camera.bottom = height / -2;
+          camera.updateProjectionMatrix();
+
+          renderer.setSize(width, height);
+          canvas.width = width;
+          canvas.height = height;
+
+          plane.geometry.dispose();
+          plane.geometry = new THREE.PlaneGeometry(width, height);
+
+          initColumns();
+        });
+        ro.observe(container);
+      }
+    })();
+  </script>
 </body>
 </html>
