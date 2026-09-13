@@ -11,233 +11,60 @@
       location.replace('https:' + window.location.href.substring(window.location.protocol.length));
     }
   </script>
-  <style>
-    :root {
-      --bg: #faf9f6;
-      --surface: #ffffff;
-      --border: #18181b;
-      --border-light: #e4e4e7;
-      --text: #09090b;
-      --text-muted: #52525b;
-      --accent-lavender: #ede9fe;
-      --accent-coral: #ffe4e6;
-      --accent-sky: #e0f2fe;
-      --accent-blue: #0284c7;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.55;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 40px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.03em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .nav-link {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.15s ease;
-    }
-    .nav-link:hover, .nav-link.active {
-      color: var(--text);
-    }
-    .btn-header {
-      font-size: 0.85rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-      padding: 7px 18px;
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      background: var(--accent-lavender);
-    }
-    .content-container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 50px 24px 80px 24px;
-      flex: 1;
-      width: 100%;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-    .lead {
-      color: var(--text-muted);
-      font-size: 1.02rem;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-    .form-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 32px;
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    label {
-      display: block;
-      font-size: 0.8rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-    input[type="text"],
-    input[type="email"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 10px 14px;
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
-      font-size: 0.92rem;
-      font-family: inherit;
-      outline: none;
-      transition: background 0.15s ease;
-    }
-    input:focus,
-    select:focus,
-    textarea:focus {
-      background: #ffffff;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 110px;
-    }
-    .btn-submit {
-      width: 100%;
-      padding: 12px;
-      background: var(--text);
-      color: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      margin-top: 8px;
-    }
-    .btn-submit:hover {
-      background: #27272a;
-    }
-    .direct-contact {
-      margin-top: 20px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-light);
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .direct-contact a {
-      color: var(--accent-blue);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    footer {
-      width: 100%;
-      padding: 24px 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      background: #fafafa;
-    }
-    footer a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 900px) {
-      header {
-        padding: 16px 20px;
-      }
-      .content-container {
-        padding: 40px 20px 60px 20px;
-      }
-      footer {
-        padding: 20px;
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBg: '#faf9f6',
+            brandSurface: '#ffffff',
+            brandBorder: '#18181b',
+            brandBorderLight: '#e4e4e7',
+            brandText: '#09090b',
+            brandMuted: '#52525b',
+            brandLavender: '#ede9fe',
+            brandCoral: '#ffe4e6',
+            brandSky: '#e0f2fe',
+            brandBlue: '#0284c7',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
+            mono: ['ui-monospace', '"SF Mono"', 'Menlo', 'Consolas', 'monospace'],
+          }
+        }
       }
     }
-  </style>
+  </script>
 </head>
-<body>
-  <header>
-    <a href="/" class="brand">
-      <span style="background: var(--text); color: var(--bg); padding: 2px 8px; display: inline-block;">True<span style="color: var(--accent-blue);">Locus</span></span>
+<body class="bg-brandBg text-brandText font-sans leading-relaxed m-0 p-0 w-full antialiased min-h-screen flex flex-col">
+  <!-- Full-Width Header -->
+  <header class="w-full flex justify-between items-center px-5 md:px-10 py-4 border-b border-brandBorder bg-brandSurface">
+    <a href="/" class="flex items-center gap-2.5 no-underline text-brandText font-bold text-xl tracking-tight">
+      <span class="bg-brandText text-brandBg px-2 py-0.5 inline-block">True<span class="text-brandBlue">Locus</span></span>
     </a>
-    <div class="nav-links">
-      <a href="/" class="nav-link">Home</a>
-      <a href="./preprint.html" class="nav-link active" style="color: var(--text); font-weight: 600;">Preprint</a>
-      <a href="./contact.html" class="btn-header">Contact</a>
+    <div class="flex items-center gap-6">
+      <a href="/" class="text-sm text-brandMuted hover:text-brandText no-underline font-medium transition-colors">Home</a>
+      <a href="./preprint.html" class="text-sm text-brandText font-semibold no-underline transition-colors">Preprint</a>
+      <a href="./contact.html" class="text-xs font-mono font-semibold text-brandText no-underline px-4.5 py-1.5 border border-brandBorder rounded-full bg-brandSurface hover:bg-brandLavender transition-all">Contact</a>
     </div>
   </header>
 
-  <div class="content-container">
-    <h1>Preprint</h1>
-    <p class="lead" style="font-size: 1.1rem; color: var(--text-muted);">
+  <div class="max-w-[680px] mx-auto px-6 py-12 md:py-16 flex-1 w-full">
+    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-3 leading-tight text-brandText">Preprint</h1>
+    <p class="text-brandMuted text-lg leading-relaxed mb-8">
       Draft in progress
     </p>
   </div>
 
-  <footer>
+  <!-- Full-Width Footer -->
+  <footer class="w-full px-5 md:px-10 py-6 border-t border-brandBorder flex flex-col sm:flex-row justify-between text-xs text-brandMuted bg-[#fafafa] gap-3 sm:gap-0 mt-auto">
     <div>&copy; 2026 TrueLocus. All rights reserved.</div>
-    <div>
-      <a href="/">Home</a> &bull;
-      <a href="./preprint.html">Preprint</a> &bull;
-      <a href="./contact.html">Contact</a> &bull;
-      <a href="mailto:contact@truelocus.bio">Email</a>
+    <div class="flex items-center gap-2">
+      <a href="/" class="text-brandText no-underline font-medium hover:underline">Home</a> &bull;
+      <a href="./preprint.html" class="text-brandText no-underline font-medium hover:underline">Preprint</a> &bull;
+      <a href="./contact.html" class="text-brandText no-underline font-medium hover:underline">Contact</a> &bull;
+      <a href="mailto:contact@truelocus.bio" class="text-brandText no-underline font-medium hover:underline">Email</a>
     </div>
   </footer>
 </body>

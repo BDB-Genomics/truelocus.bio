@@ -17,453 +17,135 @@
       location.replace('https:' + window.location.href.substring(window.location.protocol.length));
     }
   </script>
-  <style>
-    :root {
-      --bg: #faf9f6;
-      --surface: #ffffff;
-      --border: #18181b;
-      --border-light: #e4e4e7;
-      --text: #09090b;
-      --text-muted: #52525b;
-      --accent-lavender: #ede9fe;
-      --accent-coral: #ffe4e6;
-      --accent-sky: #e0f2fe;
-      --accent-blue: #0284c7;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.55;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      -webkit-font-smoothing: antialiased;
-    }
-    /* Full-Width Top Navbar */
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 40px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.03em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .nav-link {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.15s ease;
-    }
-    .nav-link:hover, .nav-link.active {
-      color: var(--text);
-    }
-    .btn-header {
-      font-size: 0.85rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-      padding: 7px 18px;
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      background: var(--surface);
-      transition: all 0.15s ease;
-    }
-    .btn-header:hover {
-      background: var(--accent-lavender);
-    }
-    /* Full-Width Hero Sub-header Strip */
-    .hero-strip {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 40px;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.78rem;
-      font-family: var(--mono);
-      color: var(--text-muted);
-      background: #fafaf9;
-      letter-spacing: 0.02em;
-    }
-    /* Full-Width Hero Main Grid */
-    .hero-layout {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1.15fr auto 0.85fr;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .hero-left {
-      padding: 64px 48px 64px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-right: none;
-    }
-    .hero-divider {
-      position: relative;
-      width: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-left: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      background: #fafaf9;
-    }
-    .divider-badge {
-      position: relative;
-      z-index: 2;
-      background: var(--text);
-      color: var(--bg);
-      border: 1px solid var(--border);
-      padding: 10px 2px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-      box-sizing: border-box;
-      width: 22px;
-    }
-    .hero-badge {
-      display: inline-block;
-      align-self: flex-start;
-      font-size: 0.72rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--text);
-      background: var(--accent-lavender);
-      border: 1px solid var(--border);
-      padding: 3px 10px;
-      border-radius: 9999px;
-      margin-bottom: 20px;
-    }
-    .hero-left h1 {
-      font-size: 3.4rem;
-      line-height: 1.08;
-      font-weight: 500;
-      letter-spacing: -0.04em;
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-    .hero-left .p-lead {
-      font-size: 1.05rem;
-      color: var(--text);
-      line-height: 1.55;
-      margin-bottom: 12px;
-      max-width: 580px;
-    }
-    .hero-left .p-sub {
-      font-size: 0.94rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 32px;
-      max-width: 580px;
-    }
-    .hero-btn-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .pill-btn {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.88rem;
-      font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 9999px;
-      border: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.15s ease;
-    }
-    .pill-lavender {
-      background: var(--accent-lavender);
-    }
-    .pill-lavender:hover {
-      background: #ddd6fe;
-    }
-    .pill-coral {
-      background: var(--accent-coral);
-    }
-    .pill-coral:hover {
-      background: #fecdd3;
-    }
-    /* Hero Right Visual Column */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      background: #fcfcfc;
-      overflow: hidden;
-    }
-    .hero-right-header {
-      padding: 12px 24px;
-      border-bottom: 1px solid var(--border-light);
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.74rem;
-      font-family: var(--mono);
-      color: var(--text-muted);
-      background: #fafafa;
-    }
-    .hero-right-img-container {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      overflow: hidden;
-      background: #fcfcfc;
-    }
-    .hero-right img {
-      width: 100%;
-      height: 100%;
-      max-height: 520px;
-      object-fit: cover;
-      display: block;
-    }
-    /* Main Content Area */
-    .content-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 40px 80px 40px;
-    }
-    section {
-      margin-bottom: 54px;
-    }
-    h2 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 14px;
-    }
-    p {
-      color: var(--text-muted);
-      font-size: 0.96rem;
-      margin-bottom: 16px;
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px 28px;
-    }
-    .card-header-tag {
-      font-size: 0.72rem;
-      font-family: var(--mono);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 8px;
-    }
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .card-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-    /* Footer */
-    footer {
-      width: 100%;
-      padding: 24px 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      background: #fafafa;
-    }
-    footer a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 900px) {
-      header {
-        padding: 16px 20px;
-      }
-      .hero-strip {
-        padding: 10px 20px;
-      }
-      .hero-layout {
-        grid-template-columns: 1fr;
-      }
-      .hero-left {
-        border-right: none;
-        border-bottom: none;
-        padding: 44px 20px;
-      }
-      .hero-divider {
-        width: 100%;
-        height: 30px;
-        border-left: none;
-        border-right: none;
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        background: #fafaf9;
-      }
-      .divider-badge {
-        writing-mode: horizontal-tb;
-        transform: none;
-        width: auto;
-        height: 22px;
-        padding: 2px 10px;
-        font-size: 0.72rem;
-      }
-      .hero-left h1 {
-        font-size: 2.3rem;
-      }
-      .content-container {
-        padding: 44px 20px 60px 20px;
-      }
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-      footer {
-        padding: 20px;
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBg: '#faf9f6',
+            brandSurface: '#ffffff',
+            brandBorder: '#18181b',
+            brandBorderLight: '#e4e4e7',
+            brandText: '#09090b',
+            brandMuted: '#52525b',
+            brandLavender: '#ede9fe',
+            brandCoral: '#ffe4e6',
+            brandSky: '#e0f2fe',
+            brandBlue: '#0284c7',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
+            mono: ['ui-monospace', '"SF Mono"', 'Menlo', 'Consolas', 'monospace'],
+          }
+        }
       }
     }
-  </style>
+  </script>
 </head>
-<body>
+<body class="bg-brandBg text-brandText font-sans leading-relaxed m-0 p-0 w-full antialiased min-h-screen flex flex-col">
   <!-- Full-Width Header -->
-  <header>
-    <a href="/" class="brand">
-      <span style="background: var(--text); color: var(--bg); padding: 2px 8px; display: inline-block;">True<span style="color: var(--accent-blue);">Locus</span></span>
+  <header class="w-full flex justify-between items-center px-5 md:px-10 py-4 border-b border-brandBorder bg-brandSurface">
+    <a href="/" class="flex items-center gap-2.5 no-underline text-brandText font-bold text-xl tracking-tight">
+      <span class="bg-brandText text-brandBg px-2 py-0.5 inline-block">True<span class="text-brandBlue">Locus</span></span>
     </a>
-    <div class="nav-links">
-      <a href="/" class="nav-link active" style="color: var(--text); font-weight: 600;">Home</a>
-      <a href="./preprint.html" class="nav-link">Preprint</a>
-      <a href="./contact.html" class="btn-header">Contact</a>
+    <div class="flex items-center gap-6">
+      <a href="/" class="text-sm text-brandText font-semibold no-underline transition-colors">Home</a>
+      <a href="./preprint.html" class="text-sm text-brandMuted hover:text-brandText no-underline font-medium transition-colors">Preprint</a>
+      <a href="./contact.html" class="text-xs font-mono font-semibold text-brandText no-underline px-4.5 py-1.5 border border-brandBorder rounded-full bg-brandSurface hover:bg-brandLavender transition-all">Contact</a>
     </div>
   </header>
 
   <!-- Full-Width Hero Strip -->
-  <div class="hero-strip">
+  <div class="w-full flex justify-between items-center px-5 md:px-10 py-2.5 border-b border-brandBorder text-xs font-mono text-brandMuted bg-[#fafaf9] tracking-wide">
     <span>Home / Technology</span>
     <span>01 INTRODUCTION</span>
     <span>SCROLL DOWN &darr;</span>
   </div>
 
   <!-- Full-Width Hero Section -->
-  <div class="hero-layout" id="overview">
-    <div class="hero-left">
-      <div class="hero-badge">Held-Out CRISPRi Benchmark &bull; n = 72</div>
-      <h1>Resolving the non-coding genome.</h1>
-      <p class="p-lead">
+  <div class="w-full grid grid-cols-1 md:grid-cols-[1.15fr_auto_0.85fr] border-b border-brandBorder bg-brandSurface" id="overview">
+    <div class="p-6 sm:p-10 md:py-16 md:pl-10 md:pr-12 flex flex-col justify-center">
+      <div class="inline-block self-start text-[0.72rem] font-mono font-semibold text-brandText bg-brandLavender border border-brandBorder px-2.5 py-1 rounded-full mb-5">
+        Held-Out CRISPRi Benchmark &bull; n = 72
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-[3.4rem] font-medium leading-[1.08] tracking-tight mb-5 text-brandText">
+        Resolving the non-coding genome.
+      </h1>
+      <p class="text-base md:text-lg text-brandText leading-relaxed mb-3 max-w-[580px]">
         Complex problems require simple solutions.
       </p>
-      <p class="p-sub">
+      <p class="text-sm md:text-[0.94rem] text-brandMuted leading-relaxed max-w-[580px]">
         TrueLocus assigns true target genes to non-coding CRISPR hits using sequence models. No cell-type Hi-C required.
       </p>
     </div>
 
-    <div class="hero-divider">
-      <div class="divider-badge">
-        <span>True<span style="color: var(--accent-blue);">Locus</span></span>
+    <!-- Hero Divider with Vertically Centered TrueLocus Badge -->
+    <div class="relative w-full md:w-[30px] h-[30px] md:h-full flex items-center justify-center border-y md:border-y-0 md:border-x border-brandBorder bg-[#fafaf9]">
+      <div class="relative z-10 bg-brandText text-brandBg border border-brandBorder px-2.5 py-0.5 md:py-2.5 md:px-0.5 text-[0.72rem] font-bold tracking-tight md:[writing-mode:vertical-rl] md:rotate-180 flex items-center justify-center whitespace-nowrap box-border md:w-[22px]">
+        <span>True<span class="text-brandBlue">Locus</span></span>
       </div>
     </div>
 
-    <div class="hero-right">
-      <div class="hero-right-header">
+    <!-- Hero Right Visual Column -->
+    <div class="flex flex-col bg-[#fcfcfc] overflow-hidden">
+      <div class="px-6 py-3 border-b border-brandBorderLight flex justify-between text-xs font-mono text-brandMuted bg-[#fafafa]">
         <span>3D Chromatin Architecture</span>
         <span>Enhancer-Promoter Contacts</span>
       </div>
-      <div class="hero-right-img-container">
-        <img src="./peggy_marco-dna-1889085_1920.jpg" alt="3D Chromatin Architecture and DNA Helix">
+      <div class="flex-1 flex items-center justify-center p-0 overflow-hidden bg-[#fcfcfc]">
+        <img src="./peggy_marco-dna-1889085_1920.jpg" alt="3D Chromatin Architecture and DNA Helix" class="w-full h-full max-h-[520px] object-cover block">
       </div>
     </div>
   </div>
 
   <!-- Content Sections -->
-  <div class="content-container">
-    <section>
-      <h2>The Challenge of Non-Coding Targets</h2>
-      <p>
+  <div class="max-w-[1100px] mx-auto px-5 md:px-10 pt-14 pb-20 flex-1 w-full">
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold tracking-tight mb-3.5 text-brandText">The Challenge of Non-Coding Targets</h2>
+      <p class="text-brandMuted text-[0.96rem] mb-4 leading-relaxed">
         CRISPR screens find important non-coding regions, but identifying the exact gene they control is difficult. Simply picking the nearest gene often fails because DNA loops in 3D space. In tested datasets, the correct target was NOT the nearest gene nearly half the time.
       </p>
-      <div class="grid-2" style="margin-top: 20px;">
-        <div class="card" style="border-left: 4px solid #ef4444;">
-          <div class="card-header-tag" style="color: #b91c1c;">Conventional Path</div>
-          <div class="card-title">Months of Wasted Effort</div>
-          <div class="card-desc">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="bg-brandSurface border border-brandBorder border-l-4 border-l-[#ef4444] rounded-lg p-6 md:p-7">
+          <div class="text-[0.72rem] font-mono font-bold uppercase tracking-wider mb-2 text-[#b91c1c]">Conventional Path</div>
+          <div class="text-lg font-bold text-brandText mb-2">Months of Wasted Effort</div>
+          <div class="text-sm text-brandMuted leading-relaxed">
             Testing the wrong genes based on distance alone wastes months of research and resources.
           </div>
         </div>
-        <div class="card" style="border-left: 4px solid #0284c7;">
-          <div class="card-header-tag" style="color: #0369a1;">TrueLocus Engine</div>
-          <div class="card-title">Zero Cell-Type Hi-C Required</div>
-          <div class="card-desc">
+        <div class="bg-brandSurface border border-brandBorder border-l-4 border-l-brandBlue rounded-lg p-6 md:p-7">
+          <div class="text-[0.72rem] font-mono font-bold uppercase tracking-wider mb-2 text-[#0369a1]">TrueLocus Engine</div>
+          <div class="text-lg font-bold text-brandText mb-2">Zero Cell-Type Hi-C Required</div>
+          <div class="text-sm text-brandMuted leading-relaxed">
             Uses sequence-derived architecture to identify target genes before in vivo commitment.
           </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2>Inquiries & Pilot Evaluations</h2>
-      <p>
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold tracking-tight mb-3.5 text-brandText">Inquiries & Pilot Evaluations</h2>
+      <p class="text-brandMuted text-[0.96rem] mb-4 leading-relaxed">
         We work directly with target discovery teams. 
         To evaluate your hits or request benchmark data:
       </p>
       <p>
-        <a href="./contact.html" class="pill-btn pill-lavender" style="font-size: 0.88rem;">Open Contact Form &rarr;</a>
+        <a href="./contact.html" class="inline-flex items-center text-sm font-semibold px-5.5 py-2.5 rounded-full border border-brandBorder no-underline text-brandText bg-brandLavender hover:bg-[#ddd6fe] transition-colors">
+          Open Contact Form &rarr;
+        </a>
       </p>
     </section>
   </div>
 
   <!-- Full-Width Footer -->
-  <footer>
+  <footer class="w-full px-5 md:px-10 py-6 border-t border-brandBorder flex flex-col sm:flex-row justify-between text-xs text-brandMuted bg-[#fafafa] gap-3 sm:gap-0 mt-auto">
     <div>&copy; 2026 TrueLocus. All rights reserved.</div>
-    <div>
-      <a href="/">Home</a> &bull; 
-      <a href="./preprint.html">Preprint</a> &bull; 
-      <a href="./contact.html">Contact</a> &bull; 
-      <a href="mailto:contact@truelocus.bio">Email</a>
+    <div class="flex items-center gap-2">
+      <a href="/" class="text-brandText no-underline font-medium hover:underline">Home</a> &bull; 
+      <a href="./preprint.html" class="text-brandText no-underline font-medium hover:underline">Preprint</a> &bull; 
+      <a href="./contact.html" class="text-brandText no-underline font-medium hover:underline">Contact</a> &bull; 
+      <a href="mailto:contact@truelocus.bio" class="text-brandText no-underline font-medium hover:underline">Email</a>
     </div>
   </footer>
 </body>

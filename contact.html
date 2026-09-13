@@ -11,246 +11,72 @@
       location.replace('https:' + window.location.href.substring(window.location.protocol.length));
     }
   </script>
-  <style>
-    :root {
-      --bg: #faf9f6;
-      --surface: #ffffff;
-      --border: #18181b;
-      --border-light: #e4e4e7;
-      --text: #09090b;
-      --text-muted: #52525b;
-      --accent-lavender: #ede9fe;
-      --accent-coral: #ffe4e6;
-      --accent-sky: #e0f2fe;
-      --accent-blue: #0284c7;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.55;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 40px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.03em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .nav-link {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.15s ease;
-    }
-    .nav-link:hover, .nav-link.active {
-      color: var(--text);
-    }
-    .btn-header {
-      font-size: 0.85rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-      padding: 7px 18px;
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      background: var(--accent-lavender);
-    }
-    .content-container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 50px 24px 80px 24px;
-      flex: 1;
-      width: 100%;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-    .lead {
-      color: var(--text-muted);
-      font-size: 1.02rem;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-    .form-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 32px;
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    label {
-      display: block;
-      font-size: 0.8rem;
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-    input[type="text"],
-    input[type="email"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 10px 14px;
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
-      font-size: 0.92rem;
-      font-family: inherit;
-      outline: none;
-      transition: background 0.15s ease;
-    }
-    input:focus,
-    select:focus,
-    textarea:focus {
-      background: #ffffff;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 110px;
-    }
-    .btn-submit {
-      width: 100%;
-      padding: 12px;
-      background: var(--text);
-      color: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      margin-top: 8px;
-    }
-    .btn-submit:hover {
-      background: #27272a;
-    }
-    .direct-contact {
-      margin-top: 20px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-light);
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .direct-contact a {
-      color: var(--accent-blue);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    footer {
-      width: 100%;
-      padding: 24px 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      background: #fafafa;
-    }
-    footer a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 900px) {
-      header {
-        padding: 16px 20px;
-      }
-      .content-container {
-        padding: 40px 20px 60px 20px;
-      }
-      footer {
-        padding: 20px;
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBg: '#faf9f6',
+            brandSurface: '#ffffff',
+            brandBorder: '#18181b',
+            brandBorderLight: '#e4e4e7',
+            brandText: '#09090b',
+            brandMuted: '#52525b',
+            brandLavender: '#ede9fe',
+            brandCoral: '#ffe4e6',
+            brandSky: '#e0f2fe',
+            brandBlue: '#0284c7',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
+            mono: ['ui-monospace', '"SF Mono"', 'Menlo', 'Consolas', 'monospace'],
+          }
+        }
       }
     }
-  </style>
+  </script>
 </head>
-<body>
-  <header>
-    <a href="/" class="brand">
-      <span style="background: var(--text); color: var(--bg); padding: 2px 8px; display: inline-block;">True<span style="color: var(--accent-blue);">Locus</span></span>
+<body class="bg-brandBg text-brandText font-sans leading-relaxed m-0 p-0 w-full antialiased min-h-screen flex flex-col">
+  <!-- Full-Width Header -->
+  <header class="w-full flex justify-between items-center px-5 md:px-10 py-4 border-b border-brandBorder bg-brandSurface">
+    <a href="/" class="flex items-center gap-2.5 no-underline text-brandText font-bold text-xl tracking-tight">
+      <span class="bg-brandText text-brandBg px-2 py-0.5 inline-block">True<span class="text-brandBlue">Locus</span></span>
     </a>
-    <div class="nav-links">
-      <a href="/" class="nav-link">Home</a>
-      <a href="./preprint.html" class="nav-link">Preprint</a>
-      <a href="./contact.html" class="btn-header">Contact</a>
+    <div class="flex items-center gap-6">
+      <a href="/" class="text-sm text-brandMuted hover:text-brandText no-underline font-medium transition-colors">Home</a>
+      <a href="./preprint.html" class="text-sm text-brandMuted hover:text-brandText no-underline font-medium transition-colors">Preprint</a>
+      <a href="./contact.html" class="text-xs font-mono font-semibold text-brandText no-underline px-4.5 py-1.5 border border-brandBorder rounded-full bg-brandLavender">Contact</a>
     </div>
   </header>
 
-  <div class="content-container">
-    <h1>Contact & Inquiries</h1>
-    <p class="lead">
+  <div class="max-w-[680px] mx-auto px-6 py-12 md:py-16 flex-1 w-full">
+    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-3 leading-tight text-brandText">Contact & Inquiries</h1>
+    <p class="text-brandMuted text-base md:text-[1.02rem] leading-relaxed mb-8">
       We evaluate non-coding CRISPR hits. Contact us to test your candidates, request data logs, or schedule a pilot.
     </p>
 
-    <div class="form-card">
+    <div class="bg-brandSurface border border-brandBorder rounded-lg p-6 md:p-8">
       <form action="https://formspree.io/f/xppznjvn" method="POST" enctype="multipart/form-data">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Dr. Jane Doe" required>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div class="mb-4.5">
+            <label for="name" class="block text-xs font-mono font-semibold text-brandText mb-1.5 uppercase tracking-wide">Name</label>
+            <input type="text" id="name" name="name" placeholder="Dr. Jane Doe" required class="w-full px-3.5 py-2.5 bg-[#fafafa] focus:bg-brandSurface border border-brandBorder rounded-md text-brandText text-sm outline-none transition-colors">
           </div>
-          <div class="form-group">
-            <label for="email">Work Email</label>
-            <input type="email" id="email" name="email" placeholder="jane@biotech.com" required>
+          <div class="mb-4.5">
+            <label for="email" class="block text-xs font-mono font-semibold text-brandText mb-1.5 uppercase tracking-wide">Work Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@biotech.com" required class="w-full px-3.5 py-2.5 bg-[#fafafa] focus:bg-brandSurface border border-brandBorder rounded-md text-brandText text-sm outline-none transition-colors">
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="org">Organization / Institution</label>
-          <input type="text" id="org" name="organization" placeholder="Biotech, Pharma, or Research Institute" required>
+        <div class="mb-4.5">
+          <label for="org" class="block text-xs font-mono font-semibold text-brandText mb-1.5 uppercase tracking-wide">Organization / Institution</label>
+          <input type="text" id="org" name="organization" placeholder="Biotech, Pharma, or Research Institute" required class="w-full px-3.5 py-2.5 bg-[#fafafa] focus:bg-brandSurface border border-brandBorder rounded-md text-brandText text-sm outline-none transition-colors">
         </div>
 
-        <div class="form-group">
-          <label for="inquiry_type">Inquiry Type</label>
-          <select id="inquiry_type" name="inquiry_type">
+        <div class="mb-4.5">
+          <label for="inquiry_type" class="block text-xs font-mono font-semibold text-brandText mb-1.5 uppercase tracking-wide">Inquiry Type</label>
+          <select id="inquiry_type" name="inquiry_type" class="w-full px-3.5 py-2.5 bg-[#fafafa] focus:bg-brandSurface border border-brandBorder rounded-md text-brandText text-sm outline-none transition-colors">
             <option value="Free Blind Pilot">Blind Evaluation (3-5 Targets)</option>
             <option value="14-Day Commercial Audit">Target Audit (10-25 Targets)</option>
             <option value="Benchmark Due Diligence">Benchmark Data Request</option>
@@ -258,36 +84,41 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="message">Project Context</label>
-          <textarea id="message" name="message" placeholder="Project details, cell types, or specific requirements..." required></textarea>
+        <div class="mb-4.5">
+          <label for="message" class="block text-xs font-mono font-semibold text-brandText mb-1.5 uppercase tracking-wide">Project Context</label>
+          <textarea id="message" name="message" placeholder="Project details, cell types, or specific requirements..." required class="w-full px-3.5 py-2.5 bg-[#fafafa] focus:bg-brandSurface border border-brandBorder rounded-md text-brandText text-sm outline-none transition-colors resize-y min-h-[110px]"></textarea>
         </div>
 
-        <div class="form-group">
-          <label for="attachment">Attach File / Locus List <span style="font-size: 0.72rem; font-weight: normal; color: var(--text-muted);">(Optional &bull; TSV, CSV, BED, PDF &bull; Max 10MB)</span></label>
-          <input type="file" id="attachment" name="attachment" style="padding: 8px 10px; background: #fafafa; border: 1px dashed var(--border); border-radius: 6px; font-size: 0.85rem; width: 100%; cursor: pointer;">
+        <div class="mb-4.5">
+          <label for="attachment" class="block text-xs font-mono font-semibold text-brandText mb-1.5 uppercase tracking-wide">
+            Attach File / Locus List <span class="text-[0.72rem] font-normal text-brandMuted normal-case">(Optional &bull; TSV, CSV, BED, PDF &bull; Max 10MB)</span>
+          </label>
+          <input type="file" id="attachment" name="attachment" class="px-2.5 py-2 bg-[#fafafa] border border-dashed border-brandBorder rounded-md text-sm w-full cursor-pointer">
         </div>
 
-        <button type="submit" class="btn-submit">Submit Inquiry</button>
+        <button type="submit" class="w-full py-3 bg-brandText hover:bg-[#27272a] text-brandBg border border-brandBorder rounded-full text-sm font-semibold cursor-pointer transition-colors mt-2">
+          Submit Inquiry
+        </button>
 
-        <div style="margin-top: 12px; text-align: center; font-size: 0.75rem; color: var(--text-muted); font-family: var(--mono);">
+        <div class="mt-3 text-center text-xs text-brandMuted font-mono">
           Confidential &bull; Mutual NDA available on request
         </div>
       </form>
 
-      <div class="direct-contact">
-        Direct email: <a href="mailto:contact@truelocus.bio">contact@truelocus.bio</a>
+      <div class="mt-5 pt-3.5 border-t border-brandBorderLight text-center text-sm text-brandMuted">
+        Direct email: <a href="mailto:contact@truelocus.bio" class="text-brandBlue no-underline font-semibold">contact@truelocus.bio</a>
       </div>
     </div>
   </div>
 
-  <footer>
+  <!-- Full-Width Footer -->
+  <footer class="w-full px-5 md:px-10 py-6 border-t border-brandBorder flex flex-col sm:flex-row justify-between text-xs text-brandMuted bg-[#fafafa] gap-3 sm:gap-0 mt-auto">
     <div>&copy; 2026 TrueLocus. All rights reserved.</div>
-    <div>
-      <a href="/">Home</a> &bull;
-      <a href="./preprint.html">Preprint</a> &bull;
-      <a href="./contact.html">Contact</a> &bull;
-      <a href="mailto:contact@truelocus.bio">Email</a>
+    <div class="flex items-center gap-2">
+      <a href="/" class="text-brandText no-underline font-medium hover:underline">Home</a> &bull;
+      <a href="./preprint.html" class="text-brandText no-underline font-medium hover:underline">Preprint</a> &bull;
+      <a href="./contact.html" class="text-brandText no-underline font-medium hover:underline">Contact</a> &bull;
+      <a href="mailto:contact@truelocus.bio" class="text-brandText no-underline font-medium hover:underline">Email</a>
     </div>
   </footer>
 </body>
