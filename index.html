@@ -115,7 +115,7 @@
     .hero-layout {
       width: 100%;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.15fr auto 0.85fr;
       border-bottom: 1px solid var(--border);
       background: var(--surface);
     }
@@ -124,7 +124,39 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      border-right: none;
+    }
+    .hero-divider {
+      position: relative;
+      width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+    }
+    .divider-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      border-left: 1px solid var(--border);
       border-right: 1px solid var(--border);
+      background: #fafaf9;
+    }
+    .divider-badge {
+      position: relative;
+      z-index: 2;
+      background: var(--text);
+      color: var(--bg);
+      border: 1px solid var(--border);
+      padding: 4px 9px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
     }
     .hero-badge {
       display: inline-block;
@@ -304,8 +336,25 @@
       }
       .hero-left {
         border-right: none;
-        border-bottom: 1px solid var(--border);
+        border-bottom: none;
         padding: 44px 20px;
+      }
+      .hero-divider {
+        width: 100%;
+        height: 38px;
+      }
+      .divider-line {
+        top: 50%;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 8px;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
       }
       .hero-left h1 {
         font-size: 2.3rem;
@@ -355,10 +404,17 @@
       </p>
     </div>
 
+    <div class="hero-divider">
+      <div class="divider-line"></div>
+      <div class="divider-badge">
+        <span>True<span style="color: var(--accent-blue);">Locus</span></span>
+      </div>
+    </div>
+
     <div class="hero-right">
       <div class="hero-right-header">
         <span>3D Chromatin Architecture</span>
-        <span>Enhancer-Promoter Looping</span>
+        <span>Enhancer-Promoter Contacts</span>
       </div>
       <div class="hero-right-img-container">
         <img src="./peggy_marco-dna-1889085_1920.jpg" alt="3D Chromatin Architecture and DNA Helix">
