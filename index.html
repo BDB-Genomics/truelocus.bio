@@ -59,27 +59,23 @@
   <!-- Full-Width Hero Strip -->
   <div class="w-full flex justify-between items-center px-5 md:px-10 py-2.5 border-b border-brandBorder text-xs font-mono text-brandMuted bg-[#fafaf9] tracking-wide">
     <span>Home / Technology</span>
-    <span>01 &bull; INTRODUCTION</span>
+    <span>01 INTRODUCTION</span>
     <span>SCROLL DOWN &darr;</span>
   </div>
 
   <!-- Full-Width Hero Section -->
   <div class="w-full grid grid-cols-1 md:grid-cols-[1.15fr_auto_0.85fr] border-b border-brandBorder bg-brandSurface" id="overview">
     <div class="p-6 sm:p-10 md:py-16 md:pl-10 md:pr-12 flex flex-col justify-center">
-      <div class="inline-flex items-center gap-2 self-start text-[0.75rem] font-mono font-medium text-brandText bg-brandLavender border border-brandBorder px-3 py-1 rounded-full mb-6">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-        <span>Held-Out CRISPRi Benchmark &bull; <strong>n = 72</strong></span>
+      <div class="inline-block self-start text-[0.72rem] font-mono font-semibold text-brandText bg-brandLavender border border-brandBorder px-2.5 py-1 rounded-full mb-5">
+        Held-Out CRISPRi Benchmark &bull; n = 72
       </div>
-
-      <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold tracking-tight mb-5 text-brandText leading-[1.08]">
+      <h1 class="text-4xl md:text-5xl lg:text-[3.4rem] font-bold tracking-tight mb-5 text-brandText leading-[1.08]">
         Resolving the <span class="italic font-serif font-normal text-brandBlue">non-coding</span> genome.
       </h1>
-
-      <p class="text-lg md:text-xl font-medium text-brandText leading-relaxed mb-3 max-w-[580px]">
+      <p class="text-base md:text-lg text-brandText leading-relaxed mb-3 max-w-[580px]">
         Complex problems require simple solutions.
       </p>
-
-      <p class="text-sm md:text-[0.96rem] text-brandMuted leading-relaxed max-w-[580px]">
+      <p class="text-sm md:text-[0.94rem] text-brandMuted leading-relaxed max-w-[580px]">
         TrueLocus assigns true target genes to non-coding CRISPR hits using sequence models. <strong>No cell-type Hi-C required</strong>.
       </p>
     </div>
@@ -113,38 +109,39 @@
   <!-- Content Sections -->
   <div class="max-w-[1100px] mx-auto px-5 md:px-10 pt-14 pb-20 flex-1 w-full">
     <section class="mb-14">
-      <div class="text-xs font-mono font-semibold uppercase tracking-wider text-brandBlue mb-2">02 &bull; Problem Space</div>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-brandText mb-3">The Challenge of Non-Coding Targets</h2>
-      <p class="text-brandMuted text-[0.96rem] mb-6 leading-relaxed max-w-[800px]">
-        CRISPR screens find crucial non-coding regulatory elements, but identifying the exact gene they regulate is challenging. Simply picking the nearest gene often fails because DNA loops across megabase distances in 3D space. In tested datasets, the correct target was <strong>not the nearest gene nearly 50% of the time</strong>.
+      <h2 class="text-2xl font-bold tracking-tight mb-3.5 text-brandText">The Challenge of Non-Coding Targets</h2>
+      <p class="text-brandMuted text-[0.96rem] mb-4 leading-relaxed">
+        CRISPR screens find important non-coding regions, but identifying the exact gene they control is difficult. Simply picking the nearest gene often fails because DNA loops in 3D space. In tested datasets, the correct target was <strong>NOT the nearest gene nearly half the time</strong>.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="bg-brandSurface border border-brandBorder border-l-4 border-l-red-500 rounded-lg p-6 md:p-7">
-          <div class="text-xs font-mono font-bold uppercase tracking-wider text-red-600 mb-2">Conventional Approach</div>
-          <h3 class="text-lg font-bold text-brandText mb-2">Months of Wasted Validation</h3>
-          <p class="text-sm text-brandMuted leading-relaxed">
-            Testing incorrect nearby genes based on linear 1D distance alone wastes months of bench validation and millions in discovery capital.
-          </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="bg-brandSurface border border-brandBorder border-l-4 border-l-[#ef4444] rounded-lg p-6 md:p-7">
+          <div class="text-[0.72rem] font-mono font-bold uppercase tracking-wider mb-2 text-[#b91c1c]">Conventional Path</div>
+          <div class="text-lg font-bold text-brandText mb-2">Months of Wasted Effort</div>
+          <div class="text-sm text-brandMuted leading-relaxed">
+            Testing the wrong genes based on distance alone wastes months of research and resources.
+          </div>
         </div>
         <div class="bg-brandSurface border border-brandBorder border-l-4 border-l-brandBlue rounded-lg p-6 md:p-7">
-          <div class="text-xs font-mono font-bold uppercase tracking-wider text-brandBlue mb-2">TrueLocus Engine</div>
-          <h3 class="text-lg font-bold text-brandText mb-2">Zero Cell-Type Hi-C Required</h3>
-          <p class="text-sm text-brandMuted leading-relaxed">
-            Deploys sequence-derived 3D chromatin architecture models to pinpoint true causal target genes directly from primary sequence before <em>in vivo</em> commitment.
-          </p>
+          <div class="text-[0.72rem] font-mono font-bold uppercase tracking-wider mb-2 text-[#0369a1]">TrueLocus Engine</div>
+          <div class="text-lg font-bold text-brandText mb-2">Zero Cell-Type Hi-C Required</div>
+          <div class="text-sm text-brandMuted leading-relaxed">
+            Uses sequence-derived architecture to identify target genes before in vivo commitment.
+          </div>
         </div>
       </div>
     </section>
 
     <section class="mb-14">
-      <div class="text-xs font-mono font-semibold uppercase tracking-wider text-brandBlue mb-2">03 &bull; Partnerships</div>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-brandText mb-3">Inquiries &amp; Pilot Evaluations</h2>
-      <p class="text-brandMuted text-[0.96rem] mb-6 leading-relaxed max-w-[640px]">
-        We partner directly with functional genomics and target discovery teams. Contact us to evaluate your non-coding hits, inspect benchmark validation datasets, or schedule a pilot analysis.
+      <h2 class="text-2xl font-bold tracking-tight mb-3.5 text-brandText">Inquiries & Pilot Evaluations</h2>
+      <p class="text-brandMuted text-[0.96rem] mb-4 leading-relaxed">
+        We work directly with target discovery teams. 
+        To evaluate your hits or request benchmark data:
       </p>
-      <a href="./contact.html" class="inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full border border-brandBorder no-underline text-brandText bg-brandLavender hover:bg-[#ddd6fe] transition-colors">
-        <span>Open Contact Form</span> &rarr;
-      </a>
+      <p>
+        <a href="./contact.html" class="inline-flex items-center text-sm font-semibold px-5.5 py-2.5 rounded-full border border-brandBorder no-underline text-brandText bg-brandLavender hover:bg-[#ddd6fe] transition-colors">
+          Open Contact Form &rarr;
+        </a>
+      </p>
     </section>
   </div>
 
