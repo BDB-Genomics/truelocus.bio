@@ -36,43 +36,6 @@
       }
     }
   </script>
-  <style>
-    .letter-tile {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
-      font-weight: 900;
-      border: 2px solid #18181b;
-      border-radius: 6px;
-      box-shadow: 2px 2px 0px #18181b;
-      color: #18181b;
-      user-select: none;
-      cursor: pointer;
-      position: relative;
-      will-change: transform, box-shadow;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
-    }
-    .tile-lg {
-      width: 32px;
-      height: 40px;
-      font-size: 1.3rem;
-    }
-    @media (min-width: 640px) {
-      .tile-lg {
-        width: 42px;
-        height: 52px;
-        font-size: 1.7rem;
-        border-radius: 8px;
-        box-shadow: 3px 3px 0px #18181b;
-      }
-    }
-    .letter-tile:hover {
-      transform: translateY(-8px) scale(1.16) rotate(3deg) !important;
-      box-shadow: 4px 6px 0px #18181b !important;
-      z-index: 30;
-    }
-  </style>
 </head>
 <body class="bg-brandBg text-brandText font-sans leading-relaxed m-0 p-0 w-full antialiased min-h-screen flex flex-col">
   <!-- Full-Width Header -->
@@ -89,71 +52,62 @@
 
   <!-- Full-Width Top Strip -->
   <div class="w-full flex justify-between items-center px-5 md:px-10 py-2.5 border-b border-brandBorder text-xs font-mono text-brandMuted bg-[#fafaf9] tracking-wide">
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#ff6b6b]"></span> Home / Publications</span>
-    <span class="inline-flex items-center gap-1.5"><span class="px-1.5 py-0.5 bg-[#ffd43b] text-brandText border border-brandBorder text-[0.68rem] font-bold rounded shadow-[1px_1px_0px_#18181b]">01</span> PREPRINT</span>
-    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#38d9a9]"></span> 2026 MANUSCRIPT</span>
+    <span>Home / Publications</span>
+    <span>01 &bull; PREPRINT</span>
+    <span>2026 MANUSCRIPT</span>
   </div>
 
-  <div class="max-w-[900px] mx-auto px-6 py-12 md:py-16 flex-1 w-full">
+  <div class="max-w-[860px] mx-auto px-6 py-12 md:py-16 flex-1 w-full">
     <!-- Status Badge -->
-    <div class="inline-flex items-center gap-2 self-start text-[0.75rem] font-mono font-bold text-brandText bg-brandLavender border-2 border-brandBorder px-3 py-1 rounded-full mb-6 shadow-[2px_2px_0px_#18181b]">
-      <span class="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse"></span>
-      <span>Draft in Preparation &bull; Manuscript 2026</span>
+    <div class="inline-flex items-center gap-2 self-start text-[0.75rem] font-mono font-medium text-brandText bg-brandLavender border border-brandBorder px-3 py-1 rounded-full mb-6">
+      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+      <span>Manuscript in Preparation &bull; <strong>2026</strong></span>
     </div>
 
-    <!-- Animated Colorful Letter Blocks Headline -->
-    <h1 class="mb-4 text-brandText select-none" aria-label="Preprint">
-      <div id="preprint-headline-line" class="flex flex-wrap items-center"></div>
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-brandText mb-4 leading-tight">
+      Preprint
     </h1>
 
-    <div class="flex items-center gap-2.5 mb-8 flex-wrap">
-      <span class="px-2 py-0.5 bg-[#fef08a] text-brandText border-2 border-brandBorder font-mono text-[0.72rem] font-bold rounded shadow-[1.5px_1.5px_0px_#18181b]">STATUS: DRAFT</span>
-      <p class="text-base md:text-lg text-brandMuted font-medium leading-relaxed">
-        Full manuscript text and benchmark evaluations are currently being prepared for release.
+    <p class="text-base md:text-lg text-brandMuted leading-relaxed mb-8">
+      Full manuscript text, methodological benchmarks, and validation logs are currently being finalized for dissemination.
+    </p>
+
+    <!-- Manuscript Overview Card -->
+    <div class="bg-brandSurface border border-brandBorder rounded-lg p-6 md:p-8 mb-10">
+      <div class="text-xs font-mono font-bold uppercase tracking-wider text-brandBlue mb-2">Upcoming Publication</div>
+      <h2 class="text-xl md:text-2xl font-bold text-brandText tracking-tight mb-3 leading-snug">
+        Resolving Distal Target Genes for Non-Coding CRISPR Screens Without Cell-Type Chromatin Conformation
+      </h2>
+      <p class="text-sm md:text-base text-brandMuted leading-relaxed mb-6">
+        High-throughput CRISPR screens identify functionally critical non-coding enhancers, yet assigning causal target genes remains confounded by 3D chromatin looping and skip-gene configurations. Here, we present <strong>TrueLocus</strong>, an <em>in silico</em> architecture that accurately pairs non-coding screen hits to true causal genes purely from primary sequence.
       </p>
-    </div>
 
-    <!-- Manuscript Overview Card with Three.js Ambient Visual Strip -->
-    <div class="bg-brandSurface border-2 border-brandBorder rounded-lg p-6 md:p-8 shadow-[4px_4px_0px_#18181b] mb-10 overflow-hidden relative">
-      <!-- Ambient Three.js Helix/Chromatin Canvas in Top Corner -->
-      <div id="preprint-three-container" class="absolute top-0 right-0 w-[240px] h-[180px] pointer-events-none opacity-80" style="-webkit-mask-image: radial-gradient(circle at 70% 30%, black 40%, transparent 85%); mask-image: radial-gradient(circle at 70% 30%, black 40%, transparent 85%);"></div>
-
-      <div class="relative z-10 max-w-[620px]">
-        <div class="text-xs font-mono font-bold text-brandBlue uppercase tracking-wider mb-2">Upcoming Publication</div>
-        <h2 class="text-xl md:text-2xl font-extrabold text-brandText tracking-tight mb-3">
-          Resolving Distal Target Genes for Non-Coding CRISPR Screens Without Cell-Type Chromatin Conformation
-        </h2>
-        <p class="text-sm md:text-[0.96rem] text-brandMuted leading-relaxed mb-6">
-          High-throughput CRISPR screens identify functionally critical non-coding enhancers, yet assigning causal target genes remains confounded by 3D chromatin looping and skip-gene configurations. Here, we present TrueLocus, an in silico architecture that accurately pairs non-coding screen hits to true causal genes purely from primary sequence.
-        </p>
-
-        <!-- Benchmark Metric Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-7">
-          <div class="p-3.5 bg-[#faf9f6] border-2 border-brandBorder rounded-lg shadow-[2px_2px_0px_#18181b]">
-            <div class="inline-flex items-center px-1.5 py-0.2 bg-[#a9e34b] border border-brandBorder text-[0.65rem] font-mono font-bold rounded">01 BENCHMARK</div>
-            <div class="text-lg font-black text-brandText mt-1.5">n = 72 Hits</div>
-            <div class="text-[0.75rem] text-brandMuted leading-tight mt-0.5">Held-out CRISPRi validated loci</div>
-          </div>
-          <div class="p-3.5 bg-[#faf9f6] border-2 border-brandBorder rounded-lg shadow-[2px_2px_0px_#18181b]">
-            <div class="inline-flex items-center px-1.5 py-0.2 bg-[#ffe4e6] border border-brandBorder text-[0.65rem] font-mono font-bold text-[#b91c1c] rounded">02 DISCORDANCE</div>
-            <div class="text-lg font-black text-brandText mt-1.5">~50% Resolved</div>
-            <div class="text-[0.75rem] text-brandMuted leading-tight mt-0.5">Non-nearest true causal targets</div>
-          </div>
-          <div class="p-3.5 bg-[#faf9f6] border-2 border-brandBorder rounded-lg shadow-[2px_2px_0px_#18181b]">
-            <div class="inline-flex items-center px-1.5 py-0.2 bg-[#e0f2fe] border border-brandBorder text-[0.65rem] font-mono font-bold text-[#0369a1] rounded">03 INPUT</div>
-            <div class="text-lg font-black text-brandText mt-1.5">Zero Hi-C</div>
-            <div class="text-[0.75rem] text-brandMuted leading-tight mt-0.5">Direct sequence modeling</div>
-          </div>
+      <!-- Benchmark Metric Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-7">
+        <div class="p-4 bg-[#faf9f6] border border-brandBorder rounded-lg">
+          <div class="text-xs font-mono font-semibold text-brandMuted uppercase">Benchmark</div>
+          <div class="text-lg font-bold text-brandText mt-1">n = 72 Hits</div>
+          <div class="text-xs text-brandMuted mt-0.5">Held-out CRISPRi validated loci</div>
         </div>
-
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="./contact.html" class="inline-flex items-center gap-2 text-sm font-mono font-bold px-5.5 py-2.5 rounded-full border-2 border-brandBorder no-underline text-brandText bg-brandLavender hover:bg-[#ddd6fe] shadow-[3px_3px_0px_#18181b] hover:shadow-[1px_1px_0px_#18181b] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
-            <span>Request Early Draft &amp; Audit Dossier</span> &rarr;
-          </a>
-          <a href="/" class="text-sm font-semibold text-brandMuted hover:text-brandText no-underline transition-colors">
-            &larr; Return to Technology Overview
-          </a>
+        <div class="p-4 bg-[#faf9f6] border border-brandBorder rounded-lg">
+          <div class="text-xs font-mono font-semibold text-brandMuted uppercase">Discordance</div>
+          <div class="text-lg font-bold text-brandText mt-1">~50% Resolved</div>
+          <div class="text-xs text-brandMuted mt-0.5">Non-nearest true causal targets</div>
         </div>
+        <div class="p-4 bg-[#faf9f6] border border-brandBorder rounded-lg">
+          <div class="text-xs font-mono font-semibold text-brandMuted uppercase">Requirement</div>
+          <div class="text-lg font-bold text-brandText mt-1">Zero Hi-C</div>
+          <div class="text-xs text-brandMuted mt-0.5">Direct sequence-to-target modeling</div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="./contact.html" class="inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full border border-brandBorder no-underline text-brandText bg-brandLavender hover:bg-[#ddd6fe] transition-colors">
+          <span>Request Early Draft &amp; Audit Dossier</span> &rarr;
+        </a>
+        <a href="/" class="text-sm font-medium text-brandMuted hover:text-brandText no-underline transition-colors">
+          &larr; Return to Technology Overview
+        </a>
       </div>
     </div>
   </div>
@@ -168,110 +122,5 @@
       <a href="mailto:contact@truelocus.bio" class="text-brandText no-underline font-medium hover:underline">Email</a>
     </div>
   </footer>
-
-  <!-- Three.js Ambient Animation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script>
-    (function() {
-      // 1. Colorful Letter Blocks for 'Preprint'
-      const rainbowHues = [0, 36, 72, 120, 180, 230, 280, 320];
-      const container = document.getElementById('preprint-headline-line');
-      const text = 'Preprint';
-      const tiles = [];
-
-      const wordWrap = document.createElement('span');
-      wordWrap.className = 'inline-flex flex-nowrap gap-1.5 md:gap-2 mr-3 mb-2';
-
-      for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        const tile = document.createElement('span');
-        tile.className = 'letter-tile tile-lg';
-        tile.textContent = char;
-        const hue = rainbowHues[i % rainbowHues.length];
-        tile.style.backgroundColor = `hsl(${hue}, 92%, 68%)`;
-
-        tile.addEventListener('click', () => {
-          tile.animate([
-            { transform: 'translateY(-12px) scale(1.22) rotate(-12deg)', boxShadow: '5px 7px 0px #18181b' },
-            { transform: 'translateY(-6px) scale(1.15) rotate(10deg)', boxShadow: '4px 5px 0px #18181b' },
-            { transform: 'translateY(0px) scale(1) rotate(0deg)', boxShadow: '2px 2px 0px #18181b' }
-          ], { duration: 420, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' });
-        });
-
-        wordWrap.appendChild(tile);
-        tiles.push({ el: tile, index: i });
-      }
-      container.appendChild(wordWrap);
-
-      // Continuous wave animation loop
-      let animStart = performance.now();
-      function tickWave(now) {
-        requestAnimationFrame(tickWave);
-        const elapsed = (now - animStart) / 1000;
-        for (let i = 0; i < tiles.length; i++) {
-          const { el, index } = tiles[i];
-          if (el.matches(':hover')) continue;
-          const waveY = Math.sin(elapsed * 2.5 + index * 0.45) * 4.5;
-          const waveRot = Math.cos(elapsed * 2.0 + index * 0.35) * 2.2;
-          el.style.transform = `translateY(${waveY.toFixed(2)}px) rotate(${waveRot.toFixed(2)}deg)`;
-        }
-      }
-      requestAnimationFrame(tickWave);
-
-      // 2. Ambient Three.js Chromatin Loop Canvas
-      const threeBox = document.getElementById('preprint-three-container');
-      if (threeBox && typeof THREE !== 'undefined') {
-        const w = 240, h = 180;
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
-        camera.position.z = 30;
-
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(w, h);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-        threeBox.appendChild(renderer.domElement);
-
-        // Rotating DNA / Chromatin Loop Ring
-        const particleCount = 64;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
-
-        for (let i = 0; i < particleCount; i++) {
-          const theta = (i / particleCount) * Math.PI * 4;
-          const r = 8 + Math.sin(theta * 2) * 2.5;
-          positions[i * 3] = Math.cos(theta) * r;
-          positions[i * 3 + 1] = Math.sin(theta) * r;
-          positions[i * 3 + 2] = (i - particleCount / 2) * 0.4;
-
-          const color = new THREE.Color(`hsl(${(i / particleCount) * 360}, 95%, 60%)`);
-          colors[i * 3] = color.r;
-          colors[i * 3 + 1] = color.g;
-          colors[i * 3 + 2] = color.b;
-        }
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-        const material = new THREE.PointsMaterial({
-          size: 1.4,
-          vertexColors: true,
-          transparent: true,
-          opacity: 0.85
-        });
-
-        const points = new THREE.Points(geometry, material);
-        scene.add(points);
-
-        function animateThree() {
-          requestAnimationFrame(animateThree);
-          points.rotation.x += 0.006;
-          points.rotation.y += 0.01;
-          renderer.render(scene, camera);
-        }
-        animateThree();
-      }
-    })();
-  </script>
 </body>
 </html>

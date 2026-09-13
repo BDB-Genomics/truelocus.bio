@@ -42,89 +42,6 @@
       }
     }
   </script>
-  <style>
-    .letter-tile {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
-      font-weight: 900;
-      border: 2px solid #18181b;
-      border-radius: 6px;
-      box-shadow: 2px 2px 0px #18181b;
-      color: #18181b;
-      user-select: none;
-      cursor: pointer;
-      position: relative;
-      will-change: transform, box-shadow;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
-    }
-    .tile-lg {
-      width: 28px;
-      height: 36px;
-      font-size: 1.15rem;
-    }
-    @media (min-width: 640px) {
-      .tile-lg {
-        width: 34px;
-        height: 44px;
-        font-size: 1.35rem;
-        border-radius: 7px;
-        box-shadow: 2.5px 2.5px 0px #18181b;
-      }
-    }
-    @media (min-width: 768px) {
-      .tile-lg {
-        width: 38px;
-        height: 48px;
-        font-size: 1.55rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .tile-lg {
-        width: 44px;
-        height: 54px;
-        font-size: 1.85rem;
-        border-radius: 8px;
-        box-shadow: 3px 3px 0px #18181b;
-      }
-    }
-    .tile-sm {
-      width: 22px;
-      height: 30px;
-      font-size: 0.95rem;
-    }
-    @media (min-width: 640px) {
-      .tile-sm {
-        width: 26px;
-        height: 34px;
-        font-size: 1.1rem;
-        border-radius: 6px;
-        box-shadow: 2px 2px 0px #18181b;
-      }
-    }
-    @media (min-width: 768px) {
-      .tile-sm {
-        width: 30px;
-        height: 38px;
-        font-size: 1.25rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .tile-sm {
-        width: 34px;
-        height: 42px;
-        font-size: 1.4rem;
-        border-radius: 7px;
-        box-shadow: 2.5px 2.5px 0px #18181b;
-      }
-    }
-    .letter-tile:hover {
-      transform: translateY(-8px) scale(1.16) rotate(3deg) !important;
-      box-shadow: 4px 6px 0px #18181b !important;
-      z-index: 30;
-    }
-  </style>
 </head>
 <body class="bg-brandBg text-brandText font-sans leading-relaxed m-0 p-0 w-full antialiased min-h-screen flex flex-col">
   <!-- Full-Width Header -->
@@ -141,35 +58,29 @@
 
   <!-- Full-Width Hero Strip -->
   <div class="w-full flex justify-between items-center px-5 md:px-10 py-2.5 border-b border-brandBorder text-xs font-mono text-brandMuted bg-[#fafaf9] tracking-wide">
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#ff6b6b]"></span> Home / Technology</span>
-    <span class="inline-flex items-center gap-1.5"><span class="px-1.5 py-0.5 bg-[#ffd43b] text-brandText border border-brandBorder text-[0.68rem] font-bold rounded shadow-[1px_1px_0px_#18181b]">01</span> INTRODUCTION</span>
-    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#38d9a9]"></span> SCROLL DOWN &darr;</span>
+    <span>Home / Technology</span>
+    <span>01 &bull; INTRODUCTION</span>
+    <span>SCROLL DOWN &darr;</span>
   </div>
 
   <!-- Full-Width Hero Section -->
   <div class="w-full grid grid-cols-1 md:grid-cols-[1.15fr_auto_0.85fr] border-b border-brandBorder bg-brandSurface" id="overview">
     <div class="p-6 sm:p-10 md:py-16 md:pl-10 md:pr-12 flex flex-col justify-center">
-      <div class="inline-flex items-center gap-2 self-start text-[0.75rem] font-mono font-bold text-brandText bg-brandLavender border-2 border-brandBorder px-3 py-1 rounded-full mb-5 shadow-[2px_2px_0px_#18181b]">
-        <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
-        <span>Held-Out CRISPRi Benchmark &bull; n = 72</span>
+      <div class="inline-flex items-center gap-2 self-start text-[0.75rem] font-mono font-medium text-brandText bg-brandLavender border border-brandBorder px-3 py-1 rounded-full mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Held-Out CRISPRi Benchmark &bull; <strong>n = 72</strong></span>
       </div>
 
-      <!-- Animated Rainbow Letter Block Headline -->
-      <h1 class="mb-5 text-brandText select-none" aria-label="Resolving the non-coding genome.">
-        <div id="hero-resolving-line" class="flex flex-wrap items-center mb-1"></div>
-        <div id="hero-rest-line" class="flex flex-wrap items-center"></div>
+      <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold tracking-tight mb-5 text-brandText leading-[1.08]">
+        Resolving the <span class="italic font-serif font-normal text-brandBlue">non-coding</span> genome.
       </h1>
 
-      <div class="flex items-center gap-2.5 mb-3 flex-wrap">
-        <span class="px-2 py-0.5 bg-[#e0f2fe] text-[#0369a1] border-2 border-brandBorder font-mono text-[0.72rem] font-bold rounded shadow-[1.5px_1.5px_0px_#18181b]">TARGET RESOLUTION</span>
-        <p class="text-base md:text-xl font-bold text-brandText leading-snug">
-          Complex problems require simple solutions.
-        </p>
-      </div>
+      <p class="text-lg md:text-xl font-medium text-brandText leading-relaxed mb-3 max-w-[580px]">
+        Complex problems require simple solutions.
+      </p>
 
       <p class="text-sm md:text-[0.96rem] text-brandMuted leading-relaxed max-w-[580px]">
-        TrueLocus assigns true target genes to non-coding CRISPR hits using sequence models.
-        <span class="bg-[#fef08a] px-1.5 py-0.5 border border-brandBorder text-brandText font-bold rounded text-xs md:text-sm shadow-[1px_1px_0px_#18181b] inline-block mt-1 sm:mt-0">Zero cell-type Hi-C required</span>.
+        TrueLocus assigns true target genes to non-coding CRISPR hits using sequence models. <strong>No cell-type Hi-C required</strong>.
       </p>
     </div>
 
@@ -202,47 +113,38 @@
   <!-- Content Sections -->
   <div class="max-w-[1100px] mx-auto px-5 md:px-10 pt-14 pb-20 flex-1 w-full">
     <section class="mb-14">
-      <div class="flex items-center gap-3 mb-3.5">
-        <span class="w-8 h-8 inline-flex items-center justify-center bg-[#a9e34b] text-brandText border-2 border-brandBorder font-mono font-black text-sm rounded-md shadow-[2px_2px_0px_#18181b]">02</span>
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-brandText">The Challenge of Non-Coding Targets</h2>
-      </div>
-      <p class="text-brandMuted text-[0.96rem] mb-5 leading-relaxed">
-        CRISPR screens find crucial non-coding regulatory elements, but identifying the exact gene they regulate is challenging. Simply picking the nearest gene often fails because DNA loops across megabase distances in 3D space. In tested datasets, the correct target was <span class="bg-[#ffe4e6] text-[#b91c1c] font-bold px-1.5 py-0.5 border border-brandBorder rounded text-xs md:text-sm shadow-[1px_1px_0px_#18181b]">NOT the nearest gene ~50% of the time</span>.
+      <div class="text-xs font-mono font-semibold uppercase tracking-wider text-brandBlue mb-2">02 &bull; Problem Space</div>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-brandText mb-3">The Challenge of Non-Coding Targets</h2>
+      <p class="text-brandMuted text-[0.96rem] mb-6 leading-relaxed max-w-[800px]">
+        CRISPR screens find crucial non-coding regulatory elements, but identifying the exact gene they regulate is challenging. Simply picking the nearest gene often fails because DNA loops across megabase distances in 3D space. In tested datasets, the correct target was <strong>not the nearest gene nearly 50% of the time</strong>.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-        <div class="bg-brandSurface border-2 border-brandBorder border-l-[6px] border-l-[#ef4444] rounded-lg p-6 md:p-7 shadow-[3px_3px_0px_#18181b] hover:shadow-[5px_5px_0px_#18181b] hover:-translate-y-0.5 transition-all">
-          <div class="inline-flex items-center px-2 py-0.5 bg-[#ffe4e6] text-[#b91c1c] border border-brandBorder text-[0.7rem] font-mono font-bold uppercase tracking-wider rounded mb-2.5 shadow-[1px_1px_0px_#18181b]">Conventional Path</div>
-          <div class="text-lg font-bold text-brandText mb-2">Months of Wasted Effort</div>
-          <div class="text-sm text-brandMuted leading-relaxed">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-brandSurface border border-brandBorder border-l-4 border-l-red-500 rounded-lg p-6 md:p-7">
+          <div class="text-xs font-mono font-bold uppercase tracking-wider text-red-600 mb-2">Conventional Approach</div>
+          <h3 class="text-lg font-bold text-brandText mb-2">Months of Wasted Validation</h3>
+          <p class="text-sm text-brandMuted leading-relaxed">
             Testing incorrect nearby genes based on linear 1D distance alone wastes months of bench validation and millions in discovery capital.
-          </div>
+          </p>
         </div>
-        <div class="bg-brandSurface border-2 border-brandBorder border-l-[6px] border-l-brandBlue rounded-lg p-6 md:p-7 shadow-[3px_3px_0px_#18181b] hover:shadow-[5px_5px_0px_#18181b] hover:-translate-y-0.5 transition-all">
-          <div class="inline-flex items-center px-2 py-0.5 bg-[#e0f2fe] text-[#0369a1] border border-brandBorder text-[0.7rem] font-mono font-bold uppercase tracking-wider rounded mb-2.5 shadow-[1px_1px_0px_#18181b]">TrueLocus Engine</div>
-          <div class="text-lg font-bold text-brandText mb-2">Zero Cell-Type Hi-C Required</div>
-          <div class="text-sm text-brandMuted leading-relaxed">
-            Deploys sequence-derived 3D chromatin architecture models to pinpoint true causal target genes directly from sequence before in vivo investment.
-          </div>
+        <div class="bg-brandSurface border border-brandBorder border-l-4 border-l-brandBlue rounded-lg p-6 md:p-7">
+          <div class="text-xs font-mono font-bold uppercase tracking-wider text-brandBlue mb-2">TrueLocus Engine</div>
+          <h3 class="text-lg font-bold text-brandText mb-2">Zero Cell-Type Hi-C Required</h3>
+          <p class="text-sm text-brandMuted leading-relaxed">
+            Deploys sequence-derived 3D chromatin architecture models to pinpoint true causal target genes directly from primary sequence before <em>in vivo</em> commitment.
+          </p>
         </div>
       </div>
     </section>
 
     <section class="mb-14">
-      <div class="flex items-center gap-3 mb-3.5">
-        <span class="w-8 h-8 inline-flex items-center justify-center bg-[#da77f2] text-brandText border-2 border-brandBorder font-mono font-black text-sm rounded-md shadow-[2px_2px_0px_#18181b]">03</span>
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-brandText">Inquiries &amp; Pilot Evaluations</h2>
-      </div>
-      <div class="bg-brandSurface border-2 border-brandBorder rounded-lg p-6 md:p-8 shadow-[3px_3px_0px_#18181b]">
-        <p class="text-brandText text-base md:text-lg mb-3 leading-relaxed font-bold">
-          We partner directly with functional genomics and target discovery teams.
-        </p>
-        <p class="text-brandMuted text-[0.96rem] mb-6 leading-relaxed max-w-[620px]">
-          Whether you want to evaluate your CRISPR screening hits, benchmark against held-out validation loci, or pilot sequence-based target assignment:
-        </p>
-        <a href="./contact.html" class="inline-flex items-center gap-2 text-sm font-mono font-bold px-6 py-3 rounded-full border-2 border-brandBorder no-underline text-brandText bg-brandLavender hover:bg-[#ddd6fe] shadow-[3px_3px_0px_#18181b] hover:shadow-[1px_1px_0px_#18181b] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
-          <span>Open Contact Form</span> &rarr;
-        </a>
-      </div>
+      <div class="text-xs font-mono font-semibold uppercase tracking-wider text-brandBlue mb-2">03 &bull; Partnerships</div>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-brandText mb-3">Inquiries &amp; Pilot Evaluations</h2>
+      <p class="text-brandMuted text-[0.96rem] mb-6 leading-relaxed max-w-[640px]">
+        We partner directly with functional genomics and target discovery teams. Contact us to evaluate your non-coding hits, inspect benchmark validation datasets, or schedule a pilot analysis.
+      </p>
+      <a href="./contact.html" class="inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full border border-brandBorder no-underline text-brandText bg-brandLavender hover:bg-[#ddd6fe] transition-colors">
+        <span>Open Contact Form</span> &rarr;
+      </a>
     </section>
   </div>
 
@@ -429,108 +331,5 @@
     })();
   </script>
 
-  <!-- Animated Colorful Letter Blocks Script -->
-  <script>
-    (function() {
-      // Curated rainbow spectrum palette for maximum vibrancy & legibility with dark text
-      const rainbowHues = [
-        0,   // R - Coral Red
-        24,  // e - Orange
-        42,  // s - Amber
-        62,  // o - Yellow-Gold
-        84,  // l - Lime
-        110, // v - Spring Green
-        142, // i - Emerald
-        170, // n - Mint Teal
-        194, // g - Cyan
-        214, // t - Sky Blue
-        235, // h - Royal Blue
-        256, // e - Indigo
-        278, // n - Violet
-        296, // o - Purple
-        312, // n - Magenta
-        326, // - - Rose Pink
-        340, // c - Pink
-        354, // o - Crimson
-        15,  // d - Tangerine
-        32,  // i - Gold
-        54,  // n - Lemon
-        75,  // g - Lime
-        98,  // g - Green
-        128, // e - Jade
-        160, // n - Teal
-        188, // o - Light Blue
-        220, // m - Azure
-        250, // e - Indigo
-        280  // . - Violet
-      ];
-
-      function buildBlocks(targetId, text, isLarge, startIndex) {
-        const el = document.getElementById(targetId);
-        if (!el) return { tiles: [], nextIndex: startIndex };
-
-        const words = text.split(' ');
-        const tiles = [];
-        let curIndex = startIndex;
-
-        words.forEach((word) => {
-          const wordWrap = document.createElement('span');
-          wordWrap.className = 'inline-flex flex-nowrap gap-1 md:gap-1.5 mr-2.5 md:mr-3.5 mb-2';
-
-          for (let i = 0; i < word.length; i++) {
-            const char = word[i];
-            const tile = document.createElement('span');
-            tile.className = `letter-tile ${isLarge ? 'tile-lg' : 'tile-sm'}`;
-            tile.textContent = char;
-
-            const hue = rainbowHues[curIndex % rainbowHues.length];
-            tile.style.backgroundColor = `hsl(${hue}, 92%, 68%)`;
-            tile.dataset.index = curIndex;
-
-            // Interactive hover tilt
-            tile.style.setProperty('--hover-tilt', (curIndex % 2 === 0 ? 3.5 : -3.5) + 'deg');
-
-            // Click bounce
-            tile.addEventListener('click', () => {
-              tile.animate([
-                { transform: 'translateY(-12px) scale(1.22) rotate(-12deg)', boxShadow: '5px 7px 0px #18181b' },
-                { transform: 'translateY(-6px) scale(1.15) rotate(10deg)', boxShadow: '4px 5px 0px #18181b' },
-                { transform: 'translateY(0px) scale(1) rotate(0deg)', boxShadow: '2px 2px 0px #18181b' }
-              ], { duration: 420, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' });
-            });
-
-            wordWrap.appendChild(tile);
-            tiles.push({ el: tile, index: curIndex });
-            curIndex++;
-          }
-          el.appendChild(wordWrap);
-        });
-
-        return { tiles, nextIndex: curIndex };
-      }
-
-      const res1 = buildBlocks('hero-resolving-line', 'Resolving', true, 0);
-      const res2 = buildBlocks('hero-rest-line', 'the non-coding genome.', false, res1.nextIndex);
-      const allTiles = [...res1.tiles, ...res2.tiles];
-
-      // Smooth wave animation loop
-      let animStart = performance.now();
-      function tickWave(now) {
-        requestAnimationFrame(tickWave);
-        const elapsed = (now - animStart) / 1000;
-
-        for (let i = 0; i < allTiles.length; i++) {
-          const { el, index } = allTiles[i];
-          if (el.matches(':hover')) continue;
-
-          // Mesmerizing undulating rainbow wave
-          const waveY = Math.sin(elapsed * 2.4 + index * 0.36) * 4.2;
-          const waveRot = Math.cos(elapsed * 1.9 + index * 0.3) * 2.0;
-          el.style.transform = `translateY(${waveY.toFixed(2)}px) rotate(${waveRot.toFixed(2)}deg)`;
-        }
-      }
-      requestAnimationFrame(tickWave);
-    })();
-  </script>
 </body>
 </html>
